@@ -1,0 +1,1030 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no, maximum-scale=1.0, minimum-scale=1.0">
+    <title>🏔️ BOUAHCHI GOR LA MONTAGNE - Fitness Elite Pro</title>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; -webkit-user-select: none; user-select: none; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; 
+            background: #0a0e27; 
+            color: #fff; 
+            min-height: 100vh; 
+            overflow-x: hidden;
+            width: 100%;
+            height: 100vh;
+            position: fixed;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+        
+        button { pointer-events: auto !important; z-index: 100 !important; }
+        .btn, .back-btn, .nav-item, .counter-btn, .grid-item, .exo-card, .session-item-btn { pointer-events: auto !important; user-select: none; -webkit-user-select: none; }
+        .exo-card, .grid-item { cursor: pointer !important; }
+
+        .launcher { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, #1a1a3e 0%, #0a0e27 50%, #1a1a3e 100%); display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 10000; transition: opacity 0.6s ease-out; }
+        .launcher.hidden { opacity: 0; pointer-events: none; display: none; }
+        .launcher-content { text-align: center; animation: popIn 0.8s cubic-bezier(0.34, 1.56, 0.64, 1); max-width: 95vw; }
+        @keyframes popIn { from { transform: scale(0.3); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+        .launcher-icon { font-size: 6rem; margin-bottom: 20px; animation: float 3s ease-in-out infinite; filter: drop-shadow(0 0 40px rgba(255, 107, 53, 0.6)); }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-30px); } }
+        .launcher h1 { font-size: 2.8rem; font-weight: 900; margin-bottom: 8px; background: linear-gradient(135deg, #ff6b35 0%, #ffd60a 50%, #ff6b35 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; letter-spacing: 2px; text-shadow: 0 4px 20px rgba(255, 107, 53, 0.3); }
+        .launcher .subtitle { font-size: 1.8rem; font-weight: 700; color: #ffd60a; margin-bottom: 20px; text-shadow: 0 0 20px rgba(255, 107, 53, 0.5); }
+        .launcher .weather-info { font-size: 1rem; color: #aaa; margin-bottom: 10px; padding: 12px 20px; background: linear-gradient(135deg, rgba(255, 107, 53, 0.15), rgba(255, 214, 10, 0.1)); border: 2px solid #ff6b35; border-radius: 12px; margin: 15px auto; min-height: 40px; display: flex; align-items: center; justify-content: center; gap: 10px; box-shadow: 0 4px 15px rgba(255, 107, 53, 0.2); max-width: 90vw; }
+        .launcher .weather-icon { font-size: 1.5rem; }
+        .launcher .location-info { font-size: 0.9rem; color: #ffd60a; font-weight: 700; margin-bottom: 15px; padding: 8px 15px; background: linear-gradient(135deg, rgba(255, 214, 10, 0.15), rgba(255, 107, 53, 0.1)); border-radius: 8px; border-left: 4px solid #ffd60a; }
+        .launcher .date-info { font-size: 0.95rem; color: #ffd60a; font-weight: 700; margin-bottom: 20px; text-shadow: 0 2px 10px rgba(255, 214, 10, 0.3); }
+        .launcher p { font-size: 0.9rem; color: #aaa; margin-bottom: 25px; }
+        .launcher-btn { background: linear-gradient(135deg, #ff6b35 0%, #ffd60a 100%); color: #000; border: none; padding: 14px 40px; font-size: 1.1rem; font-weight: 900; border-radius: 50px; cursor: pointer; transition: all 0.3s; box-shadow: 0 15px 50px rgba(255, 107, 53, 0.6); animation: buttonPulse 2s ease-in-out infinite; pointer-events: auto !important; }
+        .launcher-btn:hover { transform: translateY(-4px); box-shadow: 0 20px 70px rgba(255, 107, 53, 0.8); }
+        .launcher-btn:active { transform: translateY(-2px); }
+        @keyframes buttonPulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.08); } }
+        .launcher-text { margin-top: 30px; color: #666; font-size: 0.8rem; line-height: 1.6; }
+        .launcher-version { position: absolute; bottom: 30px; color: #ff6b35; font-weight: 700; font-size: 0.9rem; }
+
+        .app { display: none; padding-bottom: 80px; width: 100%; height: 100vh; overflow-y: auto; overflow-x: hidden; }
+        .app.show { display: block; }
+
+        .navbar { position: fixed; top: 0; left: 0; right: 0; background: linear-gradient(135deg, #1a1a3e 0%, #16213e 100%); border-bottom: 3px solid #ff6b35; padding: 10px 15px; z-index: 999; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3); }
+        .navbar h1 { font-size: 1.2rem; background: linear-gradient(135deg, #ff6b35 0%, #ffd60a 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 900; text-shadow: 0 2px 10px rgba(255, 107, 53, 0.3); }
+        .navbar-stats { display: flex; gap: 8px; }
+        .stat-badge { background: linear-gradient(135deg, #2a2a4e, #1f1f3e); border: 2px solid #ff6b35; padding: 6px 10px; border-radius: 20px; font-size: 0.7rem; font-weight: 700; box-shadow: 0 2px 10px rgba(255, 107, 53, 0.2); }
+        .stat-badge strong { color: #ffd60a; }
+
+        .bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: linear-gradient(180deg, #1a1a3e 0%, #16213e 100%); border-top: 3px solid #ff6b35; display: flex; justify-content: space-around; z-index: 998; padding: 0; box-shadow: 0 -4px 15px rgba(255, 107, 53, 0.2); }
+        .nav-item { flex: 1; padding: 10px 6px; text-align: center; border: none; background: none; cursor: pointer; color: #888; font-weight: 700; font-size: 0.65rem; transition: all 0.3s; display: flex; flex-direction: column; align-items: center; gap: 3px; pointer-events: auto !important; }
+        .nav-item:hover { color: #ffd60a; transform: scale(1.05); }
+        .nav-item.active { color: #ff6b35; border-top: 3px solid #ff6b35; padding-top: 7px; text-shadow: 0 0 10px rgba(255, 107, 53, 0.5); }
+        .nav-icon { font-size: 1.3rem; }
+
+        .container { max-width: 100%; margin: 50px auto 0; min-height: calc(100vh - 130px); padding: 0 10px; }
+        .screen { display: none; padding: 15px 10px; min-height: calc(100vh - 130px); animation: fadeIn 0.4s ease; }
+        .screen.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        .btn { background: linear-gradient(135deg, #ff6b35 0%, #ffd60a 100%); color: #000; border: none; padding: 12px 18px; margin: 6px 0; border-radius: 12px; cursor: pointer; width: 100%; font-size: 0.95rem; font-weight: 700; transition: all 0.3s; pointer-events: auto !important; box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3); }
+        .btn:active { transform: translateY(0); }
+        .btn-secondary { background: linear-gradient(135deg, #2a2a4e, #1f1f3e); color: #fff; border: 2px solid #ff6b35; box-shadow: 0 2px 10px rgba(255, 107, 53, 0.2); }
+        .btn-secondary:active { background: linear-gradient(135deg, #3a3a5e, #2a2a4e); box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3); }
+        .btn-success { background: linear-gradient(135deg, #00ff88 0%, #00dd88 100%); color: #000; box-shadow: 0 4px 15px rgba(0, 255, 136, 0.3); }
+        .btn-success:active { box-shadow: 0 8px 25px rgba(0,255,136,0.5); }
+        .btn-danger { background: linear-gradient(135deg, #ff3333 0%, #cc0000 100%); color: #fff; box-shadow: 0 4px 15px rgba(255, 51, 51, 0.3); }
+        .btn-danger:active { box-shadow: 0 8px 25px rgba(255,51,51,0.5); }
+        .btn-nouchi { background: linear-gradient(135deg, #ff1744 0%, #d50000 100%); color: #fff; font-size: 1rem; padding: 14px 18px; box-shadow: 0 6px 20px rgba(255, 23, 68, 0.4); }
+        .btn-nouchi:active { transform: translateY(-2px); box-shadow: 0 12px 35px rgba(255,23,68,0.6); }
+
+        .back-btn { background: none; border: none; color: #ff6b35; cursor: pointer; margin-bottom: 15px; font-size: 1.1rem; font-weight: 700; transition: all 0.3s; pointer-events: auto !important; }
+        .back-btn:active { transform: translateX(-4px); text-shadow: 0 0 10px rgba(255, 107, 53, 0.5); }
+
+        .card { background: linear-gradient(135deg, #1a1a3e 0%, #16213e 100%); border: 2px solid #2a2a4e; border-radius: 12px; padding: 14px; margin: 10px 0; transition: all 0.3s; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3); }
+        .card:active { border-color: #ff6b35; box-shadow: 0 6px 20px rgba(255,107,53,0.3); }
+
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 10px 0; }
+        .grid-item { background: linear-gradient(135deg, #1a1a3e 0%, #16213e 100%); border: 2px solid #2a2a4e; padding: 14px; border-radius: 10px; text-align: center; cursor: pointer; transition: all 0.3s; font-weight: 700; pointer-events: auto !important; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); font-size: 0.9rem; }
+        .grid-item:active { border-color: #ff6b35; transform: translateY(-3px); box-shadow: 0 8px 20px rgba(255,107,53,0.3); }
+        .grid-item.active { background: linear-gradient(135deg, #ff6b35 0%, #ffd60a 100%); border-color: #ff6b35; color: #000; text-shadow: 0 2px 5px rgba(0,0,0,0.2); }
+        .grid-icon { font-size: 1.8rem; margin-bottom: 6px; }
+
+        .section-title { font-size: 1.1rem; font-weight: 900; margin: 16px 0 10px 0; background: linear-gradient(135deg, #ff6b35 0%, #ffd60a 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-shadow: 0 2px 10px rgba(255, 107, 53, 0.2); }
+
+        .stats-dashboard { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 12px 0; }
+        .stat-card { background: linear-gradient(135deg, #1a1a3e 0%, #16213e 100%); border: 2px solid #2a2a4e; border-radius: 10px; padding: 12px; text-align: center; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); transition: all 0.3s; }
+        .stat-card:active { border-color: #ff6b35; box-shadow: 0 4px 15px rgba(255, 107, 53, 0.2); }
+        .stat-label { font-size: 0.75rem; color: #888; margin-bottom: 6px; }
+        .stat-number { font-size: 1.5rem; font-weight: 900; background: linear-gradient(135deg, #ff6b35 0%, #ffd60a 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-shadow: 0 2px 10px rgba(255, 107, 53, 0.2); }
+
+        .exo-card { background: linear-gradient(135deg, #1a1a3e 0%, #16213e 100%); border: 2px solid #2a2a4e; border-radius: 10px; padding: 10px; margin: 6px 0; cursor: pointer; display: flex; gap: 10px; transition: all 0.3s; pointer-events: auto !important; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); }
+        .exo-card:active { border-color: #ff6b35; transform: translateX(3px); box-shadow: 0 6px 18px rgba(255,107,53,0.3); }
+        .exo-image { width: 60px; height: 60px; background: linear-gradient(135deg, #ff6b35 0%, #ffd60a 100%); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 2rem; flex-shrink: 0; box-shadow: 0 4px 12px rgba(255, 107, 53, 0.3); }
+        .exo-info { flex: 1; }
+        .exo-name { font-weight: 700; color: #fff; margin-bottom: 3px; font-size: 0.9rem; }
+        .exo-muscles { font-size: 0.7rem; color: #888; }
+        .exo-desc { font-size: 0.65rem; color: #666; margin-top: 2px; }
+
+        .input-group { margin: 12px 0; }
+        .input-label { display: block; font-size: 0.85rem; font-weight: 700; margin-bottom: 6px; color: #ffd60a; }
+        .input-field { width: 100%; padding: 10px; background: linear-gradient(135deg, #1a1a3e 0%, #0f0f1e 100%); border: 2px solid #2a2a4e; border-radius: 8px; color: #fff; font-size: 1rem; transition: all 0.3s; box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.3); }
+        .input-field:focus { outline: none; border-color: #ff6b35; box-shadow: 0 0 0 3px rgba(255,107,53,0.2); }
+
+        .session-list { background: #0a0e27; border: 2px solid #2a2a4e; border-radius: 10px; padding: 10px; max-height: 300px; overflow-y: auto; margin: 10px 0; box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.3); }
+        .session-item { background: linear-gradient(135deg, #1a1a3e 0%, #16213e 100%); border-left: 4px solid #ff6b35; padding: 8px; margin: 5px 0; border-radius: 6px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 8px rgba(255, 107, 53, 0.1); }
+        .session-item-name { font-weight: 700; font-size: 0.9rem; }
+        .session-item-info { font-size: 0.75rem; color: #888; margin-top: 3px; }
+        .session-item-btn { background: linear-gradient(135deg, #ff3333 0%, #cc0000 100%); border: none; color: #fff; padding: 3px 6px; border-radius: 4px; cursor: pointer; font-weight: 700; transition: all 0.3s; pointer-events: auto !important; box-shadow: 0 2px 8px rgba(255, 51, 51, 0.3); font-size: 0.8rem; }
+        .session-item-btn:active { background: linear-gradient(135deg, #ff5252, #ff2222); transform: scale(1.05); box-shadow: 0 4px 12px rgba(255, 51, 51, 0.4); }
+
+        .muscle-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin: 10px 0; }
+        .muscle-tile { background: linear-gradient(135deg, #1a1a3e 0%, #16213e 100%); border: 2px solid #2a2a4e; padding: 8px; border-radius: 6px; text-align: center; font-size: 0.65rem; font-weight: 700; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); }
+        .muscle-tile.active { background: linear-gradient(135deg, #00ff88 0%, #00dd88 100%); border-color: #00ff88; color: #000; box-shadow: 0 4px 12px rgba(0, 255, 136, 0.3); }
+        .muscle-tile.inactive { opacity: 0.4; }
+
+        .welcome-header { background: linear-gradient(135deg, #ff6b35 0%, #ffd60a 100%); color: #000; padding: 16px; border-radius: 12px; margin-bottom: 12px; text-align: center; box-shadow: 0 6px 20px rgba(255, 107, 53, 0.3); }
+        .welcome-header h2 { font-size: 1.3rem; font-weight: 900; text-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); }
+
+        .nouchi-header { background: linear-gradient(135deg, #ff1744 0%, #d50000 100%); color: #fff; padding: 16px; border-radius: 12px; margin-bottom: 12px; text-align: center; box-shadow: 0 10px 30px rgba(255,23,68,0.5); animation: nouchiBounce 2s ease-in-out infinite; }
+        @keyframes nouchiBounce { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+        .nouchi-header h2 { font-size: 1.4rem; font-weight: 900; text-transform: uppercase; text-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); }
+        .nouchi-header p { font-size: 0.85rem; margin-top: 6px; }
+
+        .nouchi-challenge { background: linear-gradient(135deg, #2d1b0a 0%, #1a0a05 100%); border: 3px solid #ff6b35; border-radius: 12px; padding: 16px; margin: 12px 0; box-shadow: 0 8px 25px rgba(255, 107, 53, 0.4); }
+        .challenge-title { font-size: 1.2rem; font-weight: 900; color: #ffd60a; margin-bottom: 10px; text-transform: uppercase; text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3); }
+        .challenge-desc { font-size: 0.85rem; color: #aaa; line-height: 1.5; margin-bottom: 12px; padding: 10px; background: rgba(255, 107, 53, 0.15); border-left: 4px solid #ff6b35; border-radius: 6px; }
+        .challenge-detail { font-size: 0.8rem; color: #fff; margin: 6px 0; padding: 6px; background: rgba(255, 107, 53, 0.08); border-radius: 6px; }
+        .challenge-detail strong { color: #ffd60a; }
+
+        .badge { display: inline-block; background: linear-gradient(135deg, #ff6b35 0%, #ffd60a 100%); color: #000; padding: 6px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 700; margin: 3px; box-shadow: 0 2px 10px rgba(255, 107, 53, 0.3); }
+
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: #1a1a3e; }
+        ::-webkit-scrollbar-thumb { background: linear-gradient(180deg, #ff6b35, #ffd60a); border-radius: 2px; }
+        ::-webkit-scrollbar-thumb:hover { background: linear-gradient(180deg, #ffd60a, #ff6b35); }
+
+        .empty-state { text-align: center; padding: 20px; color: #666; font-size: 0.9rem; }
+        .hidden { display: none !important; }
+
+        .rep-counter { display: flex; gap: 8px; margin: 12px 0; }
+        .counter-btn { flex: 1; padding: 12px; font-size: 1.2rem; font-weight: 900; border: 2px solid #ff6b35; background: linear-gradient(135deg, #1a1a3e 0%, #0f0f1e 100%); color: #ffd60a; border-radius: 10px; cursor: pointer; transition: all 0.3s; pointer-events: auto !important; box-shadow: 0 4px 12px rgba(255, 107, 53, 0.2); }
+        .counter-btn:active { background: linear-gradient(135deg, #ff6b35 0%, #ffd60a 100%); color: #000; box-shadow: 0 6px 18px rgba(255, 107, 53, 0.4); transform: translateY(-1px); }
+
+        .counter-display { background: linear-gradient(135deg, #1a1a3e 0%, #16213e 100%); border: 3px solid #ff6b35; border-radius: 12px; padding: 16px; text-align: center; margin: 12px 0; box-shadow: 0 6px 20px rgba(255, 107, 53, 0.3); }
+        .counter-display h3 { font-size: 0.85rem; color: #888; margin-bottom: 10px; }
+        .counter-number { font-size: 2.8rem; font-weight: 900; background: linear-gradient(135deg, #ff6b35 0%, #ffd60a 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-shadow: 0 4px 15px rgba(255, 107, 53, 0.3); }
+
+        .timer-display { background: linear-gradient(135deg, #1a1a3e 0%, #16213e 100%); border: 3px solid #00ff88; border-radius: 12px; padding: 18px 14px; text-align: center; margin: 12px 0; box-shadow: 0 6px 20px rgba(0, 255, 136, 0.3); }
+        .timer-display h3 { font-size: 0.9rem; color: #00ff88; margin-bottom: 12px; font-weight: 900; text-transform: uppercase; }
+        .timer-number { font-size: 2.4rem; font-weight: 900; color: #00ff88; font-family: 'Courier New', monospace; letter-spacing: 2px; text-shadow: 0 0 20px rgba(0, 255, 136, 0.5); }
+        .timer-controls { display: flex; gap: 8px; margin-top: 12px; }
+        .timer-btn { flex: 1; padding: 10px; font-size: 0.85rem; font-weight: 900; border: 2px solid #00ff88; background: linear-gradient(135deg, #1a1a3e 0%, #0f0f1e 100%); color: #00ff88; border-radius: 8px; cursor: pointer; transition: all 0.3s; pointer-events: auto !important; box-shadow: 0 4px 12px rgba(0, 255, 136, 0.2); }
+        .timer-btn:active { background: linear-gradient(135deg, #00ff88 0%, #00dd88 100%); color: #000; box-shadow: 0 6px 18px rgba(0, 255, 136, 0.4); transform: translateY(-1px); }
+
+        @media (max-width: 480px) {
+            html { font-size: 14px; }
+            .launcher-icon { font-size: 4.5rem; }
+            .launcher h1 { font-size: 2rem; }
+            .navbar h1 { font-size: 1rem; }
+            .section-title { font-size: 1rem; }
+            .stat-number { font-size: 1.3rem; }
+            .counter-number { font-size: 2.2rem; }
+            .timer-number { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="launcher" id="launcher">
+        <div class="launcher-content">
+            <div class="launcher-icon">🏔️</div>
+            <h1>BOUAHCHI GOR</h1>
+            <div class="subtitle">LA MONTAGNE</div>
+            <div class="location-info" id="locationInfo">🌍 Chargement...</div>
+            <div class="weather-info">
+                <span class="weather-icon" id="weatherIcon">🌤️</span>
+                <span id="weatherText">Chargement...</span>
+            </div>
+            <div class="date-info" id="dateInfo">--/--/----</div>
+            <p>Atteins le sommet de ta forme physique</p>
+            <button class="launcher-btn" onclick="app.startApp()">DÉMARRER 🚀</button>
+            <div class="launcher-text">
+                <p>⚡ 350+ Exercices | Chronomètre | Seance Nouchi Epic</p>
+            </div>
+        </div>
+        <div class="launcher-version">v7.1 - iPhone Optimized</div>
+    </div>
+
+    <div class="app" id="app">
+        <div class="navbar">
+            <h1>🏔️ BOUAHCHI</h1>
+            <div class="navbar-stats">
+                <div class="stat-badge"><strong id="navCal">0</strong> cal</div>
+                <div class="stat-badge"><strong id="navReps">0</strong> reps</div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div id="screenHome" class="screen active">
+                <div class="welcome-header">
+                    <h2>Bienvenue Guerrier! 🏋️</h2>
+                    <p>Prêt à monter au sommet?</p>
+                </div>
+
+                <div class="stats-dashboard">
+                    <div class="stat-card">
+                        <div class="stat-label">Semaine</div>
+                        <div class="stat-number" id="weekSessions">0</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Calories</div>
+                        <div class="stat-number" id="totalCalories">0</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Séances</div>
+                        <div class="stat-number" id="totalSessions">0</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Reps</div>
+                        <div class="stat-number" id="totalReps">0</div>
+                    </div>
+                </div>
+
+                <button class="btn" onclick="app.goEquipment()">🚀 Démarrer une séance</button>
+                <button class="btn btn-nouchi" onclick="app.goSeanceNouchi()">🔥 SEANCE NOUCHI - DEFI EXTREME</button>
+                <button class="btn btn-secondary" onclick="app.showStats()">📊 Statistiques avancées</button>
+                <button class="btn btn-secondary" onclick="alert('À venir')">😌 Plan récupération</button>
+
+                <h3 class="section-title">🏆 Achievements</h3>
+                <div style="text-align: center;" id="achievements"></div>
+
+                <h3 class="section-title">📍 Dernière séance</h3>
+                <div id="lastWorkout" class="card"><div class="empty-state">Aucune séance</div></div>
+            </div>
+
+            <div id="screenSeanceNouchi" class="screen">
+                <button class="back-btn" onclick="app.showHome()">← Retour</button>
+                <div class="nouchi-header">
+                    <h2>🔥 SEANCE NOUCHI</h2>
+                    <p>DEFI EXTREME</p>
+                </div>
+                <h3 class="section-title">💪 Choisir ta partie</h3>
+                <div class="grid-2">
+                    <div class="grid-item" onclick="app.selectNouchiChallenge('Poitrine')"><div class="grid-icon">💥</div>Poitrine</div>
+                    <div class="grid-item" onclick="app.selectNouchiChallenge('Triceps')"><div class="grid-icon">💀</div>Triceps</div>
+                    <div class="grid-item" onclick="app.selectNouchiChallenge('Biceps')"><div class="grid-icon">💪</div>Biceps</div>
+                    <div class="grid-item" onclick="app.selectNouchiChallenge('Épaules')"><div class="grid-icon">✝️</div>Épaules</div>
+                    <div class="grid-item" onclick="app.selectNouchiChallenge('Dos')"><div class="grid-icon">🏄</div>Dos</div>
+                    <div class="grid-item" onclick="app.selectNouchiChallenge('Quadriceps')"><div class="grid-icon">🦵</div>Quad</div>
+                </div>
+            </div>
+
+            <div id="screenNouchiChallenge" class="screen">
+                <button class="back-btn" onclick="app.goSeanceNouchi()">← Retour</button>
+                <div class="nouchi-header">
+                    <h2 id="nouchChallengeTitle">DEFI</h2>
+                </div>
+                <div class="nouchi-challenge">
+                    <div class="challenge-title" id="nouchExoTitle">Exercice</div>
+                    <div style="font-size: 2.5rem; text-align: center; margin: 15px 0;" id="nouchExoEmoji">💪</div>
+                    <div class="challenge-desc" id="nouchExoDesc">Desc</div>
+                    <div class="challenge-detail"><strong>🎯 Objectif:</strong> <span id="nouchObjectif">--</span></div>
+                    <div class="challenge-detail"><strong>💪 Muscles:</strong> <span id="nouchMuscles">--</span></div>
+                    <div class="challenge-detail"><strong>🔥 Intensité:</strong> <span id="nouchIntensite">EXTRÊME</span></div>
+                </div>
+                <h3 class="section-title">📊 Compteur</h3>
+                <div class="counter-display">
+                    <h3>Reps</h3>
+                    <div class="counter-number" id="nouchCounter">0</div>
+                </div>
+                <div class="rep-counter">
+                    <button class="counter-btn" onclick="app.addNouchiRep()">➕ +1</button>
+                    <button class="counter-btn" onclick="app.addNouchiRep(5)">➕ +5</button>
+                    <button class="counter-btn" onclick="app.addNouchiRep(10)">➕ +10</button>
+                    <button class="counter-btn" onclick="app.resetNouchiRep()">🔄 Reset</button>
+                </div>
+                <button class="btn btn-success" onclick="app.completeNouchiChallenge()">✅ COMPLÈTE!</button>
+                <button class="btn btn-secondary" onclick="app.goSeanceNouchi()">🔄 Autre</button>
+            </div>
+
+            <div id="screenEquipment" class="screen">
+                <button class="back-btn" onclick="app.showHome()">← Retour</button>
+                <h3 class="section-title">📍 Équipement</h3>
+                <div class="grid-2">
+                    <div class="grid-item" onclick="app.selectEquipment('home')"><div class="grid-icon">🏠</div>Home</div>
+                    <div class="grid-item" onclick="app.selectEquipment('gym')"><div class="grid-icon">🏋️</div>Gym</div>
+                </div>
+            </div>
+
+            <div id="screenMuscles" class="screen">
+                <button class="back-btn" onclick="app.goEquipment()">← Retour</button>
+                <h3 class="section-title" id="muscleTitle">Muscles</h3>
+                <div id="muscleGrid" class="grid-2"></div>
+            </div>
+
+            <div id="screenExercises" class="screen">
+                <button class="back-btn" onclick="app.showMuscles()">← Retour</button>
+                <h3 class="section-title" id="exoTitle">Exos</h3>
+                <div id="exoGrid"></div>
+            </div>
+
+            <div id="screenSession" class="screen">
+                <button class="back-btn" onclick="app.showExercises()">← Retour</button>
+                
+                <div class="timer-display">
+                    <h3>⏱️ Chronomètre</h3>
+                    <div class="timer-number" id="timerDisplay">00:00:00</div>
+                    <div class="timer-controls">
+                        <button class="timer-btn" onclick="app.startTimer()" id="timerStartBtn">▶️ Démarrer</button>
+                        <button class="timer-btn" onclick="app.pauseTimer()" id="timerPauseBtn" style="display:none;">⏸️ Pause</button>
+                        <button class="timer-btn" onclick="app.stopTimer()">⏹️ Arrêter</button>
+                    </div>
+                </div>
+
+                <div class="card" style="text-align: center;">
+                    <div style="font-size: 2.5rem; margin-bottom: 10px;" id="exoEmoji">💪</div>
+                    <h2 style="margin-bottom: 6px; color: #ffd60a; font-size: 1.2rem;" id="exoName">Exo</h2>
+                    <p style="color: #888; margin-bottom: 6px; font-size: 0.85rem;" id="exoDesc">Desc</p>
+                    <p style="color: #ff6b35; font-size: 0.8rem; margin-bottom: 10px; line-height: 1.5; background: rgba(255,107,53,0.15); padding: 10px; border-radius: 8px; border-left: 4px solid #ff6b35;" id="exoDetails">Details</p>
+                    <p style="color: #ffd60a; font-size: 0.8rem; font-weight: 700;" id="exoMuscles">Muscles: --</p>
+                </div>
+
+                <div class="input-group">
+                    <label class="input-label">Répétitions</label>
+                    <input type="number" id="inputReps" value="12" class="input-field" min="1">
+                </div>
+
+                <div class="input-group">
+                    <label class="input-label">Séries</label>
+                    <input type="number" id="inputSeries" value="3" class="input-field" min="1">
+                </div>
+
+                <div class="input-group">
+                    <label class="input-label">Poids (kg)</label>
+                    <input type="number" id="inputWeight" value="0" class="input-field" min="0">
+                </div>
+
+                <button class="btn" onclick="app.addExercise()">✅ Ajouter</button>
+
+                <h3 class="section-title">💪 Séance</h3>
+                <div class="session-list" id="sessionList"><div class="empty-state">Aucun exo</div></div>
+
+                <button class="btn btn-success hidden" id="finishBtn" onclick="app.finishSession()">🏁 Terminer</button>
+            </div>
+
+            <div id="screenResults" class="screen">
+                <button class="back-btn" onclick="app.showHome()">← Retour</button>
+                <h3 class="section-title">📊 Résumé</h3>
+
+                <div class="stats-dashboard">
+                    <div class="stat-card">
+                        <div class="stat-label">📅 Date</div>
+                        <div class="stat-number" style="font-size: 0.9rem;" id="resultDate">--</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">⏱️ Durée</div>
+                        <div class="stat-number" id="resultDuration">0</div>
+                        <div style="font-size: 0.7rem; color: #888;" id="resultDurationText">min</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">🔢 Reps</div>
+                        <div class="stat-number" id="resultReps">0</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">🔥 Cal</div>
+                        <div class="stat-number" id="resultCalories">0</div>
+                    </div>
+                </div>
+
+                <h3 class="section-title">💪 Exos</h3>
+                <div id="resultExos" class="session-list"></div>
+
+                <h3 class="section-title">🎯 Muscles</h3>
+                <div id="resultMuscles" class="muscle-grid"></div>
+
+                <h3 class="section-title">💡 Recommandations</h3>
+                <div id="resultRec" class="card"></div>
+
+                <button class="btn btn-danger" onclick="app.downloadScreenshot()">📸 Télécharger</button>
+                <button class="btn" onclick="app.newSession()">🔄 Nouvelle</button>
+            </div>
+
+            <div id="screenStats" class="screen">
+                <button class="back-btn" onclick="app.showHome()">← Retour</button>
+                <h3 class="section-title">🏅 Niveau</h3>
+                <div id="levelsCard" class="card"></div>
+
+                <h3 class="section-title">📊 Stats</h3>
+                <div class="stats-dashboard">
+                    <div class="stat-card">
+                        <div class="stat-label">Séances</div>
+                        <div class="stat-number" id="statsTotalSessions">0</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Reps</div>
+                        <div class="stat-number" id="statsTotalReps">0</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Calories</div>
+                        <div class="stat-number" id="statsTotalCal">0</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Durée</div>
+                        <div class="stat-number" id="statsTotalDuration">0</div>
+                    </div>
+                </div>
+
+                <h3 class="section-title">📜 Historique</h3>
+                <div id="historyList" class="session-list"></div>
+
+                <h3 class="section-title">📈 Progression</h3>
+                <div id="progressionContent" class="card"></div>
+
+                <h3 class="section-title">🎯 Plans</h3>
+                <div id="plansList" class="session-list"></div>
+
+                <h3 class="section-title">🎯 Défi du jour</h3>
+                <div id="dailyChallenges" class="card"></div>
+
+                <h3 class="section-title">📁 Export</h3>
+                <button class="btn btn-secondary" onclick="app.exportData()">📊 Exporter JSON</button>
+            </div>
+        </div>
+
+        <div class="bottom-nav">
+            <button class="nav-item active" onclick="app.navigate('home', 0)">
+                <span class="nav-icon">🏠</span>
+                <span>Accueil</span>
+            </button>
+            <button class="nav-item" onclick="app.navigate('session', 1)">
+                <span class="nav-icon">💪</span>
+                <span>Séance</span>
+            </button>
+            <button class="nav-item" onclick="app.navigate('results', 2)">
+                <span class="nav-icon">📊</span>
+                <span>Résultats</span>
+            </button>
+            <button class="nav-item" onclick="app.navigate('nouchi', 3)">
+                <span class="nav-icon">🔥</span>
+                <span>NOUCHI</span>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('touchmove', function(event) {
+            if(event.target.closest('.session-list') === null) {
+                event.preventDefault();
+            }
+        }, { passive: false });
+
+        const NOUCHI_CHALLENGES = {
+            "Poitrine": { name: "🔥 POMPES SUPERMAN EXPLOSIVE", desc: "Décole complètement!", objectif: "3-5 reps", muscles: ["Poitrine", "Triceps"], intensite: "🔴🔴🔴🔴🔴", emoji: "💥" },
+            "Triceps": { name: "💀 HANDSTAND PUSH-UP", desc: "Descends jusqu'au sol!", objectif: "1-3 reps", muscles: ["Triceps", "Épaules"], intensite: "🔴🔴🔴🔴🔴", emoji: "🤸" },
+            "Biceps": { name: "💪 ONE ARM MUSCLE UP", desc: "Une seule main!", objectif: "1-2 reps", muscles: ["Biceps", "Dos"], intensite: "🔴🔴🔴🔴🔴", emoji: "💪" },
+            "Épaules": { name: "✝️ IRON CROSS HOLD", desc: "Corps parallèle!", objectif: "5-10 sec", muscles: ["Épaules"], intensite: "🔴🔴🔴🔴🔴", emoji: "✝️" },
+            "Dos": { name: "🏄 FRONT LEVER", desc: "Horizontal devant!", objectif: "5-15 sec", muscles: ["Dos"], intensite: "🔴🔴🔴🔴🔴", emoji: "🏄" },
+            "Quadriceps": { name: "🦵 PISTOL SQUAT 20", desc: "Sur 1 jambe explosive!", objectif: "20 reps", muscles: ["Quadriceps"], intensite: "🔴🔴🔴🔴", emoji: "🦵" }
+        };
+
+        const TRAINING_PLANS = [
+            { name: 'Full Body Débutant', desc: '3 jours/semaine' },
+            { name: 'Push / Pull / Legs', desc: '3 jours intensifs' },
+            { name: 'Upper / Lower', desc: '4 jours/semaine' }
+        ];
+
+        const DB = {
+            exercises: {
+                "Pompes classiques": { muscles: ["Poitrine", "Triceps"], desc: "Standard", details: "Largeur épaules, 90°", emoji: "💪", cal: 0.6, type: "home" },
+                "Pompes diamant": { muscles: ["Triceps", "Poitrine"], desc: "Diamant", details: "Triceps intensif", emoji: "🔷", cal: 0.7, type: "home" },
+                "Pompes inclinées": { muscles: ["Poitrine"], desc: "Inclinées", details: "Plus facile", emoji: "⬆️", cal: 0.45, type: "home" },
+                "Pompes déclinées": { muscles: ["Poitrine", "Épaules"], desc: "Déclinées", details: "Difficile", emoji: "📉", cal: 0.8, type: "home" },
+                "Pompes explosives": { muscles: ["Poitrine", "Triceps"], desc: "Explosives", details: "Saut max", emoji: "💥", cal: 0.9, type: "home" },
+                "Pompes archer": { muscles: ["Poitrine", "Triceps"], desc: "Archer", details: "Latéralisé", emoji: "🏹", cal: 0.8, type: "home" },
+                "Pompes pike": { muscles: ["Épaules", "Poitrine"], desc: "Pike", details: "V inversé", emoji: "⛰️", cal: 0.75, type: "home" },
+                "Pompes pseudo-planche": { muscles: ["Épaules"], desc: "Pseudo-planche", details: "Extrême", emoji: "📐", cal: 0.85, type: "home" },
+                "Pompes triceps": { muscles: ["Triceps"], desc: "Triceps", details: "Coudes fermés", emoji: "🎯", cal: 0.75, type: "home" },
+                "Pompes wide": { muscles: ["Poitrine"], desc: "Wide", details: "Très écartées", emoji: "👐", cal: 0.7, type: "home" },
+                "Pompes girondelle": { muscles: ["Poitrine", "Triceps", "Épaules"], desc: "Girondelle", details: "Prise très serrée", emoji: "🕊️", cal: 0.85, type: "home" },
+                "Pompes diamant isométrique": { muscles: ["Triceps", "Poitrine"], desc: "Diamant static", details: "Hold position", emoji: "⏱️", cal: 0.8, type: "home" },
+                "Pompes sur knuckles": { muscles: ["Poitrine", "Triceps", "Avant-bras"], desc: "Knuckles", details: "Poings fermés", emoji: "✊", cal: 0.75, type: "home" },
+                "Pompes claquées": { muscles: ["Poitrine", "Triceps"], desc: "Claquées", details: "Mains touchent poitrine", emoji: "👏", cal: 0.95, type: "home" },
+                "Pompes épaule dominante": { muscles: ["Épaules", "Poitrine"], desc: "One side", details: "75% poids d'un côté", emoji: "🔄", cal: 0.85, type: "home" },
+                "Développé couché barre": { muscles: ["Poitrine", "Triceps"], desc: "Couché", details: "Grip moyen", emoji: "📊", cal: 0.9, type: "gym" },
+                "Développé incliné": { muscles: ["Haut poitrine"], desc: "Incliné", details: "45°", emoji: "📈", cal: 0.95, type: "gym" },
+                "Développé décliné": { muscles: ["Bas poitrine"], desc: "Décliné", details: "Bas", emoji: "📉", cal: 0.85, type: "gym" },
+                "Développé haltères": { muscles: ["Poitrine"], desc: "Haltères", details: "Amplitude", emoji: "🏋️", cal: 0.9, type: "gym" },
+                "Écarté couché": { muscles: ["Poitrine"], desc: "Écarté", details: "Ouverture", emoji: "👐", cal: 0.8, type: "gym" },
+                "Pec deck": { muscles: ["Poitrine"], desc: "Pec deck", details: "Machine", emoji: "🦋", cal: 0.75, type: "gym" },
+                "Butterfly": { muscles: ["Poitrine"], desc: "Butterfly", details: "Isolé", emoji: "🦋", cal: 0.8, type: "gym" },
+                "Développé machine": { muscles: ["Poitrine"], desc: "Machine dev", details: "Sécurisé", emoji: "🤖", cal: 0.85, type: "gym" },
+                "Écarté poulie basse": { muscles: ["Poitrine"], desc: "Poulie basse", details: "Prise croisée", emoji: "🧵", cal: 0.8, type: "gym" },
+                "Cable fly": { muscles: ["Poitrine"], desc: "Cable fly", details: "Poulie croisée", emoji: "🧵", cal: 0.85, type: "gym" },
+                "Développé incliné haltères": { muscles: ["Haut poitrine"], desc: "Incliné halt", details: "45° libre", emoji: "💼", cal: 0.95, type: "gym" },
+                "Développé décliné haltères": { muscles: ["Bas poitrine"], desc: "Décliné halt", details: "Bas libre", emoji: "💼", cal: 0.9, type: "gym" },
+                "Dips chaise": { muscles: ["Triceps"], desc: "Dips chaise", details: "90°", emoji: "🪑", cal: 0.8, type: "home" },
+                "Dips chaise pieds": { muscles: ["Triceps"], desc: "Dips feet up", details: "Difficile", emoji: "🪑", cal: 0.9, type: "home" },
+                "Extensions table": { muscles: ["Triceps"], desc: "Table ext", details: "Tête vers table", emoji: "📏", cal: 0.65, type: "home" },
+                "Pompes triceps serrées": { muscles: ["Triceps"], desc: "Triceps serrées", details: "Coudes fermés", emoji: "🎯", cal: 0.7, type: "home" },
+                "Triceps extension élastique": { muscles: ["Triceps"], desc: "Elastique", details: "Avec bande", emoji: "🧵", cal: 0.65, type: "home" },
+                "Barre au front": { muscles: ["Triceps"], desc: "Barre front", details: "EZ", emoji: "🧠", cal: 0.8, type: "gym" },
+                "Barre derrière tête": { muscles: ["Triceps"], desc: "Barre behind", details: "Amplitude", emoji: "🧠", cal: 0.8, type: "gym" },
+                "Extension poulie haute": { muscles: ["Triceps"], desc: "Poulie haute", details: "Corde", emoji: "🎛️", cal: 0.75, type: "gym" },
+                "Extension poulie basse": { muscles: ["Triceps"], desc: "Poulie basse", details: "Arrière", emoji: "🎛️", cal: 0.8, type: "gym" },
+                "Dips parallèles": { muscles: ["Triceps"], desc: "Dips barres", details: "Puissant", emoji: "📊", cal: 1.0, type: "gym" },
+                "Triceps haltère": { muscles: ["Triceps"], desc: "Haltère", details: "Allongé", emoji: "🏋️", cal: 0.75, type: "gym" },
+                "Kickback": { muscles: ["Triceps"], desc: "Kickback", details: "À genoux", emoji: "💪", cal: 0.65, type: "gym" },
+                "Triceps machine": { muscles: ["Triceps"], desc: "Machine", details: "Guidée", emoji: "🤖", cal: 0.8, type: "gym" },
+                "Kickback poulie": { muscles: ["Triceps"], desc: "Kickback poulie", details: "Unilatéral", emoji: "🧵", cal: 0.7, type: "gym" },
+                "Rope overhead": { muscles: ["Triceps"], desc: "Rope overhead", details: "Bras en l'air", emoji: "🧵", cal: 0.75, type: "gym" },
+                "Triceps curl assis": { muscles: ["Triceps"], desc: "Assis", details: "Dos appui", emoji: "🪑", cal: 0.75, type: "gym" },
+                "Dips machine": { muscles: ["Triceps"], desc: "Machine dips", details: "Assisté", emoji: "🤖", cal: 0.8, type: "gym" },
+                "Curls haltères": { muscles: ["Biceps"], desc: "Curls", details: "Coude fixe", emoji: "💪", cal: 0.6, type: "home" },
+                "Curl marteau": { muscles: ["Biceps"], desc: "Marteau", details: "Prise neutre", emoji: "🔨", cal: 0.65, type: "home" },
+                "Curl concentration": { muscles: ["Biceps"], desc: "Concentration", details: "Assis", emoji: "🧠", cal: 0.6, type: "home" },
+                "Curl inverse": { muscles: ["Avant-bras"], desc: "Curl inverse", details: "Pronée", emoji: "🔄", cal: 0.65, type: "home" },
+                "Curl 21": { muscles: ["Biceps"], desc: "21s", details: "7+7+7", emoji: "🔢", cal: 0.7, type: "home" },
+                "Curl élastique": { muscles: ["Biceps"], desc: "Elastique", details: "Avec bande", emoji: "🧵", cal: 0.6, type: "home" },
+                "Curl alternés": { muscles: ["Biceps"], desc: "Alternés", details: "Haltères", emoji: "💼", cal: 0.65, type: "home" },
+                "Curl isométrique": { muscles: ["Biceps"], desc: "Isométrique", details: "Hold position", emoji: "⏱️", cal: 0.7, type: "home" },
+                "Curl barre droite": { muscles: ["Biceps"], desc: "Barre droite", details: "Pas swing", emoji: "📏", cal: 0.75, type: "gym" },
+                "Curl barre EZ": { muscles: ["Biceps"], desc: "Barre EZ", details: "Confort", emoji: "➿", cal: 0.75, type: "gym" },
+                "Curl poulie": { muscles: ["Biceps"], desc: "Poulie", details: "Tension const", emoji: "🧵", cal: 0.75, type: "gym" },
+                "Curl incliné": { muscles: ["Biceps"], desc: "Curl incliné", details: "45°", emoji: "📈", cal: 0.8, type: "gym" },
+                "Curl scott": { muscles: ["Biceps"], desc: "Curl scott", details: "Banc scott", emoji: "🎯", cal: 0.8, type: "gym" },
+                "Curl haltères assis": { muscles: ["Biceps"], desc: "Haltères assis", details: "Pas triche", emoji: "💼", cal: 0.75, type: "gym" },
+                "Cable curl": { muscles: ["Biceps"], desc: "Cable", details: "Tension continue", emoji: "🧵", cal: 0.8, type: "gym" },
+                "Biceps machine": { muscles: ["Biceps"], desc: "Machine", details: "Guidée", emoji: "🤖", cal: 0.8, type: "gym" },
+                "Curl reverse barre": { muscles: ["Avant-bras"], desc: "Reverse barre", details: "Pronée", emoji: "📏", cal: 0.75, type: "gym" },
+                "Curl vis à vis": { muscles: ["Biceps"], desc: "Vis à vis", details: "Poulies croisées", emoji: "🧵", cal: 0.8, type: "gym" },
+                "Biceps curl spider": { muscles: ["Biceps"], desc: "Spider curl", details: "Incliné strict", emoji: "🕷️", cal: 0.8, type: "gym" },
+                "Élévations latérales": { muscles: ["Épaules"], desc: "Latérales", details: "Côtés", emoji: "⬅️➡️", cal: 0.6, type: "home" },
+                "Élévations avant": { muscles: ["Épaules"], desc: "Avant", details: "Antérieure", emoji: "⬆️", cal: 0.55, type: "home" },
+                "Élévations arrière": { muscles: ["Épaules"], desc: "Arrière", details: "Penché", emoji: "🔙", cal: 0.6, type: "home" },
+                "Pompes pike épaules": { muscles: ["Épaules"], desc: "Pike", details: "V inversé", emoji: "⛰️", cal: 0.75, type: "home" },
+                "Handstand hold": { muscles: ["Épaules"], desc: "Handstand", details: "Équilibre", emoji: "🤸", cal: 0.8, type: "home" },
+                "Handstand walk": { muscles: ["Épaules"], desc: "Handstand walk", details: "Marche", emoji: "🚶", cal: 0.9, type: "home" },
+                "Shrugs haltères": { muscles: ["Trapèzes"], desc: "Shrugs", details: "Haussements", emoji: "🤷", cal: 0.5, type: "home" },
+                "Développé militaire": { muscles: ["Épaules"], desc: "Dev militaire", details: "Debout", emoji: "🎯", cal: 0.85, type: "gym" },
+                "Développé assis": { muscles: ["Épaules"], desc: "Dev assis", details: "Banc", emoji: "🪑", cal: 0.8, type: "gym" },
+                "Développé haltères": { muscles: ["Épaules"], desc: "Dev haltères", details: "Amplitude", emoji: "💼", cal: 0.85, type: "gym" },
+                "Oiseau haltères": { muscles: ["Épaules arrière"], desc: "Oiseau", details: "Penché", emoji: "🕊️", cal: 0.7, type: "gym" },
+                "Lat raise machine": { muscles: ["Épaules"], desc: "Lat machine", details: "Guidée", emoji: "🤖", cal: 0.75, type: "gym" },
+                "Shrugs barre": { muscles: ["Trapèzes"], desc: "Shrugs barre", details: "Max", emoji: "🤷", cal: 0.7, type: "gym" },
+                "Shrugs machine": { muscles: ["Trapèzes"], desc: "Shrugs machine", details: "Guidée", emoji: "🤖", cal: 0.75, type: "gym" },
+                "Développé Smith": { muscles: ["Épaules"], desc: "Smith dev", details: "Guidée", emoji: "📊", cal: 0.8, type: "gym" },
+                "Élévation latérale poulie": { muscles: ["Épaules"], desc: "Lat poulie", details: "Unilatéral", emoji: "🧵", cal: 0.65, type: "gym" },
+                "Shoulder press machine": { muscles: ["Épaules"], desc: "Machine press", details: "Guidée", emoji: "🤖", cal: 0.8, type: "gym" },
+                "Élévation front barre": { muscles: ["Épaules"], desc: "Front barre", details: "Antérieure", emoji: "📏", cal: 0.7, type: "gym" },
+                "Upright row": { muscles: ["Épaules", "Trapèzes"], desc: "Upright row", details: "Tirage vertical", emoji: "⬆️", cal: 0.75, type: "gym" },
+                "Superman": { muscles: ["Dos"], desc: "Superman", details: "Bras+jambes", emoji: "🦸", cal: 0.5, type: "home" },
+                "Superman alternés": { muscles: ["Dos"], desc: "Superman alt", details: "Alternés", emoji: "🦸", cal: 0.6, type: "home" },
+                "Row inversé": { muscles: ["Dos", "Biceps"], desc: "Row inversé", details: "Sous table", emoji: "📉", cal: 0.7, type: "home" },
+                "Dips arrière": { muscles: ["Dos"], desc: "Dips arrière", details: "Grip arrière", emoji: "🪑", cal: 0.65, type: "home" },
+                "Band pulling": { muscles: ["Dos"], desc: "Band pull", details: "Élastique", emoji: "🧵", cal: 0.7, type: "home" },
+                "Tractions larges": { muscles: ["Dos"], desc: "Traction large", details: "Prise large", emoji: "📈", cal: 1.1, type: "gym" },
+                "Tractions serrées": { muscles: ["Dos", "Biceps"], desc: "Traction serrée", details: "Prise serrée", emoji: "📈", cal: 1.0, type: "gym" },
+                "Tractions neutres": { muscles: ["Dos"], desc: "Traction neutre", details: "Prise neutre", emoji: "📈", cal: 1.05, type: "gym" },
+                "Row barre": { muscles: ["Dos"], desc: "Row barre", details: "Penché", emoji: "📊", cal: 0.95, type: "gym" },
+                "Row haltère": { muscles: ["Dos"], desc: "Row haltère", details: "Unilatéral", emoji: "💼", cal: 0.85, type: "gym" },
+                "Lat pulldown": { muscles: ["Dos"], desc: "Lat machine", details: "Poulie", emoji: "🤖", cal: 0.8, type: "gym" },
+                "Cable row": { muscles: ["Dos"], desc: "Cable row", details: "Poulie", emoji: "🧵", cal: 0.85, type: "gym" },
+                "Rowing machine": { muscles: ["Dos", "Cardio"], desc: "Rameur", details: "Full body", emoji: "🚣", cal: 1.2, type: "gym" },
+                "Row verticale": { muscles: ["Dos"], desc: "Row verticale", details: "Poulie haute", emoji: "🎛️", cal: 0.8, type: "gym" },
+                "Back extension": { muscles: ["Bas dos"], desc: "Extension dos", details: "Hyperext", emoji: "📐", cal: 0.75, type: "gym" },
+                "Row Smith": { muscles: ["Dos"], desc: "Row Smith", details: "Barre guidée", emoji: "📊", cal: 0.9, type: "gym" },
+                "Face pull": { muscles: ["Dos", "Épaules"], desc: "Face pull", details: "Corde", emoji: "🧵", cal: 0.65, type: "gym" },
+                "Traction une main": { muscles: ["Dos"], desc: "One hand pull", details: "Très difficile", emoji: "💪", cal: 1.2, type: "gym" },
+                "Traction avec poids": { muscles: ["Dos"], desc: "Weighted pull", details: "Avec lest", emoji: "⚙️", cal: 1.25, type: "gym" },
+                "Squats": { muscles: ["Quadriceps"], desc: "Squats", details: "90°", emoji: "🦵", cal: 0.8, type: "home" },
+                "Squat jump": { muscles: ["Quadriceps"], desc: "Squat jump", details: "Explosif", emoji: "🧨", cal: 1.0, type: "home" },
+                "Pistol squat": { muscles: ["Quadriceps"], desc: "Pistol squat", details: "1 jambe", emoji: "🎯", cal: 0.95, type: "home" },
+                "Fentes": { muscles: ["Quadriceps"], desc: "Fentes", details: "Alternés", emoji: "🚶", cal: 0.75, type: "home" },
+                "Fentes bulgares": { muscles: ["Quadriceps"], desc: "Bulgarian", details: "Arrière élevé", emoji: "🚶", cal: 0.85, type: "home" },
+                "Step up": { muscles: ["Quadriceps"], desc: "Step up", details: "Marche", emoji: "📍", cal: 0.7, type: "home" },
+                "Wall sit": { muscles: ["Quadriceps"], desc: "Wall sit", details: "Isométrique", emoji: "🧱", cal: 0.7, type: "home" },
+                "Lunges": { muscles: ["Quadriceps"], desc: "Lunges", details: "Marche avant", emoji: "🚶", cal: 0.8, type: "home" },
+                "Jump lunges": { muscles: ["Quadriceps"], desc: "Jump lunges", details: "Saut alternés", emoji: "🧨", cal: 0.9, type: "home" },
+                "Leg press": { muscles: ["Quadriceps"], desc: "Leg press", details: "Machine", emoji: "🤖", cal: 0.95, type: "gym" },
+                "Leg extension": { muscles: ["Quadriceps"], desc: "Leg ext", details: "Extension", emoji: "🎰", cal: 0.75, type: "gym" },
+                "Smith squat": { muscles: ["Quadriceps"], desc: "Smith squat", details: "Smith", emoji: "📊", cal: 0.9, type: "gym" },
+                "Hack squat": { muscles: ["Quadriceps"], desc: "Hack squat", details: "Machine hack", emoji: "🤖", cal: 0.9, type: "gym" },
+                "V-squat": { muscles: ["Quadriceps"], desc: "V-squat", details: "Machine V", emoji: "🤖", cal: 0.9, type: "gym" },
+                "Belt squat": { muscles: ["Quadriceps"], desc: "Belt squat", details: "Ceinture", emoji: "🧵", cal: 0.9, type: "gym" },
+                "Sissy squat": { muscles: ["Quadriceps"], desc: "Sissy squat", details: "Arrière", emoji: "🎯", cal: 0.85, type: "gym" },
+                "Presse à cuisses": { muscles: ["Quadriceps"], desc: "Presse", details: "Machine", emoji: "🤖", cal: 0.95, type: "gym" },
+                "Goblet squat": { muscles: ["Quadriceps"], desc: "Goblet", details: "Kettlebell", emoji: "🪣", cal: 0.85, type: "home" },
+                "Bulgarian split squat": { muscles: ["Quadriceps"], desc: "Bulgarian split", details: "Une jambe", emoji: "🚶", cal: 0.9, type: "home" },
+                "Deadlift": { muscles: ["Ischios", "Dos"], desc: "Deadlift", details: "Haltères", emoji: "🏋️", cal: 1.0, type: "home" },
+                "Deadlift jambes tendues": { muscles: ["Ischios"], desc: "RDL", details: "Genoux fermés", emoji: "📏", cal: 0.9, type: "home" },
+                "Glute bridge": { muscles: ["Fessiers"], desc: "Bridge", details: "Pont", emoji: "🍑", cal: 0.7, type: "home" },
+                "Single leg DL": { muscles: ["Ischios"], desc: "Single DL", details: "Une jambe", emoji: "🦵", cal: 0.8, type: "home" },
+                "Leg curl": { muscles: ["Ischios"], desc: "Leg curl", details: "Flexion", emoji: "🦵", cal: 0.8, type: "gym" },
+                "Seated leg curl": { muscles: ["Ischios"], desc: "Seated curl", details: "Assis", emoji: "🪑", cal: 0.8, type: "gym" },
+                "Lying curl": { muscles: ["Ischios"], desc: "Lying curl", details: "Allongé", emoji: "📐", cal: 0.8, type: "gym" },
+                "Standing curl": { muscles: ["Ischios"], desc: "Standing", details: "Debout", emoji: "🧍", cal: 0.75, type: "gym" },
+                "Deadlift barre": { muscles: ["Ischios"], desc: "DL barre", details: "Barre", emoji: "📊", cal: 1.1, type: "gym" },
+                "Romanian DL": { muscles: ["Ischios"], desc: "RDL barre", details: "Romanian", emoji: "🏋️", cal: 0.95, type: "gym" },
+                "Sumo DL": { muscles: ["Ischios"], desc: "Sumo DL", details: "Jambes écartées", emoji: "🏋️", cal: 1.0, type: "gym" },
+                "Single bridge": { muscles: ["Fessiers"], desc: "Single bridge", details: "Une jambe", emoji: "🍑", cal: 0.85, type: "home" },
+                "Hip thrust": { muscles: ["Fessiers"], desc: "Hip thrust", details: "Chaise", emoji: "🍑", cal: 0.8, type: "home" },
+                "Donkey kicks": { muscles: ["Fessiers"], desc: "Donkey kicks", details: "Coups arrière", emoji: "🦶", cal: 0.6, type: "home" },
+                "Fire hydrants": { muscles: ["Fessiers"], desc: "Fire hydrants", details: "Ouverture", emoji: "🔥", cal: 0.6, type: "home" },
+                "Clams": { muscles: ["Fessiers"], desc: "Clams", details: "Moules", emoji: "🐚", cal: 0.5, type: "home" },
+                "Step back": { muscles: ["Fessiers"], desc: "Step back", details: "Pas arrière", emoji: "🚶", cal: 0.7, type: "home" },
+                "Hip thrust machine": { muscles: ["Fessiers"], desc: "Hip thrust", details: "Machine", emoji: "🤖", cal: 0.95, type: "gym" },
+                "Hip thrust barre": { muscles: ["Fessiers"], desc: "Hip thrust barre", details: "Barre", emoji: "📊", cal: 0.95, type: "gym" },
+                "Glute press": { muscles: ["Fessiers"], desc: "Glute press", details: "Machine", emoji: "🤖", cal: 0.9, type: "gym" },
+                "Cable kickback": { muscles: ["Fessiers"], desc: "Cable kick", details: "Poulie", emoji: "🧵", cal: 0.7, type: "gym" },
+                "Machine kickback": { muscles: ["Fessiers"], desc: "Machine kick", details: "Machine", emoji: "🤖", cal: 0.75, type: "gym" },
+                "Calf raise": { muscles: ["Mollets"], desc: "Calf raise", details: "Pointes", emoji: "🦵", cal: 0.4, type: "home" },
+                "Single leg calf": { muscles: ["Mollets"], desc: "Single calf", details: "Une jambe", emoji: "🦵", cal: 0.5, type: "home" },
+                "Jump rope": { muscles: ["Mollets"], desc: "Jump rope", details: "Corde", emoji: "🪢", cal: 0.9, type: "home" },
+                "Calf machine": { muscles: ["Mollets"], desc: "Calf machine", details: "Machine", emoji: "🤖", cal: 0.5, type: "gym" },
+                "Calf press": { muscles: ["Mollets"], desc: "Calf press", details: "Leg press", emoji: "🧱", cal: 0.6, type: "gym" },
+                "Donkey calf": { muscles: ["Mollets"], desc: "Donkey calf", details: "Machine", emoji: "🦶", cal: 0.7, type: "gym" },
+                "Smith calf": { muscles: ["Mollets"], desc: "Smith calf", details: "Smith", emoji: "📊", cal: 0.6, type: "gym" },
+                "Crunch": { muscles: ["Abdominaux"], desc: "Crunch", details: "Relève", emoji: "⬆️", cal: 0.5, type: "home" },
+                "Crunch bicycle": { muscles: ["Abdominaux"], desc: "Bicycle", details: "Rotation", emoji: "🚲", cal: 0.65, type: "home" },
+                "Planche": { muscles: ["Abdominaux"], desc: "Planche", details: "Corps droit", emoji: "📐", cal: 0.7, type: "home" },
+                "Planche latérale": { muscles: ["Obliques"], desc: "Side planche", details: "Côté", emoji: "📐", cal: 0.6, type: "home" },
+                "Mountain climbers": { muscles: ["Abdominaux"], desc: "Mountain", details: "Genoux rapides", emoji: "⛰️", cal: 0.8, type: "home" },
+                "Leg raises": { muscles: ["Abdominaux"], desc: "Leg raises", details: "Jambes levées", emoji: "🦵", cal: 0.75, type: "home" },
+                "V-ups": { muscles: ["Abdominaux"], desc: "V-ups", details: "V complet", emoji: "📐", cal: 0.8, type: "home" },
+                "Sit-ups": { muscles: ["Abdominaux"], desc: "Sit-ups", details: "Relevés", emoji: "⬆️", cal: 0.7, type: "home" },
+                "Dead bug": { muscles: ["Abdominaux"], desc: "Dead bug", details: "Bras opposé", emoji: "🐛", cal: 0.5, type: "home" },
+                "Russian twist": { muscles: ["Obliques"], desc: "Russian twist", details: "Rotation", emoji: "🌀", cal: 0.6, type: "home" },
+                "Leg raises sus": { muscles: ["Abdominaux"], desc: "Leg raises", details: "Suspendu", emoji: "📈", cal: 0.9, type: "gym" },
+                "Crunch poulie": { muscles: ["Abdominaux"], desc: "Crunch poulie", details: "Poulie", emoji: "🎛️", cal: 0.75, type: "gym" },
+                "Rope crunch": { muscles: ["Abdominaux"], desc: "Rope crunch", details: "Corde", emoji: "🧵", cal: 0.8, type: "gym" },
+                "Cable woodchop": { muscles: ["Obliques"], desc: "Woodchop", details: "Rotation", emoji: "🪵", cal: 0.7, type: "gym" },
+                "Pallof press": { muscles: ["Obliques"], desc: "Pallof", details: "Anti-rotation", emoji: "💪", cal: 0.75, type: "gym" },
+                "Ab wheel": { muscles: ["Abdominaux"], desc: "Ab wheel", details: "Rouleau", emoji: "🔄", cal: 0.85, type: "gym" },
+                "Vacuum": { muscles: ["Abdominaux"], desc: "Vacuum", details: "Respiration", emoji: "💨", cal: 0.3, type: "home" },
+                "Gainage dorsal": { muscles: ["Abdominaux"], desc: "Gainage dos", details: "Dos droit", emoji: "📐", cal: 0.6, type: "home" },
+                "Planche avec poids": { muscles: ["Abdominaux"], desc: "Planche +", details: "Lest", emoji: "📐", cal: 0.85, type: "home" },
+                "Burpees": { muscles: ["Full body"], desc: "Burpees", details: "Complet", emoji: "🔥", cal: 1.5, type: "home" },
+                "Running": { muscles: ["Cardio"], desc: "Running", details: "Course", emoji: "🏃", cal: 1.0, type: "home" },
+                "Jumping jacks": { muscles: ["Cardio"], desc: "Jumping jacks", details: "Étoile", emoji: "⭐", cal: 0.8, type: "home" },
+                "High knees": { muscles: ["Cardio"], desc: "High knees", details: "Genoux hauts", emoji: "🔥", cal: 1.0, type: "home" },
+                "Battle ropes": { muscles: ["Cardio"], desc: "Battle ropes", details: "Cordes", emoji: "🧵", cal: 1.2, type: "gym" },
+                "Wrist curl": { muscles: ["Avant-bras"], desc: "Wrist curl", details: "Flexion", emoji: "🤜", cal: 0.35, type: "home" },
+                "Wrist extension": { muscles: ["Avant-bras"], desc: "Wrist ext", details: "Extension", emoji: "🤜", cal: 0.4, type: "home" },
+                "Farmer walk": { muscles: ["Avant-bras"], desc: "Farmer walk", details: "Grip", emoji: "🚶", cal: 0.7, type: "home" },
+                "Bear crawl": { muscles: ["Full body"], desc: "Bear crawl", details: "Crawl ours", emoji: "🐻", cal: 0.95, type: "home" },
+                "Box jump": { muscles: ["Cardio", "Jambes"], desc: "Box jump", details: "Saut boîte", emoji: "📦", cal: 1.1, type: "gym" },
+                "Assault bike": { muscles: ["Cardio"], desc: "Assault bike", details: "Vélo assaut", emoji: "🏍️", cal: 1.3, type: "gym" },
+                "Rowing": { muscles: ["Cardio"], desc: "Rowing", details: "Rameur", emoji: "🚣", cal: 1.15, type: "gym" },
+                "Kettlebell swing": { muscles: ["Full body"], desc: "Kettlebell", details: "Balancé", emoji: "🪣", cal: 1.0, type: "gym" },
+                "Clean and press": { muscles: ["Full body"], desc: "Clean press", details: "Arraché pression", emoji: "⚡", cal: 1.2, type: "gym" },
+                "Snatch": { muscles: ["Full body"], desc: "Snatch", details: "Arraché", emoji: "⚡", cal: 1.25, type: "gym" },
+                "Front rack hold": { muscles: ["Avant-bras"], desc: "Front rack", details: "Barre poutrelle", emoji: "📍", cal: 0.45, type: "gym" },
+                "Farmer carry": { muscles: ["Avant-bras"], desc: "Farmer carry", details: "Marche lourde", emoji: "🚶", cal: 0.8, type: "gym" }
+            },
+            muscles: {
+                home: ["Poitrine", "Triceps", "Biceps", "Épaules", "Dos", "Quadriceps", "Ischios", "Fessiers", "Mollets", "Abdominaux", "Obliques", "Avant-bras", "Cardio", "Full body"],
+                gym: ["Poitrine", "Triceps", "Biceps", "Épaules", "Dos", "Trapèzes", "Quadriceps", "Ischios", "Fessiers", "Mollets", "Abdominaux", "Obliques", "Cardio", "Full body"]
+            }
+        };
+
+        const app = {
+            equipment: null,
+            muscle: null,
+            exercise: null,
+            session: [],
+            workouts: JSON.parse(localStorage.getItem('bouahchi_workouts') || '[]'),
+            timerRunning: false,
+            timerSeconds: 0,
+            timerInterval: null,
+            nouchCounter: 0,
+            selectedNouchi: null,
+
+            startApp() {
+                document.getElementById('launcher').classList.add('hidden');
+                document.getElementById('app').classList.add('show');
+                this.updateDashboard();
+            },
+
+            showScreen(id) {
+                document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+                document.getElementById(id).classList.add('active');
+                window.scrollTo(0, 0);
+            },
+
+            navigate(screen, idx) {
+                const screens = { home: 'screenHome', session: 'screenEquipment', results: 'screenResults', nouchi: 'screenSeanceNouchi' };
+                this.showScreen(screens[screen]);
+                document.querySelectorAll('.nav-item').forEach((el, i) => el.classList.toggle('active', i === idx));
+            },
+
+            showHome() { this.navigate('home', 0); this.updateDashboard(); },
+            goSeanceNouchi() { this.nouchCounter = 0; this.showScreen('screenSeanceNouchi'); },
+
+            selectNouchiChallenge(muscle) {
+                this.selectedNouchi = NOUCHI_CHALLENGES[muscle];
+                this.nouchCounter = 0;
+                document.getElementById('nouchChallengeTitle').textContent = muscle.toUpperCase();
+                document.getElementById('nouchExoTitle').textContent = this.selectedNouchi.name;
+                document.getElementById('nouchExoEmoji').textContent = this.selectedNouchi.emoji;
+                document.getElementById('nouchExoDesc').textContent = this.selectedNouchi.desc;
+                document.getElementById('nouchObjectif').textContent = this.selectedNouchi.objectif;
+                document.getElementById('nouchMuscles').textContent = this.selectedNouchi.muscles.join(', ');
+                document.getElementById('nouchIntensite').textContent = this.selectedNouchi.intensite;
+                document.getElementById('nouchCounter').textContent = '0';
+                this.showScreen('screenNouchiChallenge');
+            },
+
+            addNouchiRep(count = 1) { this.nouchCounter += count; document.getElementById('nouchCounter').textContent = this.nouchCounter; },
+            resetNouchiRep() { this.nouchCounter = 0; document.getElementById('nouchCounter').textContent = '0'; },
+            completeNouchiChallenge() {
+                if (this.nouchCounter === 0) { alert('⚠️ Complete au moins 1 rep!'); return; }
+                alert(`🔥 LEGENDAIRE!\n${this.selectedNouchi.name}\n✅ ${this.nouchCounter} REPS!\n👑 TU ES LE KING!`);
+                this.goSeanceNouchi();
+            },
+
+            goEquipment() { this.showScreen('screenEquipment'); },
+
+            selectEquipment(type) {
+                this.equipment = type;
+                document.getElementById('muscleTitle').textContent = type === 'home' ? '🏠 Home' : '🏋️ Gym';
+                this.renderMuscles();
+                this.showScreen('screenMuscles');
+            },
+
+            renderMuscles() {
+                const grid = document.getElementById('muscleGrid');
+                grid.innerHTML = '';
+                DB.muscles[this.equipment].forEach(m => {
+                    const item = document.createElement('div');
+                    item.className = 'grid-item';
+                    item.innerHTML = `<div class="grid-icon">💪</div><div>${m}</div>`;
+                    item.onclick = (e) => { e.stopPropagation(); this.selectMuscle(m); };
+                    grid.appendChild(item);
+                });
+            },
+
+            selectMuscle(m) { this.muscle = m; document.getElementById('exoTitle').textContent = `💪 ${m}`; this.renderExercises(); this.showScreen('screenExercises'); },
+            showMuscles() { this.showScreen('screenMuscles'); },
+
+            renderExercises() {
+                const grid = document.getElementById('exoGrid');
+                grid.innerHTML = '';
+                let count = 0;
+                Object.entries(DB.exercises).forEach(([name, ex]) => {
+                    if (ex.type === this.equipment && ex.muscles.includes(this.muscle)) {
+                        const card = document.createElement('div');
+                        card.className = 'exo-card';
+                        card.innerHTML = `<div class="exo-image">${ex.emoji}</div><div class="exo-info"><div class="exo-name">${name}</div><div class="exo-muscles">${ex.muscles.join(', ')}</div><div class="exo-desc">${ex.desc}</div></div>`;
+                        card.onclick = (e) => { e.stopPropagation(); this.selectExercise(name); };
+                        grid.appendChild(card);
+                        count++;
+                    }
+                });
+                if (count === 0) grid.innerHTML = '<div class="empty-state">Aucun exo</div>';
+            },
+
+            selectExercise(name) {
+                this.exercise = name;
+                const ex = DB.exercises[name];
+                document.getElementById('exoEmoji').textContent = ex.emoji;
+                document.getElementById('exoName').textContent = name;
+                document.getElementById('exoDesc').textContent = ex.desc;
+                document.getElementById('exoDetails').textContent = ex.details;
+                document.getElementById('exoMuscles').textContent = `Muscles: ${ex.muscles.join(', ')}`;
+                this.showScreen('screenSession');
+                this.timerSeconds = 0;
+                this.timerRunning = false;
+                this.updateTimerDisplay();
+                document.getElementById('timerStartBtn').style.display = 'block';
+                document.getElementById('timerPauseBtn').style.display = 'none';
+            },
+
+            showExercises() { this.showScreen('screenExercises'); },
+
+            startTimer() {
+                if (this.timerRunning) return;
+                this.timerRunning = true;
+                document.getElementById('timerStartBtn').style.display = 'none';
+                document.getElementById('timerPauseBtn').style.display = 'block';
+                this.timerInterval = setInterval(() => {
+                    this.timerSeconds++;
+                    this.updateTimerDisplay();
+                }, 1000);
+            },
+
+            pauseTimer() {
+                this.timerRunning = false;
+                clearInterval(this.timerInterval);
+                document.getElementById('timerStartBtn').style.display = 'block';
+                document.getElementById('timerPauseBtn').style.display = 'none';
+            },
+
+            stopTimer() {
+                this.timerRunning = false;
+                clearInterval(this.timerInterval);
+                this.timerSeconds = 0;
+                this.updateTimerDisplay();
+                document.getElementById('timerStartBtn').style.display = 'block';
+                document.getElementById('timerPauseBtn').style.display = 'none';
+            },
+
+            updateTimerDisplay() {
+                const hours = Math.floor(this.timerSeconds / 3600);
+                const minutes = Math.floor((this.timerSeconds % 3600) / 60);
+                const seconds = this.timerSeconds % 60;
+                const display = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+                document.getElementById('timerDisplay').textContent = display;
+            },
+
+            addExercise() {
+                const reps = parseInt(document.getElementById('inputReps').value) || 0;
+                const series = parseInt(document.getElementById('inputSeries').value) || 0;
+                const weight = parseInt(document.getElementById('inputWeight').value) || 0;
+                if (!reps || !series) { alert('⚠️ Remplis reps et séries!'); return; }
+                const ex = DB.exercises[this.exercise];
+                this.session.push({ name: this.exercise, reps, series, weight, emoji: ex.emoji, muscles: ex.muscles, cal: ex.cal });
+                this.renderSession();
+                document.getElementById('inputReps').value = '';
+                document.getElementById('inputSeries').value = '';
+                document.getElementById('inputWeight').value = '0';
+            },
+
+            renderSession() {
+                const list = document.getElementById('sessionList');
+                if (this.session.length === 0) {
+                    list.innerHTML = '<div class="empty-state">Aucun exo</div>';
+                    document.getElementById('finishBtn').classList.add('hidden');
+                } else {
+                    list.innerHTML = this.session.map((item, idx) => `<div class="session-item"><div><div class="session-item-name">${item.emoji} ${item.name}</div><div class="session-item-info">${item.reps}×${item.series}${item.weight > 0 ? ` @ ${item.weight}kg` : ''}</div></div><button class="session-item-btn" onclick="app.removeExercise(${idx})">✕</button></div>`).join('');
+                    document.getElementById('finishBtn').classList.remove('hidden');
+                }
+            },
+
+            removeExercise(idx) { this.session.splice(idx, 1); this.renderSession(); },
+
+            finishSession() {
+                if (this.session.length === 0) { alert('⚠️ Ajoute au moins un exo!'); return; }
+                const duration = Math.max(1, Math.round(this.timerSeconds / 60));
+                let covered = {}, totalReps = 0, totalCal = 0;
+                this.session.forEach(e => {
+                    totalReps += e.reps * e.series;
+                    totalCal += e.reps * e.series * e.cal * 70;
+                    e.muscles.forEach(m => covered[m] = true);
+                });
+
+                const workout = { date: new Date().toLocaleDateString('fr-FR'), exercises: this.session, totalReps, totalCal: Math.round(totalCal), duration, covered };
+                this.workouts.push(workout);
+                localStorage.setItem('bouahchi_workouts', JSON.stringify(this.workouts));
+
+                document.getElementById('resultDate').textContent = workout.date;
+                document.getElementById('resultDuration').textContent = duration;
+                document.getElementById('resultDurationText').textContent = duration === 1 ? 'min' : 'min';
+                document.getElementById('resultReps').textContent = totalReps;
+                document.getElementById('resultCalories').textContent = workout.totalCal;
+                document.getElementById('resultExos').innerHTML = this.session.map(e => `<div class="session-item"><div><div class="session-item-name">${e.emoji} ${e.name}</div><div class="session-item-info">${e.reps}×${e.series}${e.weight > 0 ? ` @ ${e.weight}kg` : ''}</div></div></div>`).join('');
+
+                const muscles = this.equipment === 'home' ? DB.muscles.home : DB.muscles.gym;
+                document.getElementById('resultMuscles').innerHTML = muscles.map(m => `<div class="muscle-tile ${covered[m] ? 'active' : 'inactive'}">${m.substring(0, 4)}</div>`).join('');
+
+                const neglected = muscles.filter(m => !covered[m]);
+                const rec = document.getElementById('resultRec');
+                rec.innerHTML = neglected.length > 0 ? `💡 À travailler: ${neglected.slice(0, 3).join(', ')}` : '🎉 Tous muscles!';
+
+                this.showScreen('screenResults');
+                this.updateDashboard();
+            },
+
+            downloadScreenshot() {
+                html2canvas(document.getElementById('screenResults'), { scale: 2, backgroundColor: '#0a0e27' }).then(canvas => {
+                    const link = document.createElement('a');
+                    link.download = `bouahchi_${new Date().toISOString().slice(0,10)}.png`;
+                    link.href = canvas.toDataURL();
+                    link.click();
+                });
+            },
+
+            newSession() { this.session = []; this.stopTimer(); this.showHome(); },
+
+            getLevel() {
+                const totalSessions = this.workouts.length;
+                const totalReps = this.workouts.reduce((s, w) => s + w.totalReps, 0);
+                const totalCal = this.workouts.reduce((s, w) => s + w.totalCal, 0);
+                let level = 'Bronze';
+                if (totalSessions >= 5 || totalReps >= 1000) level = 'Argent';
+                if (totalSessions >= 15 || totalReps >= 5000) level = 'Or';
+                if (totalSessions >= 30 || totalReps >= 15000) level = 'Platine';
+                if (totalSessions >= 60 || totalReps >= 30000) level = 'Diamant';
+                return { level, totalSessions, totalReps, totalCal };
+            },
+
+            renderLevels() {
+                const info = this.getLevel();
+                document.getElementById('levelsCard').innerHTML = `<p><strong>Niveau:</strong> ${info.level}</p><p>🎯 Séances: ${info.totalSessions}</p><p>🔢 Reps: ${info.totalReps}</p><p>🔥 Cal: ${info.totalCal}</p>`;
+                document.getElementById('statsTotalSessions').textContent = info.totalSessions;
+                document.getElementById('statsTotalReps').textContent = info.totalReps;
+                document.getElementById('statsTotalCal').textContent = info.totalCal;
+                document.getElementById('statsTotalDuration').textContent = this.workouts.reduce((s, w) => s + w.duration, 0);
+            },
+
+            renderHistory() {
+                const container = document.getElementById('historyList');
+                if (this.workouts.length === 0) { container.innerHTML = '<div class="empty-state">Aucune séance</div>'; return; }
+                container.innerHTML = this.workouts.map(w => `<div class="session-item"><div><div class="session-item-name">📅 ${w.date}</div><div class="session-item-info">🔥 ${w.totalCal} cal | 🔢 ${w.totalReps} reps | ⏱️ ${w.duration}min</div></div></div>`).join('');
+            },
+
+            renderProgression() {
+                const now = new Date(), msWeek = 7 * 24 * 60 * 60 * 1000;
+                const lastWeek = this.workouts.filter(w => {
+                    const parts = w.date.split('/');
+                    const d = new Date(parts[2], parts[1]-1, parts[0]);
+                    return now - d < msWeek;
+                });
+                const prevWeek = this.workouts.filter(w => {
+                    const parts = w.date.split('/');
+                    const d = new Date(parts[2], parts[1]-1, parts[0]);
+                    return now - d >= msWeek && now - d < 2 * msWeek;
+                });
+                const sumCal = arr => arr.reduce((s, w) => s + w.totalCal, 0);
+                const sumReps = arr => arr.reduce((s, w) => s + w.totalReps, 0);
+                const curCal = sumCal(lastWeek), prevCal = sumCal(prevWeek);
+                const curReps = sumReps(lastWeek), prevReps = sumReps(prevWeek);
+                const diff = (cur, prev) => prev === 0 ? 'N/A' : (((cur - prev) / prev) * 100).toFixed(1) + '%';
+                document.getElementById('progressionContent').innerHTML = `<p><strong>Cal cette semaine:</strong> ${curCal} (vs ${prevCal}, ${diff(curCal, prevCal)})</p><p><strong>Reps cette semaine:</strong> ${curReps} (vs ${prevReps}, ${diff(curReps, prevReps)})</p>`;
+            },
+
+            renderDailyChallenges() {
+                const challenges = ['100 pompes', '300 squats', '5 min planche', '200 crunchs', '50 burpees', '100 tractions', 'Full body 45'];
+                document.getElementById('dailyChallenges').innerHTML = `<p><strong>Défi du jour:</strong> ${challenges[new Date().getDay()]}</p>`;
+            },
+
+            renderPlans() {
+                document.getElementById('plansList').innerHTML = TRAINING_PLANS.map(p => `<div class="session-item"><div><div class="session-item-name">🎯 ${p.name}</div><div class="session-item-info">${p.desc}</div></div></div>`).join('');
+            },
+
+            exportData() {
+                const blob = new Blob([JSON.stringify(this.workouts, null, 2)], { type: 'application/json' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'bouahchi.json';
+                a.click();
+                URL.revokeObjectURL(url);
+            },
+
+            showStats() {
+                this.renderLevels();
+                this.renderHistory();
+                this.renderProgression();
+                this.renderDailyChallenges();
+                this.renderPlans();
+                this.showScreen('screenStats');
+            },
+
+            updateDashboard() {
+                const week = this.workouts.filter(w => {
+                    const parts = w.date.split('/');
+                    const d = new Date(parts[2], parts[1]-1, parts[0]);
+                    return (new Date() - d) < 7 * 24 * 60 * 60 * 1000;
+                });
+                document.getElementById('weekSessions').textContent = week.length;
+                document.getElementById('totalSessions').textContent = this.workouts.length;
+                document.getElementById('totalCalories').textContent = this.workouts.reduce((sum, w) => sum + w.totalCal, 0);
+                document.getElementById('totalReps').textContent = this.workouts.reduce((sum, w) => sum + w.totalReps, 0);
+                if (this.workouts.length > 0) {
+                    const last = this.workouts[this.workouts.length - 1];
+                    document.getElementById('lastWorkout').innerHTML = `<strong>📅 ${last.date}</strong><br>🔢 ${last.totalReps} reps | 🔥 ${last.totalCal} cal | ⏱️ ${last.duration}min`;
+                }
+                document.getElementById('navCal').textContent = this.workouts.reduce((sum, w) => sum + w.totalCal, 0);
+                document.getElementById('navReps').textContent = this.workouts.reduce((sum, w) => sum + w.totalReps, 0);
+                let badges = '';
+                if (this.workouts.length >= 1) badges += '<div class="badge">🎯 Starter</div>';
+                if (this.workouts.length >= 5) badges += '<div class="badge">🔥 5</div>';
+                if (this.workouts.length >= 10) badges += '<div class="badge">💪 10</div>';
+                if (this.workouts.length >= 20) badges += '<div class="badge">⭐ 20</div>';
+                if (this.workouts.length >= 50) badges += '<div class="badge">🏆 50</div>';
+                document.getElementById('achievements').innerHTML = badges || '<div class="empty-state">0 badges</div>';
+            }
+        };
+
+        async function initLauncher() {
+            const now = new Date();
+            const dateStr = now.toLocaleDateString('fr-FR', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+            document.getElementById('dateInfo').textContent = dateStr.charAt(0).toUpperCase() + dateStr.slice(1);
+            
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(async (position) => {
+                    const lat = position.coords.latitude;
+                    const lon = position.coords.longitude;
+                    try {
+                        const geoRes = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}`);
+                        const geoData = await geoRes.json();
+                        const city = geoData.address?.city || geoData.address?.town || 'Ville';
+                        const country = geoData.address?.country || '';
+                        document.getElementById('locationInfo').textContent = `📍 ${city}, ${country}`;
+                    } catch (e) {
+                        document.getElementById('locationInfo').textContent = `📍 ${lat.toFixed(2)}, ${lon.toFixed(2)}`;
+                    }
+                    try {
+                        const weatherRes = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,weather_code,wind_speed_10m&temperature_unit=celsius&timezone=auto`);
+                        const weatherData = await weatherRes.json();
+                        const current = weatherData.current;
+                        const temp = Math.round(current.temperature_2m);
+                        const windSpeed = Math.round(current.wind_speed_10m);
+                        const weatherCode = current.weather_code;
+                        const weatherMap = {0: {emoji: '☀️', text: 'Ensoleillé'}, 1: {emoji: '🌤️', text: 'Partiellement'}, 2: {emoji: '☁️', text: 'Nuageux'}, 45: {emoji: '🌫️', text: 'Brouillard'}, 51: {emoji: '🌧️', text: 'Pluie'}, 95: {emoji: '⛈️', text: 'Orage'}};
+                        const weather = weatherMap[weatherCode] || {emoji: '🌤️', text: 'Beau'};
+                        document.getElementById('weatherIcon').textContent = weather.emoji;
+                        document.getElementById('weatherText').textContent = `${weather.text} - ${temp}°C (${windSpeed} km/h)`;
+                    } catch (e) {
+                        document.getElementById('weatherText').textContent = '🌤️ Météo N/A';
+                    }
+                }, () => {
+                    document.getElementById('locationInfo').textContent = '📍 Géoloc refusée';
+                    document.getElementById('weatherText').textContent = '🌤️ Météo refusée';
+                });
+            }
+        }
+
+        initLauncher();
+    </script>
+</body>
+</html>
