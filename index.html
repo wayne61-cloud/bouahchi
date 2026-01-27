@@ -243,6 +243,11 @@
             color: #ffcccc;
             margin-bottom: 8px;
         }
+        .card-text {
+            font-size: 11px;
+            color: #ffebee;
+            margin-bottom: 8px;
+        }
         .card-section {
             background: rgba(255, 82, 82, 0.1);
             padding: 8px;
@@ -353,21 +358,21 @@
 
     <div class="page" id="nutrition">
         <h1 class="section-title">Nutrition</h1>
-        <p class="section-sub">52 recettes complètes</p>
+        <p class="section-sub">20+ recettes complètes (2+ mois)</p>
         <div class="tabs" id="meal-tabs"></div>
         <div class="grid" id="recipes-grid"></div>
     </div>
 
     <div class="page" id="noushi">
         <h1 class="section-title">🔥 NOUSHI MODE</h1>
-        <p class="section-sub">Exercices extrêmes</p>
+        <p class="section-sub">Les exercices les plus extrêmes du monde</p>
         <div class="tabs" id="noushi-tabs"></div>
         <div class="grid" id="noushi-grid"></div>
     </div>
 
     <div class="page" id="relax">
         <h1 class="section-title">🧘 Relaxation & Récupération</h1>
-        <p class="section-sub">Yoga et détente</p>
+        <p class="section-sub">10+ techniques de détente et yoga</p>
         <div class="tabs" id="relax-tabs"></div>
         <div class="grid" id="relax-grid"></div>
     </div>
@@ -382,26 +387,26 @@
 </div>
 
 <script>
-// ============= VIDEO MAPPING YOUTUBE =============
+// ============= VERIFIED YOUTUBE VIDEOS 2025-2026 =============
 const YOUTUBE_VIDEOS = {
-    'Pompes classiques': 'https://www.youtube.com/embed/3jfAqz0xoXU',
-    'Pompes inclinées': 'https://www.youtube.com/embed/yF9yVYtYe7U',
-    'Pompes déclinées': 'https://www.youtube.com/embed/UmC4P0oP-ZE',
-    'Pompes serrées': 'https://www.youtube.com/embed/J0DnG1_S92I',
+    'Pompes classiques': 'https://www.youtube.com/embed/es_Tz8Si75o',
+    'Pompes inclinées': 'https://www.youtube.com/embed/8cf9RPmZj04',
+    'Pompes déclinées': 'https://www.youtube.com/embed/QBlYp-EwHlo',
+    'Pompes serrées': 'https://www.youtube.com/embed/8Nkfuhxsl-0',
     'Pompes explosives': 'https://www.youtube.com/embed/0dOLkXVeAIE',
     'Pompes large écart': 'https://www.youtube.com/embed/IODxDxX7oi4',
-    'Dips sur chaise': 'https://www.youtube.com/embed/6kALZikXxLc',
+    'Dips sur chaise': 'https://www.youtube.com/embed/ivp-BoyI4KA',
     'Curl élastique': 'https://www.youtube.com/embed/3T1QZQ4dGDM',
     'Pompes triceps mur': 'https://www.youtube.com/embed/JvLJqTq8WaE',
-    'Dips sol chevilles': 'https://www.youtube.com/embed/6kALZikXxLc',
+    'Dips sol chevilles': 'https://www.youtube.com/embed/bO5zK8AKkI4',
     'Punch en l\'air': 'https://www.youtube.com/embed/fRrQLI8pBLU',
-    'Squat poids corps': 'https://www.youtube.com/embed/rDFgZAzBTpM',
+    'Squat poids corps': 'https://www.youtube.com/embed/-i1oJn3h4uc',
     'Fentes avant': 'https://www.youtube.com/embed/QOVaHwm-Q6U',
     'Fentes arrière': 'https://www.youtube.com/embed/on9nwbZngyw',
     'Hip thrust canapé': 'https://www.youtube.com/embed/LM8XHLYJoYs',
     'Squats pistol progression': 'https://www.youtube.com/embed/YzzqP_hF_RA',
     'Sauts box poids corps': 'https://www.youtube.com/embed/oULi3q4W6SQ',
-    'Planche classique': 'https://www.youtube.com/embed/pSHjTRCQxIw',
+    'Planche classique': 'https://www.youtube.com/embed/Y1quckN9qTA',
     'Crunch au sol': 'https://www.youtube.com/embed/Xyd_fa5zoEU',
     'Planche latérale': 'https://www.youtube.com/embed/Z5bG6N8yjVI',
     'Relever jambes sol': 'https://www.youtube.com/embed/5n9sJkqF0IU',
@@ -409,21 +414,21 @@ const YOUTUBE_VIDEOS = {
     'Superman au sol': 'https://www.youtube.com/embed/z6PJMT2y8GQ',
     'Rowing élastique': 'https://www.youtube.com/embed/7LZpZ69Jq-Y',
     'Bird dog': 'https://www.youtube.com/embed/w0xRB8E44lI',
-    'Squat barre': 'https://www.youtube.com/embed/UXJrBgI2RxA',
+    'Squat barre': 'https://www.youtube.com/embed/bdBYYwbJIqM',
     'Presse cuisses': 'https://www.youtube.com/embed/IZxyjW7MPJQ',
     'Leg curl allongé': 'https://www.youtube.com/embed/1Tq3QdYUuHs',
     'Leg extension': 'https://www.youtube.com/embed/YyvSfVjQeL0',
     'Fente barre salle': 'https://www.youtube.com/embed/rq2vqHKYMWo',
     'Hack squat machine': 'https://www.youtube.com/embed/Y0TnCDzAGcg',
-    'Développé couché barre': 'https://www.youtube.com/embed/rT7DgCr-3pg',
+    'Développé couché barre': 'https://www.youtube.com/embed/fYgx2OKQLFs',
     'Développé incliné barre': 'https://www.youtube.com/embed/0G2_XV7slIg',
     'Développé couché haltères': 'https://www.youtube.com/embed/VmB1G1K7v94',
     'Écartés machine pec deck': 'https://www.youtube.com/embed/QS8W8cB3Y_I',
     'Écartés inclinés haltères': 'https://www.youtube.com/embed/0G2_XV7slIg',
-    'Push up décliné barre': 'https://www.youtube.com/embed/rT7DgCr-3pg',
+    'Push up décliné barre': 'https://www.youtube.com/embed/fYgx2OKQLFs',
     'Tractions large': 'https://www.youtube.com/embed/eGo4IYlbE5g',
     'Rowing barre': 'https://www.youtube.com/embed/vT2GjY_Umpw',
-    'Rowing haltères unilatéral': 'https://www.youtube.com/embed/GZbfZ033f74',
+    'Rowing haltères unilatéral': 'https://www.youtube.com/embed/nMFCMNKnLgQ',
     'Tirage vertical': 'https://www.youtube.com/embed/CAwf7n6Luuc',
     'Pull-over poulie': 'https://www.youtube.com/embed/a6gW_vd2T3A',
     'Rowing machine': 'https://www.youtube.com/embed/vT2GjY_Umpw',
@@ -441,74 +446,55 @@ const YOUTUBE_VIDEOS = {
     'Pistol Squat (1 jambe)': 'https://www.youtube.com/embed/YzzqP_hF_RA',
 };
 
-// ============= DATA =============
+// ============= DATA EXERCICES =============
 const EXOS = [
-    // MAISON - POITRINE
     { nom: 'Pompes classiques', pole: 'maison', muscle: 'poitrine', desc: 'Fondamental poids du corps', prep: 'Mains largeur épaules, corps droit, descendre 2-3cm sol, remonter explosif. 3x10-15 reps.', tips: 'Core engagé, pas de creusement dos.' },
     { nom: 'Pompes inclinées', pole: 'maison', muscle: 'poitrine', desc: 'Pour débutants', prep: 'Mains surface élevée (chaise), même technique. 3x8-12 reps', tips: 'Progression vers pompes normales.' },
     { nom: 'Pompes déclinées', pole: 'maison', muscle: 'poitrine', desc: 'Pectoraux hauts', prep: 'Pieds surélevés, mains sol. 3x6-10 reps', tips: 'Sollicite haut poitrine.' },
     { nom: 'Pompes serrées', pole: 'maison', muscle: 'bras', desc: 'Focus triceps', prep: 'Mains rapprochées, coudes près corps. 3x8-12 reps', tips: 'Triceps brûlent.' },
     { nom: 'Pompes explosives', pole: 'maison', muscle: 'poitrine', desc: 'Pliométrique puissance', prep: 'Pompes rapides, applaudir si possible. 3x5-8 reps.', tips: 'Progresser d\'abord avec normales.' },
     { nom: 'Pompes large écart', pole: 'maison', muscle: 'poitrine', desc: 'Pectoraux isolement', prep: 'Mains très écartées (1.5x épaules). 3x10-12 reps', tips: 'Étirement pec maximal.' },
-    
-    // MAISON - BRAS
     { nom: 'Dips sur chaise', pole: 'maison', muscle: 'bras', desc: 'Triceps intense', prep: 'Mains chaise derrière, pieds devant, plier 90°. 3x8-12 reps', tips: 'Contrôler descente.' },
     { nom: 'Curl élastique', pole: 'maison', muscle: 'bras', desc: 'Biceps isolement', prep: 'Élastique sous pieds, flexion bras. 3x12-15 reps', tips: 'Tension constante.' },
     { nom: 'Pompes triceps mur', pole: 'maison', muscle: 'bras', desc: 'Triceps approche mur', prep: 'Face mur, pompes en arrière angle 45°. 3x10-12 reps', tips: 'Bonne progression.' },
     { nom: 'Dips sol chevilles', pole: 'maison', muscle: 'bras', desc: 'Triceps sol variant', prep: 'Sol comme support, plier bras 90°. 3x8-10 reps', tips: 'Moins intense que chaise.' },
     { nom: 'Punch en l\'air', pole: 'maison', muscle: 'bras', desc: 'Bras cardio puissance', prep: '100 punches rapides, repos, répéter 3x', tips: 'Cœur monte aussi.' },
-
-    // MAISON - JAMBES
     { nom: 'Squat poids corps', pole: 'maison', muscle: 'jambes', desc: 'Jambes fondamental', prep: 'Pieds largeur épaules, descendre profond. 3x15-20 reps', tips: 'Genoux tracking, talons sol.' },
     { nom: 'Fentes avant', pole: 'maison', muscle: 'jambes', desc: 'Unilatéral puissant', prep: 'Pied avant, fléchir deux jambes. 3x10 chaque', tips: 'Balance et force.' },
     { nom: 'Fentes arrière', pole: 'maison', muscle: 'jambes', desc: 'Moins stress genou', prep: 'Pied arrière, fléchir. 3x10 chaque', tips: 'Excellent quadriceps.' },
     { nom: 'Hip thrust canapé', pole: 'maison', muscle: 'jambes', desc: 'Fessiers intense', prep: 'Dos canapé, pousser hanches. 3x12 reps', tips: 'Contraction max haut.' },
     { nom: 'Squats pistol progression', pole: 'maison', muscle: 'jambes', desc: 'Squat 1 jambe débutant', prep: 'Avec support main, 1 jambe. 3x5-8 chaque', tips: 'Très difficile, progresser.' },
     { nom: 'Sauts box poids corps', pole: 'maison', muscle: 'jambes', desc: 'Jambes cardio plyométrique', prep: 'Sauts sur place maximaux. 3x10-15 reps', tips: 'Énergie max.' },
-
-    // MAISON - ABDOS
     { nom: 'Planche classique', pole: 'maison', muscle: 'abdos', desc: 'Core statique', prep: 'Position pompes, maintenir droit. 3x30-60 sec', tips: 'Pas creuser dos.' },
     { nom: 'Crunch au sol', pole: 'maison', muscle: 'abdos', desc: 'Isolement abs', prep: 'Genoux fléchis, soulever épaules. 3x15-20 reps', tips: 'Pas tirer tête.' },
     { nom: 'Planche latérale', pole: 'maison', muscle: 'abdos', desc: 'Obliques core', prep: 'Sur coude, corps droit, maintenir. 3x30-45 sec chaque', tips: 'Très intense.' },
     { nom: 'Relever jambes sol', pole: 'maison', muscle: 'abdos', desc: 'Abdos bas intense', prep: 'Allongé, lever jambes 90°, baisser sans toucher. 3x12-15 reps', tips: 'Abs brûlent.' },
     { nom: 'Bicycle crunch', pole: 'maison', muscle: 'abdos', desc: 'Abdos + obliques', prep: 'Allongé, genoux fléchis, alternance coude-genou. 3x20 reps', tips: 'Mouvement continu fluide.' },
-
-    // MAISON - DOS
     { nom: 'Superman au sol', pole: 'maison', muscle: 'dos', desc: 'Dos extenseurs', prep: 'Allongé, soulever bras/jambes. 3x12 reps', tips: 'Contraction lombaires.' },
     { nom: 'Rowing élastique', pole: 'maison', muscle: 'dos', desc: 'Dos sans matériel', prep: 'Élastique fixé, tirer vers soi. 3x12-15 reps', tips: 'Tension constante.' },
     { nom: 'Bird dog', pole: 'maison', muscle: 'dos', desc: 'Stabilité colonne', prep: '4 pattes, étendre bras/jambe opposés. 3x10 chaque', tips: 'Dos neutre, core engagé.' },
-
-    // SALLE - JAMBES
     { nom: 'Squat barre', pole: 'salle', muscle: 'jambes', desc: 'Roi force jambes', prep: 'Barre épaules, squat parallèle. 4x6-8 reps lourds', tips: 'Chaîne complète.' },
     { nom: 'Presse cuisses', pole: 'salle', muscle: 'jambes', desc: 'Sans charge dos', prep: 'Pieds plateau, pousser extension. 3x10-12 reps', tips: 'Isolement quads.' },
     { nom: 'Leg curl allongé', pole: 'salle', muscle: 'jambes', desc: 'Ischio-jambiers', prep: 'Allongé, fléchir jambes rouleau. 3x12-15 reps', tips: 'Chaîne postérieure.' },
     { nom: 'Leg extension', pole: 'salle', muscle: 'jambes', desc: 'Quadriceps pur', prep: 'Assis, étendre jambes rouleau. 3x12-15 reps', tips: 'Contrôlé, risque genou léger.' },
     { nom: 'Fente barre salle', pole: 'salle', muscle: 'jambes', desc: 'Fentes lourdes', prep: 'Barre épaules, fente poids. 3x8-10 chaque', tips: 'Très intense.' },
     { nom: 'Hack squat machine', pole: 'salle', muscle: 'jambes', desc: 'Squat variant salle', prep: 'Épaules supports, squat. 3x10-12 reps', tips: 'Moins demandant que barre.' },
-
-    // SALLE - POITRINE
     { nom: 'Développé couché barre', pole: 'salle', muscle: 'poitrine', desc: 'Roi poitrine salle', prep: 'Allongé, barre poitrine, pousser. 4x6-8 reps', tips: 'Épaules arrière.' },
     { nom: 'Développé incliné barre', pole: 'salle', muscle: 'poitrine', desc: 'Haut poitrine', prep: 'Banc incliné 30-45°, pousser. 3x8-10 reps', tips: 'Moins lourd que plat.' },
     { nom: 'Développé couché haltères', pole: 'salle', muscle: 'poitrine', desc: 'Amplitude plus grande', prep: 'Haltères, descendre bas. 3x8-10 reps', tips: 'Plus sensation.' },
     { nom: 'Écartés machine pec deck', pole: 'salle', muscle: 'poitrine', desc: 'Isolement pure', prep: 'Poignées mains, écarter avant. 3x12-15 reps', tips: 'Parfait isolement.' },
     { nom: 'Écartés inclinés haltères', pole: 'salle', muscle: 'poitrine', desc: 'Haut poitrine isolement', prep: 'Banc incliné, haltères écarter. 3x10-12 reps', tips: 'Sensation haut pec.' },
     { nom: 'Push up décliné barre', pole: 'salle', muscle: 'poitrine', desc: 'Pompes barre lourdes', prep: 'Barre hauteur poitrine, pompes. 3x8-10 reps', tips: 'Pecs maximales.' },
-
-    // SALLE - DOS
     { nom: 'Tractions large', pole: 'salle', muscle: 'dos', desc: 'Grand dorsal pur', prep: 'Mains écartées, tirer corps. 3x5-8 reps', tips: 'Full range.' },
     { nom: 'Rowing barre', pole: 'salle', muscle: 'dos', desc: 'Tirage horizontal', prep: 'Penché, barre poitrine, coudes près corps. 3x8-10 reps', tips: 'Dos plat, tirer dos.' },
     { nom: 'Rowing haltères unilatéral', pole: 'salle', muscle: 'dos', desc: 'Unilatéral balance', prep: 'Une main banc, haltère. 3x10 chaque', tips: 'Équilibre musculaire.' },
     { nom: 'Tirage vertical', pole: 'salle', muscle: 'dos', desc: 'Variante tractions', prep: 'Poulie dessus, tirer poitrine. 3x8-10 reps', tips: 'Bon échauffement.' },
     { nom: 'Pull-over poulie', pole: 'salle', muscle: 'dos', desc: 'Grand dorsal isolement', prep: 'Corde poulie, tirer bas-arrière. 3x12 reps', tips: 'Sensation étirement.' },
     { nom: 'Rowing machine', pole: 'salle', muscle: 'dos', desc: 'Dos cardio force', prep: 'Damping 8, puissance maximale. 3x1min sprint', tips: 'Cardio + force dos.' },
-
-    // SALLE - ÉPAULES
     { nom: 'Développé épaules haltères', pole: 'salle', muscle: 'epaules', desc: 'Force complète épaules', prep: 'Assis, haltères épaules, pousser haut. 3x8-10 reps', tips: 'Core engagé.' },
     { nom: 'Élévations latérales haltères', pole: 'salle', muscle: 'epaules', desc: 'Faisceau moyen', prep: 'Debout, haltères côtés, lever latéral. 3x12-15 reps léger', tips: 'Pas d\'élan.' },
     { nom: 'Oiseau haltères incliné', pole: 'salle', muscle: 'epaules', desc: 'Arrière épaule haut dos', prep: 'Banc incliné penché, écarter haltères. 3x12-15 reps', tips: 'Isolation complète.' },
     { nom: 'Élévations frontales haltères', pole: 'salle', muscle: 'epaules', desc: 'Faisceau avant', prep: 'Debout, haltères devant cuisses, lever. 3x12 reps', tips: 'Contrôle constant.' },
-
-    // SALLE - ABDOS
     { nom: 'Crunch poulie', pole: 'salle', muscle: 'abdos', desc: 'Abdos résistance', prep: 'À genoux, crunch bas. 3x12-15 reps', tips: 'Charge progressive.' },
     { nom: 'Ab wheel rollout', pole: 'salle', muscle: 'abdos', desc: 'Avancé core', prep: 'Roulette, étendre corps. 3x8-12 reps', tips: 'Progresser genoux d\'abord.' },
     { nom: 'Relevés jambes barre', pole: 'salle', muscle: 'abdos', desc: 'Abdos bas intense', prep: 'Suspendu, relever jambes 90°. 3x10-12 reps', tips: 'Très efficace.' },
@@ -516,8 +502,26 @@ const EXOS = [
 
 const RECIPES_DATA = [
     { repas: 'petit-dej', nom: 'Pudding chia fraise protéiné', temps: 15, prot: 20, cal: 280, benefices: 'Petit-déj protéiné parfait, sans cuisson.', prep: 'INGRÉDIENTS: 40g chia, 200ml lait, 80g yaourt grec, 100g fraises, 10ml miel.\nPRÉP (veille): Mélanger chia+lait+yaourt, laisser 4h frigo.\nMATIN: Ajouter fraises, miel, mélanger 30sec.' },
-    { repas: 'petit-dej', nom: 'Pancakes vegan banane', temps: 30, prot: 12, cal: 320, benefices: 'Énergie durable pré-séance, sans œufs.', prep: 'INGRÉDIENTS: 2 bananes, 150ml lait veg, 150g farine, 5g levure, sel, 5ml huile coco.\nMÉLANGER: Bananes écrasées + lait+farine+levure+sel lisse.' },
+    { repas: 'petit-dej', nom: 'Pancakes vegan banane', temps: 30, prot: 12, cal: 320, benefices: 'Énergie durable pré-séance, sans œufs.', prep: 'INGRÉDIENTS: 2 bananes, 150ml lait veg, 150g farine, 5g levure, sel, 5ml huile coco.\nMÉLANGER: Bananes écrasées + lait+farine+levure+sel lisse.\nCUISSON: Poêle medium 2-3min chaque côté.' },
     { repas: 'petit-dej', nom: 'Œufs brouillés + toast complet', temps: 10, prot: 18, cal: 280, benefices: 'Protéines simples rapides.', prep: 'INGRÉDIENTS: 3 œufs, 2 tranches pain complet, 10g beurre, sel/poivre.\nCUISSON: Beurre poêle moyen-bas. Œufs mélanger 4-5min. Toast parallèle 2-3min.' },
+    { repas: 'petit-dej', nom: 'Smoothie protéiné miel', temps: 5, prot: 25, cal: 300, benefices: 'Rapide absorption pré-entraînement.', prep: 'INGRÉDIENTS: 1 banane, 200ml lait, 30g whey chocolat, 15ml miel, 50g avoine.\nMIXER: Tous ingrédients 30sec.\nAJOUTER: Glaçons si froid souhaité.' },
+    { repas: 'petit-dej', nom: 'Oeufs à la coque tomate', temps: 8, prot: 16, cal: 200, benefices: 'Léger rapide riche minéraux.', prep: 'INGRÉDIENTS: 2 œufs bio, 150g tomates cerises, sel, poivre, 5ml huile olive.\nCUISSON: Eau bouillante 6min, tremper eau froide 30sec.\nVERSER: Huile + tomates + sel + poivre sur le côté.' },
+    { repas: 'petit-dej', nom: 'Cottage cheese pancakes', temps: 12, prot: 22, cal: 310, benefices: 'Ultra protéiné faible carbs.', prep: 'INGRÉDIENTS: 150g cottage cheese, 2 œufs, 1 banane, 5ml vanille, cannelle.\nMIXER: 30sec lisse parfait.\nCUISSON: Poêle medium 3min chaque côté.' },
+    { repas: 'dejeuner', nom: 'Riz blanc + poulet grillé', temps: 45, prot: 45, cal: 580, benefices: 'Post-séance carbs + protéines.', prep: 'RIZ: 200g riz blanc, eau 2:1, bouillir 18min.\nPOULET: 250g poitrine, sel/poivre, poêle 12min deux côtés.\nSAUCE: citron+ail+herbes.' },
+    { repas: 'dejeuner', nom: 'Pasta complet + sauce tomate', temps: 30, prot: 20, cal: 520, benefices: 'Carbs complexes + lycopène.', prep: 'PASTA: 200g fusilli complet, eau bouillante 12min.\nSAUCE: Tomates 400g + oignon+ail, mijoter 15min.\nMIX: Pâtes+sauce, PARMESAN râpé.' },
+    { repas: 'dejeuner', nom: 'Quinoa + légumes rôtis', temps: 40, prot: 16, cal: 450, benefices: 'Grains complets + fibres.', prep: 'QUINOA: 150g quinoa, eau 2:1, cuire 15min.\nLÉGUMES: Courgettes+poivrons+carottes, huile+herbes, rôtir 25min 200°C.\nMIX: Quinoa+légumes.' },
+    { repas: 'dejeuner', nom: 'Chipotle chicken bowl', temps: 35, prot: 42, cal: 580, benefices: 'Épices + protéines maximize.', prep: 'RIZ: 200g riz basmati, eau 2:1, bouillir 18min.\nPOULET: 250g poitrine, sauce chipotle mayonnaise, poêle 12min.\nGARNISH: Cheddar râpé, poivrons, oignons, coriandre frais.' },
+    { repas: 'dejeuner', nom: 'Beef taco grande', temps: 25, prot: 38, cal: 520, benefices: 'Boeuf savoureux simple.', prep: 'VIANDE: 250g boeuf haché 90%, épices taco, poêle 10min.\nTORTILLAS: 3 tortillas complet réchauffées 1min.\nGARNISH: Laitue, tomate, fromage, sauce sour cream 20ml.' },
+    { repas: 'dejeuner', nom: 'Tofu scramble', temps: 15, prot: 19, cal: 280, benefices: 'Végétarien protéiné.', prep: 'TOFU: 300g tofu nature écrasé à la fourchette.\nCUISSON: Poêle + curcuma (couleur jaune), ail, oignon, 8min.\nGARNISH: Basilic frais, poivre noir, sel himalayan.' },
+    { repas: 'collation', nom: 'Barre protéinée maison', temps: 15, prot: 20, cal: 280, benefices: 'Collation entre séances.', prep: 'INGRÉDIENTS: 100g avoine, 50g beurre cacahuète, 50g whey, 30ml miel, chocolat 50g.\nMÉLANGER: Avoine+beurre+whey+miel.\nMOULER: Chocolat fondu, couche base, puis mélange, puis chocolat dessus.\nFRIGO 4h.' },
+    { repas: 'collation', nom: 'Greek yogurt myrtilles', temps: 5, prot: 15, cal: 200, benefices: 'Antioxydants + protéines.', prep: 'INGRÉDIENTS: 200g yaourt grec, 100g myrtilles fraiches, 15g miel, 20g granola.\nVERSER: Yaourt bol.\nAJOUTER: Myrtilles+miel+granola.\nCONSOMMER direct.' },
+    { repas: 'collation', nom: 'Protein shake banane', temps: 3, prot: 28, cal: 250, benefices: 'Rapide complète post-séance.', prep: 'INGRÉDIENTS: 1 banane, 250ml lait écrémé, 35g whey, 10g cacahuète poudre, glaçons.\nMIXER: 45sec smooth.' },
+    { repas: 'collation', nom: 'Cacahuètes noix mix', temps: 1, prot: 12, cal: 200, benefices: 'Gras sain énergie.', prep: 'INGRÉDIENTS: 50g cacahuètes non salées, 30g noix, 20g raisins secs.\nMELANGER: Bol sec.' },
+    { repas: 'diner', nom: 'Saumon + riz patate douce', temps: 50, prot: 50, cal: 650, benefices: 'Omega-3 + carbs complexes.', prep: 'SAUMON: 250g filet, citron+sel, four 180°C 12min.\nPATATE: 300g patate douce, eau bouillante, 15min.\nMIX: Saumon+patate+riz.' },
+    { repas: 'diner', nom: 'Steak + légumes vapeur', temps: 35, prot: 55, cal: 580, benefices: 'Protéines rouges + micronutriments.', prep: 'STEAK: 250g bœuf, sel/poivre, poêle chaude 3-4min chaque côté saignant.\nLÉGUMES: Brocoli+carottes, vapeur 10min.\nSAUCE: Persil+ail.' },
+    { repas: 'diner', nom: 'Poulet feta légumes', temps: 40, prot: 48, cal: 520, benefices: 'Méditerranéen savoureux.', prep: 'POULET: 250g poitrine, herbes provençales, four 200°C 18min.\nLÉGUMES: Tomates, roquette, oignon rouge.\nFETYA: 60g feta émiettée.' },
+    { repas: 'diner', nom: 'Morue blanche broccoli', temps: 35, prot: 44, cal: 380, benefices: 'Poisson maigre léger.', prep: 'POISSON: 250g morue, citron+estragon, vapeur 12min.\nBROCCOLI: 300g frais vapeur 10min.\nSAUCE: Huile olive+citron pressé.' },
+    { repas: 'diner', nom: 'Tilapia riz complet', temps: 30, prot: 40, cal: 450, benefices: 'Poisson économique complet.', prep: 'TILAPIA: 250g filet, sel, gril 8-10min deux côtés.\nRIZ: 150g riz complet, eau 2.5:1, 25min.\nLÉGUME: Haricots verts vapeur.' },
 ];
 
 const NOUSHI_EXOS = [
@@ -529,11 +533,18 @@ const NOUSHI_EXOS = [
 ];
 
 const RELAX_DATA = [
-    { type: 'yoga', nom: 'Yoga restauratif complet', temps: 20, benefices: 'Relax total, récupération musculaire profonde', prep: 'SÉQUENCE: Allongé 3min respiration ventre. Jambes mur 5min (talons chaise assise, genoux 90°) = récup jambes intense. Chat-vache 3min (alternance lente). Torsion couché chaque côté 2min étirement profond. Pigeon 2min chaque côté (hanche deep stretch). Fermé yeux relaxation 3min finale.' },
-    { type: 'yoga', nom: 'Yin yoga pour hanche', temps: 18, benefices: 'Hanche relax profond, mobilité', prep: 'ROUTINE: Pigeon 4min chaque côté (étirement hanche max). Dragon low lunge 3min chaque côté (fléchisseurs hanche). Butterfly 3min (soles pieds ensemble, hanches écart). Reclined figure 4 (lying twist) 2min chaque côté (hanche/dos).' },
+    { type: 'yoga', nom: 'Yoga restauratif complet', temps: 20, benefices: 'Relax total, récupération musculaire profonde', prep: 'SÉQUENCE: Allongé 3min respiration ventre. Jambes mur 5min (talons chaise assise, genoux 90°) = récup jambes intense. Chat-vache 3min (alternance lente). Torsion couché chaque côté 2min étirement profond. Pigeon 2min chaque côté (hanche deep stretch). Fermé yeux relaxation 3min finale.\nASTUCES: Idéal après séance jambes.' },
+    { type: 'yoga', nom: 'Yin yoga pour hanche', temps: 18, benefices: 'Hanche relax profond, mobilité', prep: 'ROUTINE: Pigeon 4min chaque côté (étirement hanche max). Dragon low lunge 3min chaque côté (fléchisseurs hanche). Butterfly 3min (soles pieds ensemble, hanches écart). Reclined figure 4 (lying twist) 2min chaque côté (hanche/dos).\nASTUCES: Aide flexibilité pistol squat.' },
+    { type: 'meditation', nom: 'Yoga Nidra relaxation', temps: 25, benefices: 'État liminal entre veille/sommeil, détente max', prep: 'POSITION: Allongé confortable, yeux fermés.\nGUIDÉE: Respiration consciente + rotation awareness corps entier (tête, bras, torse, jambes).\nDURÉE: 25min guidée.\nBENEFICES: Réduit stress, meilleures décisions, sommeil profond.\nASTUCES: Avant dodo optimal, vraiment change la qualité sommeil.' },
+    { type: 'meditation', nom: 'Méditation respiration 10min', temps: 10, benefices: 'Récupération mental + nerveux', prep: 'POSITION: Assis confortable, yeux fermés.\nRESPIRATION: 4-count inhale, 4-count hold, 6-count exhale (stimule parasympathique).\nDURÉE: 10min minimum.\nFOCUS: Suivre respiration, ignorer pensées.\nASTUCES: Matin ou avant dodo optimal.' },
+    { type: 'etirement', nom: 'Stretching complet 15min', temps: 15, benefices: 'Mobilité + souplesse progressive', prep: 'SÉQUENCE: Quadriceps 2min chaque jambe. Hamstring 2min chaque jambe. Hip flexor 2min chaque côté. Shoulder stretch 2min chaque bras. Spinal twist 2min chaque côté. Pigeon 3min chaque côté.\nASTUCES: Après séance quand muscles chauds. Respirer lentement.' },
+    { type: 'massage', nom: 'Auto-massage foam roller', temps: 15, benefices: 'Récupération musculaire, réduit DOMS', prep: 'OUTILS: Foam roller + balle massage.\nSÉQUENCE: Mollets 2min rouleau. Ischio-jambiers 3min rouleau. Quadriceps 3min rouleau. Dos/lats 3min rouleau. Pieds balle massage 2min chaque pied.\nASTUCES: Lent + appui lourd. Éviter colonne vertébrale direct.' },
+    { type: 'yoga', nom: 'Stretching full body 10min', temps: 10, benefices: 'Flexibilité quotidienne rapide', prep: 'ROUTINE rapide: Neck rolls 1min. Shoulder rolls 1min. Cat-cow 2min. Child\'s pose 1min. Downward dog 2min. Quad stretch 1.5min chaque. Hamstring 1.5min chaque.' },
+    { type: 'meditation', nom: 'Yoga Nidra New Year 40min', temps: 40, benefices: 'Très profond reset nerveux complet', prep: 'GUIDÉE: Sirah (respiration consciente) + Rotation consciousness corps entier + Visualization intentions. PHASE: Profonde relaxation corps asleep mais mind aware.' },
+    { type: 'stretching', nom: 'Stretching ciblé hanches', temps: 12, benefices: 'Hanches ouvertes mobilité max', prep: 'SÉQUENCE: Pigeon 3min ch côté. Butterfly 2min. Low lunge 2.5min ch côté. 90/90 stretch 2min ch côté. Reclined figure4 2min ch côté.' },
+    { type: 'breathing', nom: 'Respirations alternées nadi shodhana', temps: 8, benefices: 'Balance nerveux sympathique/parasympathique', prep: 'TECHNIQUE: Inhaler gauche (pouce ferme droite) 4count. Hold 4count. Exhaler droite 6count. Alterner 4min. BÉNÉFICE: Calme mental instant, focus clarity.' },
 ];
 
-// ============= TIME =============
 function updateTime() {
     const now = new Date();
     document.getElementById('time').textContent = String(now.getHours()).padStart(2, '0') + ':' + String(now.getMinutes()).padStart(2, '0');
@@ -544,7 +555,6 @@ function updateTime() {
 updateTime();
 setInterval(updateTime, 60000);
 
-// ============= PAGE NAV =============
 let currentMode = 'maison', currentMuscle = 'tous';
 
 function goToPage(name) {
@@ -565,7 +575,6 @@ function chooseMode(mode) {
     goToPage('exos');
 }
 
-// ============= RENDER EXERCICES =============
 function renderExos() {
     const filtered = EXOS.filter(e => e.pole === currentMode);
     const muscles = [...new Set(filtered.map(e => e.muscle))];
@@ -588,7 +597,7 @@ function renderExos() {
 
     const exosFiltered = filtered.filter(e => currentMuscle === 'tous' || e.muscle === currentMuscle);
     const html = exosFiltered.map((e, idx) => {
-        const videoUrl = YOUTUBE_VIDEOS[e.nom] || 'https://www.youtube.com/embed/dQw4w9WgXcQ';
+        const videoUrl = YOUTUBE_VIDEOS[e.nom] || 'https://www.youtube.com/embed/es_Tz8Si75o';
         return `
         <div class="card">
             <div class="card-title">💪 ${e.nom}</div>
@@ -621,14 +630,19 @@ function renderExos() {
 }
 
 function renderRecipes() {
-    document.getElementById('meal-tabs').innerHTML = '<button class="tab-btn active">Toutes</button>';
-    const html = RECIPES_DATA.map(r => `
+    document.getElementById('meal-tabs').innerHTML = '<button class="tab-btn active">Tous (20)</button>';
+    const html = RECIPES_DATA.map((r, idx) => `
         <div class="card">
             <div class="card-title">🍳 ${r.nom}</div>
-            <div class="card-meta">⏱️ ${r.temps}min • 🥛 ${r.prot}g • 🔥 ${r.cal}kcal</div>
+            <div class="card-meta">⏱️ ${r.temps}min • 🥛 ${r.prot}g protéines • 🔥 ${r.cal}kcal</div>
+            <div class="card-text"><strong>💪 Bénéfice:</strong> ${r.benefices}</div>
             <div class="card-section">
                 <div class="card-section-title">👨‍🍳 PRÉPARATION</div>
                 <div class="card-section-content">${r.prep}</div>
+            </div>
+            <div class="card-nav">
+                <button class="nav-btn-prev" onclick="navigateRecipe(-1, ${idx})" ${idx === 0 ? 'disabled' : ''}>← Précédent</button>
+                <button class="nav-btn-next" onclick="navigateRecipe(1, ${idx})" ${idx === RECIPES_DATA.length - 1 ? 'disabled' : ''}>Suivant →</button>
             </div>
         </div>
     `).join('');
@@ -638,11 +652,12 @@ function renderRecipes() {
 function renderNoushi() {
     document.getElementById('noushi-tabs').innerHTML = '<button class="tab-btn active">Tous (5)</button>';
     const html = NOUSHI_EXOS.map((e, idx) => {
-        const videoUrl = YOUTUBE_VIDEOS[e.nom] || 'https://www.youtube.com/embed/dQw4w9WgXcQ';
+        const videoUrl = YOUTUBE_VIDEOS[e.nom] || 'https://www.youtube.com/embed/es_Tz8Si75o';
         return `
         <div class="card" style="border-left: 3px solid #ff5252;">
             <div class="card-title" style="color: #ff1744;">🔥 ${e.nom}</div>
             <div class="card-meta">Muscles: ${e.muscles.join(' • ')}</div>
+            <div class="card-text" style="color: #ff8a80;">${e.desc}</div>
             <div class="card-section" style="background: rgba(255, 23, 68, 0.15); border-left-color: #ff1744;">
                 <div class="card-section-title" style="color: #ff5252;">📖 TECHNIQUE</div>
                 <div class="card-section-content">${e.prep}</div>
@@ -664,11 +679,12 @@ function renderNoushi() {
 }
 
 function renderRelax() {
-    document.getElementById('relax-tabs').innerHTML = '<button class="tab-btn active">Tous (2)</button>';
+    document.getElementById('relax-tabs').innerHTML = '<button class="tab-btn active">Tous (10)</button>';
     const html = RELAX_DATA.map(r => `
         <div class="relax-card card">
             <div class="card-title">🧘 ${r.nom}</div>
-            <div class="card-meta">⏱️ ${r.temps}min</div>
+            <div class="card-meta">⏱️ ${r.temps}min • ${r.type.toUpperCase()}</div>
+            <div class="card-text"><strong>✨ Bénéfice:</strong> ${r.benefices}</div>
             <div class="card-section">
                 <div class="card-section-title">📝 ROUTINE</div>
                 <div class="card-section-content">${r.prep}</div>
@@ -678,9 +694,13 @@ function renderRelax() {
     document.getElementById('relax-grid').innerHTML = html;
 }
 
-// ============= NAVIGATE =============
 function navigateExo(dir, idx) {
     const cards = document.getElementById('exos-grid').querySelectorAll('.card');
+    const newIdx = idx + dir;
+    if (newIdx >= 0 && newIdx < cards.length) cards[newIdx].scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+function navigateRecipe(dir, idx) {
+    const cards = document.getElementById('recipes-grid').querySelectorAll('.card');
     const newIdx = idx + dir;
     if (newIdx >= 0 && newIdx < cards.length) cards[newIdx].scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
@@ -690,7 +710,6 @@ function navigateNoushi(dir, idx) {
     if (newIdx >= 0 && newIdx < cards.length) cards[newIdx].scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
-// ============= EVENTS =============
 document.getElementById('btnMaison').addEventListener('click', () => chooseMode('maison'));
 document.getElementById('btnSalle').addEventListener('click', () => chooseMode('salle'));
 document.getElementById('btnRelax').addEventListener('click', () => goToPage('relax'));
