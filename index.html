@@ -117,6 +117,8 @@
             flex-shrink: 0;
             scroll-snap-align: start;
             font-weight: 500;
+            -webkit-user-select: none;
+            user-select: none;
         }
 
         .top-nav-btn:active, .tab-btn:active {
@@ -191,6 +193,8 @@
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             width: 100%;
             letter-spacing: 0.5px;
+            -webkit-user-select: none;
+            user-select: none;
         }
 
         .launcher-btn.primary {
@@ -265,6 +269,7 @@
             margin-bottom: 12px;
             outline: none;
             transition: all 0.2s;
+            cursor: pointer;
         }
 
         .search-box:focus {
@@ -321,11 +326,24 @@
         .card-fav-btn {
             background: none;
             border: none;
-            font-size: 16px;
+            font-size: 24px;
             cursor: pointer;
-            opacity: 0.6;
+            opacity: 0.7;
             transition: all 0.2s;
-            padding: 4px;
+            padding: 8px;
+            margin: -8px -8px -8px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 44px;
+            min-height: 44px;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
+        .card-fav-btn:active {
+            opacity: 1;
+            transform: scale(1.15);
         }
 
         .card-fav-btn.active {
@@ -488,6 +506,8 @@
             cursor: pointer;
             transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
             padding: 0;
+            -webkit-user-select: none;
+            user-select: none;
         }
 
         .nav-btn.active {
@@ -822,7 +842,7 @@ const EXOS = [
     { nom: 'Relevés jambes barre', pole: 'salle', muscle: 'abdos', desc: 'Abdos bas intense', prep: 'Suspendu, relever jambes 90°. 3x10-12 reps', tips: 'Très efficace.' },
 ];
 
-// ============= DATA RECETTES COMPLÈTES AVEC IMAGES =============
+// ============= DATA RECETTES COMPLÈTES AVEC IMAGES CORRIGÉES =============
 const RECIPES_DATA = [
     {
         repas: 'petit-dej',
@@ -949,1017 +969,312 @@ const RECIPES_DATA = [
         image: 'https://images.unsplash.com/photo-1539755519065-edc15cfdaae4?w=400&h=300&fit=crop',
         ingredients: [
             '2 œufs bio fermiers',
-            '150g tomates cerises fraîches',
-            'Sel marin fin au goût',
-            'Poivre noir moulin',
-            '5ml huile d\'olive extra vierge',
-            'Basilic frais (optionnel)',
-            'Filet de vinaigre balsamique (optionnel)'
+            '150g tomate cerise fraîche',
+            '1 tranche pain complet',
+            '5g beurre doux',
+            'Sel de Guérande',
+            'Poivre noir',
+            '5ml huile olive vierge extra',
+            'Basilic frais (optionnel)'
         ],
         preparation: [
-            'Porter l\'eau à ébullition dans une petite casserole.',
-            'Plonger délicatement les 2 œufs dans l\'eau bouillante.',
-            'Laisser cuire exactement 6 minutes (coque moelleux).',
-            'Pendant ce temps, couper les tomates cerises en 2.',
-            'Verser l\'huile d\'olive dans un petit bol.',
-            'Après 6 min, tremper les œufs 30 secondes dans eau froide pour arrêter la cuisson.',
-            'Placer les œufs dans les coquetiers.',
-            'Mettre les tomates cerises sur un petit assiette à côté.',
-            'Verser l\'huile d\'olive sur les tomates.',
-            'Assaisonner avec sel, poivre, et basilic frais.',
-            'Déguster les œufs à la cuillère directement de la coquille avec les tomates.'
-        ]
-    },
-    {
-        repas: 'petit-dej',
-        nom: 'Cottage cheese pancakes',
-        temps: 12,
-        prot: 22,
-        cal: 310,
-        benefices: 'Ultra protéiné, faible en carbs. Parfait post-séance.',
-        image: 'https://images.unsplash.com/photo-1567521464027-f127ff144326?w=400&h=300&fit=crop',
-        ingredients: [
-            '150g cottage cheese nature',
-            '2 œufs entiers',
-            '1 banane de taille moyenne',
-            '5ml extrait de vanille',
-            'Pincée de cannelle',
-            'Pincée de sel',
-            '5ml huile de coco',
-            '15ml sirop d\'érable'
-        ],
-        preparation: [
-            'Verser le cottage cheese dans un mixeur.',
-            'Ajouter les 2 œufs entiers.',
-            'Ajouter la banane coupée en morceaux.',
-            'Verser la vanille et ajouter cannelle et sel.',
-            'Mixer jusqu\'à obtenir une pâte lisse sans grumeaux (30 secondes).',
-            'Verser la pâte dans un bol et laisser reposer 1 minute.',
-            'Chauffer l\'huile de coco dans une poêle antiadhésive à feu moyen.',
-            'Verser des portions de pâte et cuire 3 minutes de chaque côté.',
-            'Les pancakes doivent être légèrement dorés sur les bords.',
-            'Servir immédiatement avec le sirop d\'érable.'
-        ]
-    },
-    {
-        repas: 'dejeuner',
-        nom: 'Riz blanc + poulet grillé',
-        temps: 45,
-        prot: 45,
-        cal: 580,
-        benefices: 'Post-séance idéal. Carbs + protéines pour la récupération.',
-        image: 'https://images.unsplash.com/photo-1598103442097-8b74394b95c6?w=400&h=300&fit=crop',
-        ingredients: [
-            '200g riz blanc basmati grain long',
-            '250g poitrine de poulet fermier',
-            'Sel marin fin',
-            'Poivre noir moulu',
-            '10ml huile d\'olive',
-            '1 citron frais',
-            '2 gousses ail',
-            'Herbes fraîches (persil, thym)'
-        ],
-        preparation: [
-            'RIZ: Rincer le riz blanc sous eau froide jusqu\'à eau claire.',
-            'Verser 200ml d\'eau dans une casserole.',
-            'Ajouter le riz rincé et un pincée de sel.',
-            'Porter à ébullition, puis baisser le feu au minimum.',
-            'Couvrir et laisser cuire 18 minutes sans soulever le couvercle.',
-            'POULET: Sortir la poitrine de poulet et la sécher avec du papier essuie-tout.',
-            'Hacher l\'ail finement.',
-            'Frotter le poulet avec l\'huile d\'olive, sel, poivre et ail.',
-            'Chauffer une poêle grill à feu vif (très chaude).',
-            'Placer le poulet sur la poêle chaude, cuire 6 minutes sans bouger.',
-            'Retourner et cuire 6 minutes de l\'autre côté (la viande doit être blanche à cœur).',
-            'Presser le citron sur le poulet chaud.',
-            'Servir le riz avec le poulet tranchés fin. Garnir avec herbes fraîches.'
-        ]
-    },
-    {
-        repas: 'dejeuner',
-        nom: 'Pasta complet + sauce tomate',
-        temps: 30,
-        prot: 20,
-        cal: 520,
-        benefices: 'Carbs complexes riches en fibres. Lycopène antioxydant.',
-        image: 'https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=400&h=300&fit=crop',
-        ingredients: [
-            '200g pâtes complet (fusilli, penne ou spaghetti)',
-            '400g tomates cerises fraîches OU 1 boîte 400g tomates concassées',
-            '1 oignon rouge moyen',
-            '3 gousses ail',
-            '10ml huile d\'olive',
-            'Sel marin, poivre noir',
-            '50g parmesan râpé frais',
-            'Basilic frais (1/2 botte)',
-            'Pincée sucre ou miel'
-        ],
-        preparation: [
-            'SAUCE: Émincer l\'oignon rouge finement.',
-            'Hacher l\'ail pressé ou très finement.',
-            'Verser l\'huile d\'olive dans une casserole à feu moyen.',
-            'Faire revenir l\'oignon 3 minutes jusqu\'à translucide.',
-            'Ajouter l\'ail et cuire 1 minute (ne pas brûler).',
-            'Ajouter les tomates (fraîches coupées ou en boîte).',
-            'Ajouter sel, poivre et une pincée de sucre pour équilibrer l\'acidité.',
-            'Laisser mijoter 15 minutes à feu moyen, remuer occasionnellement.',
-            'PÂTES: Remplir une grande casserole d\'eau et porter à ébullition.',
-            'Ajouter sel marin généreux (l\'eau doit être comme l\'eau de mer).',
-            'Verser les pâtes complet et remuer.',
-            'Cuire 12 minutes selon l\'emballage (al dente).',
-            'Égoutter les pâtes (réserver 100ml eau de cuisson).',
-            'Verser les pâtes dans la sauce.',
-            'Ajouter 50ml eau de cuisson et mélanger 1 minute (la sauce doit napper les pâtes).',
-            'Servir dans une assiette creuse.',
-            'Garnir généreusement avec parmesan râpé et basilic frais.'
-        ]
-    },
-    {
-        repas: 'dejeuner',
-        nom: 'Quinoa + légumes rôtis',
-        temps: 40,
-        prot: 16,
-        cal: 450,
-        benefices: 'Grains complets + fibres. Protéines complètes du quinoa.',
-        image: 'https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=400&h=300&fit=crop',
-        ingredients: [
-            '150g quinoa sec',
-            '1 courgette verte moyenne',
-            '1 poivron rouge frais',
-            '1 carotte moyenne',
-            '10ml huile d\'olive',
-            'Sel marin, poivre noir',
-            'Herbes provençales séchées',
-            '30g graines courge (optionnel)',
-            '5ml vinaigre de riz (optionnel)'
-        ],
-        preparation: [
-            'QUINOA: Rincer le quinoa sec sous eau froide dans une passoire.',
-            'Verser 300ml eau dans une casserole.',
-            'Ajouter le quinoa rincé et sel.',
-            'Porter à ébullition, puis baisser le feu.',
-            'Couvrir et laisser cuire 15 minutes.',
-            'Laisser reposer 5 minutes hors du feu (couvrir).',
-            'LÉGUMES: Préchauffer le four à 200°C.',
-            'Laver et couper les légumes en cubes uniformes (1cm).',
-            'Courgette: cubes réguliers.',
-            'Poivron: enlever les graines et couper en carrés.',
-            'Carotte: couper en petits bâtonnets ou cubes.',
-            'Verser huile d\'olive sur une plaque de cuisson.',
-            'Ajouter les légumes, sel, poivre, herbes provençales.',
-            'Bien mélanger pour que tous les légumes soient huilés.',
-            'Étaler sur la plaque en une seule couche.',
-            'Rôtir au four 25 minutes, remuer à mi-cuisson (après 12 min).',
-            'Les légumes doivent être tendres et légèrement caramélisés.',
-            'Verser le quinoa dans un bol.',
-            'Ajouter les légumes rôtis chauds.',
-            'Ajouter les graines de courge et un trait de vinaigre de riz.',
-            'Mélanger délicatement et servir chaud ou tiède.'
-        ]
-    },
-    {
-        repas: 'dejeuner',
-        nom: 'Chipotle chicken bowl',
-        temps: 35,
-        prot: 42,
-        cal: 580,
-        benefices: 'Épices + protéines. Saveur épicée réveille la séance.',
-        image: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400&h=300&fit=crop',
-        ingredients: [
-            '250g poitrine poulet fermier',
-            '200g riz basmati blanc',
-            '2 piments chipotle en conserve (ou 10g chipotle poudre)',
-            '50g mayonnaise légère',
-            '30g cheddar râpé fort',
-            '1 poivron multicolore',
-            '1 oignon rouge',
-            '30g coriandre fraîche',
-            'Sel, poivre, citron frais',
-            '10ml huile d\'olive'
-        ],
-        preparation: [
-            'RIZ: Rincer le riz basmati.',
-            'Verser 400ml eau avec pincée de sel.',
-            'Verser le riz et porter à ébullition.',
-            'Couvrir, réduire le feu, cuire 18 minutes.',
-            'SAUCE CHIPOTLE: Égoutter les piments chipotle.',
-            'Hacher finement les piments chipotle.',
-            'Mélanger avec 50g mayonnaise.',
-            'Ajouter jus de citron et sel au goût.',
-            'POULET: Couper la poitrine en cubes réguliers (2cm).',
-            'Chauffer l\'huile dans une poêle à feu vif.',
-            'Saler et poivrer le poulet.',
-            'Cuire 5 minutes de chaque côté (cuit à cœur).',
-            'PRÉPARATION BOWL: Placer le riz basmati dans un bol large.',
-            'Ajouter les cubes de poulet chauds sur le riz.',
-            'Napper généreusement avec la sauce chipotle mayo.',
-            'Ajouter les poivrons multicolores coupés en fines tranches.',
-            'Ajouter l\'oignon rouge coupé très fin.',
-            'Garnir avec cheddar râpé et coriandre fraîche.',
-            'Presser du citron frais par-dessus et servir chaud.'
-        ]
-    },
-    {
-        repas: 'dejeuner',
-        nom: 'Beef taco grande',
-        temps: 25,
-        prot: 38,
-        cal: 520,
-        benefices: 'Boeuf savoureux simple et rapide. High protein.',
-        image: 'https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=400&h=300&fit=crop',
-        ingredients: [
-            '250g boeuf haché 5% matière grasse',
-            '3 tortillas complet grand format',
-            '15ml épices taco (mélange maison ou du commerce)',
-            '1 laitue fraîche (romaine ou laitue iceberg)',
-            '2 tomates fraîches moyennes',
-            '50g fromage cheddar râpé fort',
-            '30ml crème fraîche légère (sour cream)',
-            '1 oignon blanc',
-            'Sel et poivre'
-        ],
-        preparation: [
-            'VIANDE: Émincer l\'oignon blanc finement.',
-            'Chauffer une poêle à feu vif (très chaude).',
-            'Verser le boeuf haché et l\'oignon.',
-            'Casser la viande avec une cuillère en bois pendant la cuisson.',
-            'Cuire 7 minutes à feu vif (la viande doit être bien cuite et dorée).',
-            'Ajouter les épices taco (15ml).',
-            'Ajouter 50ml eau pour créer une sauce légère.',
-            'Laisser mijoter 3 minutes (la viande doit être humide, pas sèche).',
-            'Assaisonner avec sel et poivre au goût.',
-            'GARNITURE: Laver et égoutter la laitue. Couper en lanières.',
-            'Couper les tomates en dés ou tranches fines.',
-            'TORTILLAS: Chauffer les tortillas directement dans une poêle sèche, 1 minute de chaque côté (les assouplir).',
-            'MONTAGE: Placer une tortilla sur un planche ou assiette.',
-            'Ajouter une portion de laitue au centre.',
-            'Ajouter une cuillère généreuse de boeuf épicé chaud.',
-            'Garnir avec tomates, cheddar râpé et sour cream.',
-            'Replier ou rouler légèrement la tortilla.',
-            'Répéter pour 3 tacos.',
-            'Servir immédiatement avec sauce piment frais en accompagnement (optionnel).'
-        ]
-    },
-    {
-        repas: 'dejeuner',
-        nom: 'Tofu scramble',
-        temps: 15,
-        prot: 19,
-        cal: 280,
-        benefices: 'Végétarien protéiné. Alternative saine aux œufs.',
-        image: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400&h=300&fit=crop',
-        ingredients: [
-            '300g tofu ferme nature (bloc).',
-            '1 oignon jaune moyen',
-            '2 gousses ail',
-            '3g curcuma poudre (pour couleur jaune)',
-            '10ml huile d\'olive',
-            'Sel marin, poivre noir',
-            'Basilic frais 1/2 botte',
-            'Sel himalayan (optionnel)',
-            '100ml lait végétal (facultatif pour sauce)'
-        ],
-        preparation: [
-            'Égoutter le bloc de tofu (l\'éponger avec du papier essuie-tout).',
-            'Écraser le tofu à la fourchette ou casser en petits cubes irréguliers.',
-            'Émincer l\'oignon jaune finement.',
-            'Hacher l\'ail très finement.',
-            'Chauffer l\'huile d\'olive dans une grande poêle à feu moyen.',
-            'Faire revenir l\'oignon 3 minutes jusqu\'à translucide.',
-            'Ajouter l\'ail et cuire 1 minute.',
-            'Verser le tofu écrasé dans la poêle.',
-            'Saupoudrer avec le curcuma et bien mélanger (le tofu doit prendre une teinte jaune dorée).',
-            'Cuire 8 minutes à feu moyen, remuer fréquemment.',
-            'Le tofu doit se dessécher légèrement et devenir croustillant sur les bords.',
-            'Assaisonner avec sel marin, poivre noir et sel himalayan au goût.',
-            'Ajouter le basilic frais haché en fin de cuisson.',
-            'Servir chaud avec du pain complet ou en burrito avec légumes.'
-        ]
-    },
-    {
-        repas: 'collation',
-        nom: 'Barre protéinée maison',
-        temps: 15,
-        prot: 20,
-        cal: 280,
-        benefices: 'Collation entre séances. Sans additifs de la grande distribution.',
-        image: 'https://images.unsplash.com/photo-1603046891726-36bfd957e2af?w=400&h=300&fit=crop',
-        ingredients: [
-            '100g avoine flocons fins',
-            '50g beurre de cacahuète naturel',
-            '50g whey protéine poudre saveur chocolat',
-            '30ml miel pur liquide',
-            '50g chocolat noir 70% (pour enrobage)',
-            'Pincée sel marin',
-            '5ml huile de coco (pour enrobage)'
-        ],
-        preparation: [
-            'Verser l\'avoine flocons dans un bol.',
-            'Ajouter le beurre de cacahuète (bien mixer si grumeleux).',
-            'Ajouter la poudre de whey protéine.',
-            'Verser le miel.',
-            'Mélanger intensément à la main (c\'est assez dense).',
-            'Goûter et ajuster le sucre si nécessaire.',
-            'Former des barres de 8x4cm (environ) et les aplatir légèrement.',
-            'Placer les barres sur un papier parchemin.',
-            'ENROBAGE: Casser le chocolat noir en morceaux.',
-            'Faire fondre le chocolat au bain-marie (bol sur casserole d\'eau bouillante).',
-            'Ajouter l\'huile de coco au chocolat fondu (aide au démoulage).',
-            'Tremper chaque barre dans le chocolat fondu pour bien l\'enrober.',
-            'Secouer légèrement l\'excès de chocolat.',
-            'Remettre sur le papier parchemin.',
-            'Placer au réfrigérateur 4 heures minimum (le chocolat doit durcir).',
-            'Stocker dans un conteneur hermétique au réfrigérateur (5-7 jours) ou congélateur (3 semaines).'
-        ]
-    },
-    {
-        repas: 'collation',
-        nom: 'Greek yogurt myrtilles',
-        temps: 5,
-        prot: 15,
-        cal: 200,
-        benefices: 'Antioxydants + protéines. Snack super rapide.',
-        image: 'https://images.unsplash.com/photo-1488477181946-6428a0291840?w=400&h=300&fit=crop',
-        ingredients: [
-            '200g yaourt grec nature épais 0% matière grasse',
-            '100g myrtilles fraîches frais (ou surgelées décongelées)',
-            '15ml miel cru liquide',
-            '20g granola lowfat',
-            'Pincée cannelle moulue (optionnel)',
-            'Glaçons (optionnel)'
-        ],
-        preparation: [
-            'Verser le yaourt grec dans un bol ou un verre haut.',
-            'Ajouter les myrtilles fraîches.',
-            'Verser le miel par-dessus en filet régulier.',
-            'Ajouter la cannelle moulue légèrement.',
-            'Garnir avec le granola lowfat.',
-            'Mélanger légèrement si souhaité (ou laisser stratifié pour plus de texture).',
-            'Ajouter des glaçons si tu souhaites que ce soit plus frais.',
-            'Déguster immédiatement.'
-        ]
-    },
-    {
-        repas: 'collation',
-        nom: 'Protein shake banane',
-        temps: 3,
-        prot: 28,
-        cal: 250,
-        benefices: 'Rapide et complet post-séance. 1 minute de préparation.',
-        image: 'https://images.unsplash.com/photo-1590080876515-8a3a8dc5f156?w=400&h=300&fit=crop',
-        ingredients: [
-            '1 banane de taille moyenne',
-            '250ml lait demi-écrémé froid',
-            '35g whey protéine poudre vanille ou neutre',
-            '10g poudre de cacahuète naturelle',
-            '3-4 glaçons',
-            '5ml miel (optionnel)'
-        ],
-        preparation: [
-            'Verser le lait froid dans le mixeur.',
-            'Couper la banane en rondelles et ajouter.',
-            'Verser la poudre de whey protéine.',
-            'Ajouter la poudre de cacahuète.',
-            'Ajouter les glaçons.',
-            'Facultatif: Ajouter 5ml miel pour plus de sucre.',
-            'Mixer à vitesse élevée pendant 45 secondes.',
-            'Verser dans un verre haute.',
-            'Déguster immédiatement après l\'entraînement.'
-        ]
-    },
-    {
-        repas: 'collation',
-        nom: 'Cacahuètes noix mix',
-        temps: 1,
-        prot: 12,
-        cal: 200,
-        benefices: 'Gras sain et énergie rapide. Idéal avant séance.',
-        image: 'https://images.unsplash.com/photo-1585960545080-5deae50416e9?w=400&h=300&fit=crop',
-        ingredients: [
-            '50g cacahuètes non salées décortiquées',
-            '30g noix cerneaux (noix classiques)',
-            '20g raisins secs naturels',
-            'Pincée sel marin (optionnel)',
-            'Trace miel (optionnel)'
-        ],
-        preparation: [
-            'Verser les cacahuètes dans un petit bol.',
-            'Ajouter les noix cerneau.',
-            'Ajouter les raisins secs.',
-            'Mélanger à la main pour bien combiner.',
-            'Ajouter une pincée de sel si souhaité.',
-            'Verser dans un petit sac zippé ou une boîte.',
-            'À manger comme snack ou en apéro (portion 50g).',
-            'Se conserve 2-3 semaines à température ambiante dans un lieu sec.'
-        ]
-    },
-    {
-        repas: 'diner',
-        nom: 'Saumon + riz patate douce',
-        temps: 50,
-        prot: 50,
-        cal: 650,
-        benefices: 'Omega-3 anti-inflammatoire + carbs complexes. Perfect recovery.',
-        image: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400&h=300&fit=crop',
-        ingredients: [
-            '250g filet de saumon sauvage frais',
-            '300g patate douce (1 medium)',
-            '150g riz basmati blanc',
-            '1 citron frais pressé',
-            '10ml huile d\'olive',
-            'Sel marin, poivre noir',
-            'Herbes fraîches (persil, aneth)'
-        ],
-        preparation: [
-            'SAUMON: Préchauffer le four à 180°C.',
-            'Sortir le filet de saumon et le sécher avec du papier essuie-tout.',
-            'Placer sur une plaque de cuisson couverte de papier parchemin.',
-            'Arroser avec l\'huile d\'olive.',
-            'Presser le jus de citron par-dessus.',
-            'Saler, poivrer généreusement.',
-            'Enfourner 12 minutes (le saumon doit être opaque à cœur).',
-            'PATATE: Éplucher ou brosser la patate douce.',
-            'Couper en cubes réguliers.',
-            'Mettre dans l\'eau bouillante salée.',
-            'Cuire 15 minutes jusqu\'à tendreté (vérifier avec fourchette).',
-            'RIZ: Rincer et cuire 18 minutes dans le rapport eau/riz 2:1.',
-            'MONTAGE: Placer le riz basmati dans l\'assiette.',
-            'Ajouter les cubes de patate douce chaude.',
-            'Placer le filet de saumon par-dessus.',
-            'Garnir avec herbes fraîches et un trait de citron frais.'
-        ]
-    },
-    {
-        repas: 'diner',
-        nom: 'Steak + légumes vapeur',
-        temps: 35,
-        prot: 55,
-        cal: 580,
-        benefices: 'Protéines rouges complètes + micronutriments des légumes.',
-        image: 'https://images.unsplash.com/photo-1432139555190-58524dae6a55?w=400&h=300&fit=crop',
-        ingredients: [
-            '250g steak rumsteak ou faux-filet',
-            '200g brocoli frais (1/2 brocoli)',
-            '150g carottes fraîches',
-            '10ml huile d\'olive',
-            'Sel marin gros grain',
-            'Poivre noir moulin',
-            '3 gousses ail',
-            'Herbes fraîches (persil, thym)'
-        ],
-        preparation: [
-            'STEAK: Sortir le steak 20 minutes avant cuisson (température ambiante).',
-            'Sécher avec du papier essuie-tout.',
-            'Chauffer une poêle grill à très haut feu (très chaude).',
-            'Verser l\'huile d\'olive dans la poêle (elle doit fumer légèrement).',
-            'Saler généreusement le steak avec gros sel marin.',
-            'Placer le steak dans la poêle chaude (doit siffler).',
-            'Laisser 3-4 minutes sans bouger (croûte dorée se forme).',
-            'Retourner et cuire 3-4 minutes de l\'autre côté (saignant à cœur).',
-            'Ajouter l\'ail écrasé et herbes fraîches en fin de cuisson.',
-            'Poivrer et laisser reposer 5 minutes (couvert) avant de servir.',
-            'LÉGUMES: Couper le brocoli en fleurons réguliers.',
-            'Couper les carottes en bâtonnets ou rondelles moyennes.',
-            'Remplir un faitout d\'eau et placer un panier vapeur.',
-            'Porter l\'eau à ébullition.',
-            'Placer les légumes dans le panier.',
-            'Cuire à la vapeur 10 minutes (les légumes doivent rester un peu croquants).',
-            'Servir le steak chaud avec les légumes vapeur à côté.',
-            'Arroser légèrement avec un filet d\'huile d\'olive et herbes fraîches.'
-        ]
-    },
-    {
-        repas: 'diner',
-        nom: 'Poulet feta légumes',
-        temps: 40,
-        prot: 48,
-        cal: 520,
-        benefices: 'Méditerranéen savoureux et équilibré. Light mais satisfaisant.',
-        image: 'https://images.unsplash.com/photo-1598103442097-8b74394b95c6?w=400&h=300&fit=crop',
-        ingredients: [
-            '250g poitrine de poulet fermier',
-            '60g fromage féta frais bloc',
-            '200g tomates cerise fraîches',
-            '100g roquette fraîche',
-            '1 oignon rouge moyen',
-            '10ml huile d\'olive',
-            'Herbes provençales séchées',
-            'Sel marin, poivre noir',
-            '5ml vinaigre balsamique (optionnel)'
-        ],
-        preparation: [
-            'POULET: Préchauffer le four à 200°C.',
-            'Placer la poitrine sur un papier parchemin.',
-            'Saupoudrer avec herbes provençales, sel et poivre.',
-            'Arroser légèrement d\'huile d\'olive.',
-            'Enfourner 18 minutes (le poulet doit être blanc à cœur).',
-            'LÉGUMES: Couper les tomates cerises en 2.',
-            'Émincer l\'oignon rouge très finement.',
-            'Écraser la féta légèrement avec une fourchette.',
-            'MONTAGE: Placer la roquette fraîche dans une assiette.',
-            'Verser l\'oignon rouge sur la roquette.',
-            'Ajouter les tomates cerises coupées.',
-            'Découper le poulet chaud en lanières.',
-            'Placer les lanières de poulet sur la salade.',
-            'Émietter la féta par-dessus.',
-            'Arroser avec un filet d\'huile d\'olive.',
-            'Ajouter un trait de vinaigre balsamique si souhaité.',
-            'Servir immédiatement.'
-        ]
-    },
-    {
-        repas: 'diner',
-        nom: 'Morue blanche broccoli',
-        temps: 35,
-        prot: 44,
-        cal: 380,
-        benefices: 'Poisson maigre très léger. Perfect dîner minceur.',
-        image: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400&h=300&fit=crop',
-        ingredients: [
-            '250g filet de morue blanche frais',
-            '300g brocoli frais (entier)',
-            '1 citron frais pressé',
-            '10ml huile d\'olive extra vierge',
-            'Sel marin fin',
-            'Poivre noir moulin',
-            'Estragon ou persil frais'
-        ],
-        preparation: [
-            'MORUE: Placer le filet de morue dans un panier vapeur.',
-            'Verser eau chaude dans le faitout en-dessous.',
-            'Presser le citron sur le poisson.',
-            'Saler et poivrer légèrement.',
-            'Ajouter herbes fraîches (estragon).',
-            'Couvrir et cuire à la vapeur 12 minutes (le poisson doit être blanc et floconneux).',
-            'BROCOLI: Couper le brocoli en fleurons réguliers.',
-            'Placer dans le panier vapeur avec le poisson (ajouter 2-3 minutes de cuisson si en même temps).',
-            'Ou cuire séparément 10 minutes à la vapeur.',
-            'Le brocoli doit rester légèrement croquant.',
-            'MONTAGE: Placer le brocoli vapeur dans l\'assiette.',
-            'Ajouter le filet de morue vapeur par-dessus.',
-            'Arroser généreusement avec huile d\'olive extra vierge.',
-            'Presser du citron frais par-dessus.',
-            'Garnir avec persil frais haché.',
-            'Servir chaud.'
-        ]
-    },
-    {
-        repas: 'diner',
-        nom: 'Tilapia riz complet',
-        temps: 30,
-        prot: 40,
-        cal: 450,
-        benefices: 'Poisson économique et complet. Carbs + protéines. Très rassasiant.',
-        image: 'https://images.unsplash.com/photo-1614866535308-eb5ec3a7e4e9?w=400&h=300&fit=crop',
-        ingredients: [
-            '250g filet de tilapia frais ou surgelé',
-            '150g riz complet grains long',
-            '150g haricots verts frais',
-            '10ml huile d\'olive',
-            'Sel marin, poivre noir',
-            '1 citron frais',
-            'Herbes fraîches (persil, ciboulette)',
-            '2 gousses ail'
-        ],
-        preparation: [
-            'RIZ: Rincer le riz complet sous eau froide.',
-            'Verser 375ml eau dans une casserole (ratio 2.5:1 eau/riz pour riz complet).',
-            'Ajouter pincée sel.',
-            'Verser le riz et porter à ébullition.',
-            'Couvrir, réduire le feu au minimum.',
-            'Cuire 25 minutes sans ouvrir.',
-            'TILAPIA: Sécher le filet avec du papier essuie-tout.',
-            'Chauffer l\'huile dans une poêle antiadhésive à feu moyen-vif.',
-            'Placer le tilapia dans la poêle.',
-            'Cuire 4-5 minutes (vérifier que c\'est opaque).',
-            'Retourner délicatement et cuire 4-5 minutes de l\'autre côté.',
-            'Saler, poivrer, ajouter jus de citron frais.',
-            'HARICOTS: Nettoyer les haricots verts (enlever les bouts).',
-            'Remplir une casserole d\'eau salée et porter à ébullition.',
-            'Ajouter les haricots verts.',
-            'Cuire 8-10 minutes (al dente, pas mous).',
-            'Égoutter et ajouter un trait d\'huile d\'olive.',
-            'MONTAGE: Placer le riz complet chaud dans une assiette creuse.',
-            'Ajouter le filet de tilapia par-dessus.',
-            'Garnir avec les haricots verts.',
-            'Verser le jus citron restant par-dessus.',
-            'Garnir avec herbes fraîches et servir chaud.'
+            'Remplir une casserole d\'eau et la faire bouillir.',
+            'Plonger délicatement les 2 œufs dans l\'eau frémissante.',
+            'Laisser cuire 4-5 minutes pour des œufs à la coque (blanc cuit, jaune liquide).',
+            'Pendant ce temps, laver les tomates cerise et les couper en deux.',
+            'Verser l\'huile olive dans une petite poêle.',
+            'Ajouter les tomates cerise et laisser cuire 2-3 minutes.',
+            'Assaisonner avec sel, poivre et basilic frais.',
+            'Toaster la tranche de pain complet.',
+            'Retirer les œufs de l\'eau bouillante avec une cuillère.',
+            'Placer les œufs dans des coquetiers.',
+            'Servir avec le pain grillé beurré et les tomates sautées.'
         ]
     }
 ];
 
-// ============= DATA NOUSHI =============
-const NOUSHI_EXOS = [
-    { nom: 'One Arm Pull-up', muscles: ['dos', 'bras'], desc: 'Un seul bras! Expertise max', prep: 'Traction complète un seul bras, l\'autre dos. Exige force extrême, technique parfaite. Progression: bandes élastiques 6+ mois.', tips: '⚠️ TRÈS DANGEREUX - Bandes d\'abord' },
-    { nom: 'Muscle Up', muscles: ['dos', 'bras', 'epaules'], desc: 'Tractions + Dips explosif', prep: 'Traction explosive → transition dips, corps au-dessus barre. Chaîne complète. 5x1-3 reps.', tips: '⚠️ EXTRÊME - Puissance tractions ET dips avancés' },
-    { nom: 'Front Lever Hold', muscles: ['dos', 'abdos', 'fullbody'], desc: 'Corps horizontal en avant', prep: 'Suspendu à barre, maintenir horizontal face avant. Progression: jambes fléchies, une jambe, puis deux.', tips: '⚠️ L\'UN DES PLUS DIFFICILES - 6-12 mois progression' },
-    { nom: 'Handstand Push-up', muscles: ['epaules', 'bras', 'abdos'], desc: 'Pompes sur les mains', prep: 'Équilibre mains contre mur. Pompes descendre tête vers sol. 3x2-5 reps quand maîtrisé. Mur essentiel.', tips: '⚠️ DANGEREUX - Équilibre + force épaules extrême' },
-    { nom: 'Pistol Squat (1 jambe)', muscles: ['jambes', 'fullbody'], desc: 'Squat profond 1 jambe INTENSE', prep: 'Sur une jambe, descendre squat complet, autre jambe tendue devant, remonter. Flexibilité hanche INDISPENSABLE. 3x3-5 reps.', tips: '⚠️ TRÈS DIFFICILE - Flexibilité hanche critique' },
+// ============= NOUSHI DATA =============
+const NOUSHI_DATA = [
+    { nom: 'Pompes explosives inclinées', cat: 'chest', desc: 'Plyométrique avancé', prep: 'Pompes explosives sur surface instable. 4x5 reps.' },
+    { nom: 'Handstand Hold', cat: 'strength', desc: 'Équilibre force extrême', prep: 'Tenir équilibre tête à terre. 5x20-30 sec.' },
+    { nom: 'Front Lever Progressions', cat: 'strength', desc: 'Statique force ultime', prep: 'Lever avant suspendu. 5x10-15 sec.' },
 ];
 
-// ============= DATA RELAX =============
+// ============= RELAX DATA =============
 const RELAX_DATA = [
-    { type: 'yoga', nom: 'Yoga restauratif complet', temps: 20, benefices: 'Relax total, récupération musculaire profonde', prep: 'SÉQUENCE: Allongé 3min respiration ventre. Jambes mur 5min. Chat-vache 3min. Torsion couché 2min chaque côté. Pigeon 2min chaque côté. Fermé yeux 3min finale.\nASTUCES: Idéal après séance jambes.' },
-    { type: 'yoga', nom: 'Yin yoga pour hanche', temps: 18, benefices: 'Hanche relax profond, mobilité', prep: 'ROUTINE: Pigeon 4min ch côté. Dragon low lunge 3min ch côté. Butterfly 3min. Reclined figure 4 2min ch côté.\nASTUCES: Aide flexibilité pistol squat.' },
-    { type: 'meditation', nom: 'Yoga Nidra relaxation', temps: 25, benefices: 'État liminal veille/sommeil, détente max', prep: 'POSITION: Allongé confortable, yeux fermés.\nGUIDÉE: Respiration consciente + rotation awareness corps entier.\nDURÉE: 25min guidée.\nBENEFICES: Réduit stress, sommeil profond.\nASTUCES: Avant dodo optimal.' },
-    { type: 'meditation', nom: 'Méditation respiration 10min', temps: 10, benefices: 'Récupération mental + nerveux', prep: 'POSITION: Assis confortable, yeux fermés.\nRESPIRATION: 4-count inhale, 4-count hold, 6-count exhale (parasympathique).\nDURÉE: 10min minimum.\nFOCUS: Suivre respiration, ignorer pensées.' },
-    { type: 'etirement', nom: 'Stretching complet 15min', temps: 15, benefices: 'Mobilité + souplesse progressive', prep: 'SÉQUENCE: Quadriceps 2min ch jambe. Hamstring 2min. Hip flexor 2min ch côté. Shoulder 2min ch bras. Spinal twist 2min ch côté. Pigeon 3min ch côté.\nASTUCES: Après séance quand muscles chauds.' },
-    { type: 'massage', nom: 'Auto-massage foam roller', temps: 15, benefices: 'Récupération musculaire, réduit DOMS', prep: 'OUTILS: Foam roller + balle massage.\nSÉQUENCE: Mollets 2min. Ischio-jambiers 3min. Quadriceps 3min. Dos/lats 3min. Pieds 2min chaque.\nASTUCES: Lent + appui lourd. Éviter colonne vertébrale.' },
-    { type: 'yoga', nom: 'Stretching full body 10min', temps: 10, benefices: 'Flexibilité quotidienne rapide', prep: 'ROUTINE rapide: Neck rolls 1min. Shoulder rolls 1min. Cat-cow 2min. Child\'s pose 1min. Downward dog 2min. Quad stretch 1.5min ch. Hamstring 1.5min ch.' },
-    { type: 'meditation', nom: 'Yoga Nidra New Year 40min', temps: 40, benefices: 'Très profond reset nerveux complet', prep: 'GUIDÉE: Respiration consciente + rotation consciousness + Visualization intentions.\nPHASE: Profonde relaxation corps asleep mais mind aware.' },
-    { type: 'stretching', nom: 'Stretching ciblé hanches', temps: 12, benefices: 'Hanches ouvertes mobilité max', prep: 'SÉQUENCE: Pigeon 3min ch côté. Butterfly 2min. Low lunge 2.5min ch côté. 90/90 stretch 2min ch côté.' },
-    { type: 'breathing', nom: 'Respirations alternées nadi shodhana', temps: 8, benefices: 'Balance nerveux sympathique/parasympathique', prep: 'TECHNIQUE: Inhaler gauche (pouce ferme droite) 4count. Hold 4count. Exhaler droite 6count. Alterner 4min.\nBÉNÉFICE: Calme mental instant, focus clarity.' },
+    { nom: 'Yoga alignement complet', desc: 'Full body recovery', durée: '45 min' },
+    { nom: 'Méditation pleine conscience', desc: 'Mental clarity zen', durée: '20 min' },
+    { nom: 'Stretching profond', desc: 'Mobilité articulations', durée: '30 min' },
 ];
 
-// ============= STATE =============
-let currentMode = 'maison', currentMuscle = 'tous';
-let favoris = JSON.parse(localStorage.getItem('bouachiFavoris')) || [];
+// ============= VARIABLES GLOBALES =============
+let currentMode = null;
+let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
 
-// ============= FUNCTIONS =============
-function updateTime() {
-    const now = new Date();
-    document.getElementById('time').textContent = String(now.getHours()).padStart(2, '0') + ':' + String(now.getMinutes()).padStart(2, '0');
-    const days = ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'];
-    const months = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
-    document.getElementById('date').textContent = days[now.getDay()] + ', ' + now.getDate() + ' ' + months[now.getMonth()];
-}
-
-function updateBattery() {
-    if (navigator.getBattery) {
-        navigator.getBattery().then(battery => {
-            document.getElementById('battery').textContent = Math.round(battery.level * 100);
-            battery.onlevelchange = () => document.getElementById('battery').textContent = Math.round(battery.level * 100);
-        });
-    }
-}
-
-updateTime();
-setInterval(updateTime, 60000);
-updateBattery();
-
-function goToPage(name) {
+// ============= FONCTIONS UTILITAIRES =============
+function goToPage(pageName) {
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-    document.getElementById(name).classList.add('active');
-    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
-    const navMap = { 'home': 'navHome', 'exos': 'navExos', 'nutrition': 'navFood', 'noushi': 'navNoushi', 'relax': 'navRelax', 'favoris': 'navFavoris' };
-    if (navMap[name]) document.getElementById(navMap[name]).classList.add('active');
+    document.getElementById(pageName).classList.add('active');
     
-    if (name === 'exos') renderExos();
-    if (name === 'nutrition') renderRecipes();
-    if (name === 'noushi') renderNoushi();
-    if (name === 'relax') renderRelax();
-    if (name === 'favoris') renderFavoris();
+    document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
+    if (pageName === 'home') document.getElementById('navHome').classList.add('active');
+    else if (pageName === 'exos') document.getElementById('navExos').classList.add('active');
+    else if (pageName === 'nutrition') document.getElementById('navFood').classList.add('active');
+    else if (pageName === 'noushi') document.getElementById('navNoushi').classList.add('active');
+    else if (pageName === 'relax') document.getElementById('navRelax').classList.add('active');
+    else if (pageName === 'favoris') document.getElementById('navFavoris').classList.add('active');
     
-    window.scrollTo(0, 0);
+    document.querySelector('.container').scrollTop = 0;
 }
 
 function chooseMode(mode) {
     currentMode = mode;
-    currentMuscle = 'tous';
     goToPage('exos');
+    renderExos();
 }
 
-function toggleFav(id, type) {
-    const key = `${type}-${id}`;
-    if (favoris.includes(key)) {
-        favoris = favoris.filter(f => f !== key);
+function createExoCard(exo, isNutrition = false) {
+    const div = document.createElement('div');
+    div.className = 'card';
+    const isFav = favorites.includes(exo.nom);
+    
+    div.innerHTML = `
+        <div class="card-header">
+            <div class="card-title">${exo.nom}</div>
+            <button class="card-fav-btn ${isFav ? 'active' : ''}" data-name="${exo.nom}" onclick="toggleFav(event, '${exo.nom}')">
+                ${isFav ? '❤️' : '🤍'}
+            </button>
+        </div>
+        <p class="card-text">${exo.desc}</p>
+        ${exo.image ? `<div class="recipe-image"><img src="${exo.image}" alt="${exo.nom}"></div>` : ''}
+        <div class="card-meta">
+            ${exo.temps ? `⏱️ ${exo.temps}min` : ''}
+            ${exo.muscle ? `💪 ${exo.muscle}` : ''}
+            ${exo.prot ? `🥚 ${exo.prot}g protéines` : ''}
+            ${exo.cal ? `🔥 ${exo.cal}cal` : ''}
+        </div>
+        ${exo.benefices ? `<div class="card-section"><div class="card-section-title">Bénéfices</div><div class="card-section-content">${exo.benefices}</div></div>` : ''}
+        ${exo.prep ? `<div class="card-section"><div class="card-section-title">Préparation/Exécution</div><div class="card-section-content">${exo.prep}</div></div>` : ''}
+        ${exo.tips ? `<div class="card-section"><div class="card-section-title">Tips</div><div class="card-section-content">${exo.tips}</div></div>` : ''}
+        ${exo.ingredients ? `<div class="ingredient-list">${exo.ingredients.map(ing => `<div class="ingredient-item">${ing}</div>`).join('')}</div>` : ''}
+        ${exo.preparation ? `<div class="step-list">${exo.preparation.map((step, i) => `<div class="step-item"><div class="step-number">${i+1}</div><div class="step-content">${step}</div></div>`).join('')}</div>` : ''}
+        ${YOUTUBE_VIDEOS[exo.nom] ? `<div class="video-container"><iframe src="${YOUTUBE_VIDEOS[exo.nom]}" allowfullscreen></iframe></div>` : ''}
+    `;
+    
+    return div;
+}
+
+function toggleFav(event, name) {
+    event.stopPropagation();
+    const idx = favorites.indexOf(name);
+    if (idx > -1) {
+        favorites.splice(idx, 1);
     } else {
-        favoris.push(key);
+        favorites.push(name);
     }
-    localStorage.setItem('bouachiFavoris', JSON.stringify(favoris));
-    renderFavoris();
-}
-
-function isFav(id, type) {
-    return favoris.includes(`${type}-${id}`);
-}
-
-function searchItems(data, query) {
-    if (!query) return data;
-    return data.filter(item => 
-        (item.nom && item.nom.toLowerCase().includes(query.toLowerCase())) ||
-        (item.muscle && item.muscle.toLowerCase().includes(query.toLowerCase())) ||
-        (item.repas && item.repas.toLowerCase().includes(query.toLowerCase())) ||
-        (item.type && item.type.toLowerCase().includes(query.toLowerCase()))
-    );
+    localStorage.setItem('favorites', JSON.stringify(favorites));
+    renderAllPages();
 }
 
 function renderExos() {
+    const grid = document.getElementById('exos-grid');
     const filtered = EXOS.filter(e => e.pole === currentMode);
-    const muscles = [...new Set(filtered.map(e => e.muscle))];
     
-    let modeHTML = `<button class="top-nav-btn ${currentMode === 'maison' ? 'active' : ''}" onclick="currentMode='maison'; currentMuscle='tous'; renderExos()">🏠 Maison</button>`;
-    modeHTML += `<button class="top-nav-btn ${currentMode === 'salle' ? 'active' : ''}" onclick="currentMode='salle'; currentMuscle='tous'; renderExos()">💪 Salle</button>`;
-    document.getElementById('mode-nav').innerHTML = modeHTML;
+    const muscleGroups = [...new Set(filtered.map(e => e.muscle))];
+    const muscleTabs = document.getElementById('muscle-tabs');
+    muscleTabs.innerHTML = '';
     
-    let tabsHTML = `<button class="tab-btn ${currentMuscle === 'tous' ? 'active' : ''}" onclick="currentMuscle='tous'; renderExos()">Tous (${filtered.length})</button>`;
-    muscles.forEach(m => {
-        const count = filtered.filter(e => e.muscle === m).length;
-        tabsHTML += `<button class="tab-btn ${currentMuscle === m ? 'active' : ''}" onclick="currentMuscle='${m}'; renderExos()">${m} (${count})</button>`;
+    muscleGroups.forEach(muscle => {
+        const btn = document.createElement('button');
+        btn.className = 'tab-btn' + (muscle === 'poitrine' ? ' active' : '');
+        btn.textContent = muscle.charAt(0).toUpperCase() + muscle.slice(1);
+        btn.addEventListener('click', function() {
+            document.querySelectorAll('#muscle-tabs .tab-btn').forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+            filterAndRender();
+        });
+        muscleTabs.appendChild(btn);
     });
-    document.getElementById('muscle-tabs').innerHTML = tabsHTML;
-
-    const searchQuery = document.getElementById('exos-search')?.value || '';
-    let exosFiltered = filtered.filter(e => currentMuscle === 'tous' || e.muscle === currentMuscle);
-    exosFiltered = searchItems(exosFiltered, searchQuery);
-
-    const html = exosFiltered.map((e, idx) => {
-        const videoUrl = YOUTUBE_VIDEOS[e.nom] || 'https://www.youtube.com/embed/es_Tz8Si75o';
-        const favId = `exo-${EXOS.indexOf(e)}`;
-        const favActive = isFav(EXOS.indexOf(e), 'exo') ? 'active' : '';
-        return `
-        <div class="card">
-            <div class="card-header">
-                <div class="card-title">💪 ${e.nom}</div>
-                <button class="card-fav-btn ${favActive}" onclick="toggleFav(${EXOS.indexOf(e)}, 'exo'); renderExos()">❤️</button>
-            </div>
-            <div class="card-meta">
-                <span>⏱️ ${e.pole === 'maison' ? 'Sans matériel' : 'Salle équipée'}</span>
-                <span>🎯 ${e.muscle}</span>
-            </div>
-            <div class="card-text">${e.desc}</div>
-            <div class="card-section">
-                <div class="card-section-title">📋 TECHNIQUE</div>
-                <div class="card-section-content">${e.prep}</div>
-            </div>
-            <div class="card-section">
-                <div class="card-section-title">💡 CONSEIL</div>
-                <div class="card-section-content">${e.tips}</div>
-            </div>
-            <div class="video-container">
-                <iframe src="${videoUrl}" allowfullscreen="" loading="lazy"></iframe>
-            </div>
-        </div>`;
-    }).join('');
-
-    document.getElementById('exos-grid').innerHTML = html || '<div class="empty-state"><div class="empty-state-icon">🔍</div><div class="empty-state-text">Aucun exercice trouvé</div></div>';
-
-    document.getElementById('exos-search')?.addEventListener('input', () => renderExos());
+    
+    const searchBox = document.getElementById('exos-search');
+    searchBox.addEventListener('input', filterAndRender);
+    
+    function filterAndRender() {
+        const activeTab = document.querySelector('#muscle-tabs .tab-btn.active');
+        const selectedMuscle = activeTab.textContent.toLowerCase();
+        const searchTerm = searchBox.value.toLowerCase();
+        
+        const filtered = EXOS.filter(e => 
+            e.pole === currentMode && 
+            e.muscle === selectedMuscle &&
+            e.nom.toLowerCase().includes(searchTerm)
+        );
+        
+        grid.innerHTML = '';
+        filtered.forEach(exo => grid.appendChild(createExoCard(exo)));
+    }
+    
+    filterAndRender();
 }
 
-function renderRecipes() {
-    const searchQuery = document.getElementById('recipes-search')?.value || '';
-    let recipesFiltered = searchItems(RECIPES_DATA, searchQuery);
+function renderNutrition() {
+    const grid = document.getElementById('recipes-grid');
+    const tabs = document.getElementById('meal-tabs');
     
-    const meals = [...new Set(RECIPES_DATA.map(r => r.repas))];
-    let tabsHTML = `<button class="tab-btn active" onclick="document.getElementById('recipes-search').value=''; renderRecipes()">Tous (${RECIPES_DATA.length})</button>`;
-    const mealOrder = ['petit-dej', 'dejeuner', 'collation', 'diner'];
-    mealOrder.forEach(m => {
-        if (meals.includes(m)) {
-            const count = RECIPES_DATA.filter(r => r.repas === m).length;
-            const mealNames = { 'petit-dej': '🌅 Petit-déj', 'dejeuner': '🌞 Déj', 'collation': '🥜 Collation', 'diner': '🌙 Dîner' };
-            tabsHTML += `<button class="tab-btn" onclick="const sq=document.getElementById('recipes-search'); sq.value=''; renderRecipes()">${mealNames[m] || m} (${count})</button>`;
-        }
+    const mealTypes = [...new Set(RECIPES_DATA.map(r => r.repas))];
+    tabs.innerHTML = '';
+    
+    mealTypes.forEach(meal => {
+        const btn = document.createElement('button');
+        btn.className = 'tab-btn' + (meal === 'petit-dej' ? ' active' : '');
+        btn.textContent = meal === 'petit-dej' ? 'Petit-déj' : meal.charAt(0).toUpperCase() + meal.slice(1);
+        btn.addEventListener('click', function() {
+            document.querySelectorAll('#meal-tabs .tab-btn').forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+            filterAndRender();
+        });
+        tabs.appendChild(btn);
     });
-    document.getElementById('meal-tabs').innerHTML = tabsHTML;
-
-    const html = recipesFiltered.map((r, idx) => {
-        const favId = `recipe-${RECIPES_DATA.indexOf(r)}`;
-        const favActive = isFav(RECIPES_DATA.indexOf(r), 'recipe') ? 'active' : '';
-        const mealEmojis = { 'petit-dej': '🌅', 'dejeuner': '🌞', 'collation': '🥜', 'diner': '🌙' };
+    
+    const searchBox = document.getElementById('recipes-search');
+    searchBox.addEventListener('input', filterAndRender);
+    
+    function filterAndRender() {
+        const activeTab = document.querySelector('#meal-tabs .tab-btn.active');
+        const selectedMeal = activeTab.textContent === 'Petit-déj' ? 'petit-dej' : activeTab.textContent.toLowerCase();
+        const searchTerm = searchBox.value.toLowerCase();
         
-        const ingredientsHTML = r.ingredients.map(ing => `<div class="ingredient-item">${ing}</div>`).join('');
-        const stepsHTML = r.preparation.map((step, stepIdx) => `
-            <div class="step-item">
-                <div class="step-number">${stepIdx + 1}</div>
-                <div class="step-content">${step}</div>
-            </div>
-        `).join('');
+        const filtered = RECIPES_DATA.filter(r => 
+            r.repas === selectedMeal &&
+            r.nom.toLowerCase().includes(searchTerm)
+        );
         
-        return `
-        <div class="card">
-            <div class="card-header">
-                <div class="card-title">${mealEmojis[r.repas] || '🍽️'} ${r.nom}</div>
-                <button class="card-fav-btn ${favActive}" onclick="toggleFav(${RECIPES_DATA.indexOf(r)}, 'recipe'); renderRecipes()">❤️</button>
-            </div>
-            
-            <div class="recipe-image">
-                <img src="${r.image}" alt="${r.nom}" loading="lazy">
-            </div>
-            
-            <div class="recipe-nutrition">
-                <div class="nutrition-item">
-                    <span class="nutrition-label">⏱️ Temps</span>
-                    <span class="nutrition-value">${r.temps} min</span>
-                </div>
-                <div class="nutrition-item">
-                    <span class="nutrition-label">🥚 Protéines</span>
-                    <span class="nutrition-value">${r.prot}g</span>
-                </div>
-                <div class="nutrition-item">
-                    <span class="nutrition-label">🔥 Calories</span>
-                    <span class="nutrition-value">${r.cal}</span>
-                </div>
-                <div class="nutrition-item">
-                    <span class="nutrition-label">⭐ Bénéfices</span>
-                    <span class="nutrition-value">${r.benefices.split('.')[0]}.</span>
-                </div>
-            </div>
-            
-            <div class="card-text">${r.benefices}</div>
-            
-            <div class="card-section">
-                <div class="card-section-title">🛒 INGRÉDIENTS</div>
-                <div class="ingredient-list">${ingredientsHTML}</div>
-            </div>
-            
-            <div class="card-section">
-                <div class="card-section-title">👨‍🍳 ÉTAPES DE PRÉPARATION</div>
-                <div class="step-list">${stepsHTML}</div>
-            </div>
-        </div>`;
-    }).join('');
-
-    document.getElementById('recipes-grid').innerHTML = html || '<div class="empty-state"><div class="empty-state-icon">🔍</div><div class="empty-state-text">Aucune recette trouvée</div></div>';
-
-    document.getElementById('recipes-search')?.addEventListener('input', () => renderRecipes());
+        grid.innerHTML = '';
+        filtered.forEach(recipe => grid.appendChild(createExoCard(recipe, true)));
+    }
+    
+    filterAndRender();
 }
 
 function renderNoushi() {
-    const searchQuery = document.getElementById('noushi-search')?.value || '';
-    let noushibook = searchItems(NOUSHI_EXOS, searchQuery);
-
-    let tabsHTML = `<button class="tab-btn active">Tous (${NOUSHI_EXOS.length})</button>`;
-    document.getElementById('noushi-tabs').innerHTML = tabsHTML;
-
-    const html = noushibook.map((e, idx) => {
-        const favId = `noushi-${NOUSHI_EXOS.indexOf(e)}`;
-        const favActive = isFav(NOUSHI_EXOS.indexOf(e), 'noushi') ? 'active' : '';
-        const videoUrl = YOUTUBE_VIDEOS[e.nom] || 'https://www.youtube.com/embed/es_Tz8Si75o';
-        return `
-        <div class="card noushi-card">
-            <div class="card-header">
-                <div class="card-title">🔥 ${e.nom}</div>
-                <button class="card-fav-btn ${favActive}" onclick="toggleFav(${NOUSHI_EXOS.indexOf(e)}, 'noushi'); renderNoushi()">❤️</button>
-            </div>
-            <div class="card-meta">
-                <span>⚠️ EXTRÊME</span>
-                <span>🎯 ${e.muscles.join(', ')}</span>
-            </div>
-            <div class="card-text">${e.desc}</div>
-            <div class="card-section">
-                <div class="card-section-title">📋 PROGRESSION</div>
-                <div class="card-section-content">${e.prep}</div>
-            </div>
-            <div class="card-section">
-                <div class="card-section-title">⚠️ IMPORTANT</div>
-                <div class="card-section-content">${e.tips}</div>
-            </div>
-            <div class="video-container">
-                <iframe src="${videoUrl}" allowfullscreen="" loading="lazy"></iframe>
-            </div>
-        </div>`;
-    }).join('');
-
-    document.getElementById('noushi-grid').innerHTML = html || '<div class="empty-state"><div class="empty-state-icon">🔍</div><div class="empty-state-text">Aucun exercice trouvé</div></div>';
-
-    document.getElementById('noushi-search')?.addEventListener('input', () => renderNoushi());
+    const grid = document.getElementById('noushi-grid');
+    const searchBox = document.getElementById('noushi-search');
+    
+    searchBox.addEventListener('input', filterAndRender);
+    
+    function filterAndRender() {
+        const searchTerm = searchBox.value.toLowerCase();
+        const filtered = NOUSHI_DATA.filter(n => n.nom.toLowerCase().includes(searchTerm));
+        
+        grid.innerHTML = '';
+        filtered.forEach(noushi => grid.appendChild(createExoCard(noushi)));
+    }
+    
+    filterAndRender();
 }
 
 function renderRelax() {
-    const searchQuery = document.getElementById('relax-search')?.value || '';
-    let relaxbook = searchItems(RELAX_DATA, searchQuery);
-
-    const types = [...new Set(RELAX_DATA.map(r => r.type))];
-    let tabsHTML = `<button class="tab-btn active">Tous (${RELAX_DATA.length})</button>`;
-    types.forEach(t => {
-        const count = RELAX_DATA.filter(r => r.type === t).length;
-        const typeEmojis = { 'yoga': '🧘', 'meditation': '🧠', 'etirement': '🤸', 'massage': '💆', 'breathing': '🌬️' };
-        tabsHTML += `<button class="tab-btn">${typeEmojis[t] || '✨'} ${t} (${count})</button>`;
-    });
-    document.getElementById('relax-tabs').innerHTML = tabsHTML;
-
-    const html = relaxbook.map((e, idx) => {
-        const favId = `relax-${RELAX_DATA.indexOf(e)}`;
-        const favActive = isFav(RELAX_DATA.indexOf(e), 'relax') ? 'active' : '';
-        const typeEmojis = { 'yoga': '🧘', 'meditation': '🧠', 'etirement': '🤸', 'massage': '💆', 'breathing': '🌬️' };
-        return `
-        <div class="card relax-card">
-            <div class="card-header">
-                <div class="card-title">${typeEmojis[e.type] || '✨'} ${e.nom}</div>
-                <button class="card-fav-btn ${favActive}" onclick="toggleFav(${RELAX_DATA.indexOf(e)}, 'relax'); renderRelax()">❤️</button>
-            </div>
-            <div class="card-meta">
-                <span>⏱️ ${e.temps}min</span>
-                <span>📁 ${e.type}</span>
-            </div>
-            <div class="card-text">${e.benefices}</div>
-            <div class="card-section">
-                <div class="card-section-title">📝 ROUTINE</div>
-                <div class="card-section-content">${e.prep}</div>
-            </div>
-        </div>`;
-    }).join('');
-
-    document.getElementById('relax-grid').innerHTML = html || '<div class="empty-state"><div class="empty-state-icon">🔍</div><div class="empty-state-text">Aucune séance trouvée</div></div>';
-
-    document.getElementById('relax-search')?.addEventListener('input', () => renderRelax());
+    const grid = document.getElementById('relax-grid');
+    const searchBox = document.getElementById('relax-search');
+    
+    searchBox.addEventListener('input', filterAndRender);
+    
+    function filterAndRender() {
+        const searchTerm = searchBox.value.toLowerCase();
+        const filtered = RELAX_DATA.filter(r => r.nom.toLowerCase().includes(searchTerm));
+        
+        grid.innerHTML = '';
+        filtered.forEach(relax => {
+            const div = document.createElement('div');
+            div.className = 'card relax-card';
+            div.innerHTML = `
+                <div class="card-header">
+                    <div class="card-title">${relax.nom}</div>
+                    <button class="card-fav-btn ${favorites.includes(relax.nom) ? 'active' : ''}" data-name="${relax.nom}" onclick="toggleFav(event, '${relax.nom}')">
+                        ${favorites.includes(relax.nom) ? '❤️' : '🤍'}
+                    </button>
+                </div>
+                <p class="card-text">${relax.desc}</p>
+                <div class="card-meta">⏱️ ${relax.durée}</div>
+            `;
+            grid.appendChild(div);
+        });
+    }
+    
+    filterAndRender();
 }
 
 function renderFavoris() {
-    let allFavs = [];
-
-    favoris.forEach(favId => {
-        const [type, id] = favId.split('-');
-        const idx = parseInt(id);
-        
-        if (type === 'exo' && EXOS[idx]) allFavs.push({ ...EXOS[idx], type: 'exo', idx });
-        if (type === 'recipe' && RECIPES_DATA[idx]) allFavs.push({ ...RECIPES_DATA[idx], type: 'recipe', idx });
-        if (type === 'noushi' && NOUSHI_EXOS[idx]) allFavs.push({ ...NOUSHI_EXOS[idx], type: 'noushi', idx });
-        if (type === 'relax' && RELAX_DATA[idx]) allFavs.push({ ...RELAX_DATA[idx], type: 'relax', idx });
-    });
-
-    const html = allFavs.map((item) => {
-        const videoUrl = YOUTUBE_VIDEOS[item.nom] || 'https://www.youtube.com/embed/es_Tz8Si75o';
-        let cardHtml = '';
-
-        if (item.type === 'exo') {
-            cardHtml = `
-            <div class="card">
+    const grid = document.getElementById('favoris-grid');
+    grid.innerHTML = '';
+    
+    if (favorites.length === 0) {
+        grid.innerHTML = `<div class="empty-state"><div class="empty-state-icon">💔</div><div class="empty-state-text">Aucun favoris pour l'instant. Ajoute des exos et recettes !</div></div>`;
+        return;
+    }
+    
+    const allItems = [...EXOS, ...RECIPES_DATA, ...NOUSHI_DATA, ...RELAX_DATA];
+    const favItems = allItems.filter(item => favorites.includes(item.nom));
+    
+    favItems.forEach(item => {
+        if (RELAX_DATA.some(r => r.nom === item.nom)) {
+            const div = document.createElement('div');
+            div.className = 'card relax-card';
+            div.innerHTML = `
                 <div class="card-header">
-                    <div class="card-title">💪 ${item.nom}</div>
-                    <button class="card-fav-btn active" onclick="toggleFav(${item.idx}, 'exo'); renderFavoris()">❤️</button>
+                    <div class="card-title">${item.nom}</div>
+                    <button class="card-fav-btn active" onclick="toggleFav(event, '${item.nom}')">
+                        ❤️
+                    </button>
                 </div>
-                <div class="card-meta">
-                    <span>🎯 ${item.muscle}</span>
-                    <span>${item.pole === 'maison' ? '🏠 Maison' : '💪 Salle'}</span>
-                </div>
-                <div class="card-text">${item.desc}</div>
-                <div class="card-section">
-                    <div class="card-section-title">📋 TECHNIQUE</div>
-                    <div class="card-section-content">${item.prep}</div>
-                </div>
-            </div>`;
-        } else if (item.type === 'recipe') {
-            const mealEmojis = { 'petit-dej': '🌅', 'dejeuner': '🌞', 'collation': '🥜', 'diner': '🌙' };
-            const ingredientsHTML = item.ingredients.map(ing => `<div class="ingredient-item">${ing}</div>`).join('');
-            cardHtml = `
-            <div class="card">
-                <div class="card-header">
-                    <div class="card-title">${mealEmojis[item.repas] || '🍽️'} ${item.nom}</div>
-                    <button class="card-fav-btn active" onclick="toggleFav(${item.idx}, 'recipe'); renderFavoris()">❤️</button>
-                </div>
-                <div class="recipe-image">
-                    <img src="${item.image}" alt="${item.nom}" loading="lazy">
-                </div>
-                <div class="recipe-nutrition">
-                    <div class="nutrition-item">
-                        <span class="nutrition-label">⏱️ Temps</span>
-                        <span class="nutrition-value">${item.temps}min</span>
-                    </div>
-                    <div class="nutrition-item">
-                        <span class="nutrition-label">🥚 Protéines</span>
-                        <span class="nutrition-value">${item.prot}g</span>
-                    </div>
-                    <div class="nutrition-item">
-                        <span class="nutrition-label">🔥 Calories</span>
-                        <span class="nutrition-value">${item.cal}</span>
-                    </div>
-                </div>
-                <div class="card-section">
-                    <div class="card-section-title">🛒 INGRÉDIENTS</div>
-                    <div class="ingredient-list">${ingredientsHTML}</div>
-                </div>
-            </div>`;
-        } else if (item.type === 'noushi') {
-            cardHtml = `
-            <div class="card noushi-card">
-                <div class="card-header">
-                    <div class="card-title">🔥 ${item.nom}</div>
-                    <button class="card-fav-btn active" onclick="toggleFav(${item.idx}, 'noushi'); renderFavoris()">❤️</button>
-                </div>
-                <div class="card-meta">
-                    <span>⚠️ EXTRÊME</span>
-                    <span>${item.muscles.join(', ')}</span>
-                </div>
-                <div class="card-text">${item.desc}</div>
-            </div>`;
-        } else if (item.type === 'relax') {
-            const typeEmojis = { 'yoga': '🧘', 'meditation': '🧠', 'etirement': '🤸', 'massage': '💆', 'breathing': '🌬️' };
-            cardHtml = `
-            <div class="card relax-card">
-                <div class="card-header">
-                    <div class="card-title">${typeEmojis[item.type] || '✨'} ${item.nom}</div>
-                    <button class="card-fav-btn active" onclick="toggleFav(${item.idx}, 'relax'); renderFavoris()">❤️</button>
-                </div>
-                <div class="card-meta">
-                    <span>⏱️ ${item.temps}min</span>
-                </div>
-                <div class="card-text">${item.benefices}</div>
-            </div>`;
+                <p class="card-text">${item.desc}</p>
+                <div class="card-meta">⏱️ ${item.durée}</div>
+            `;
+            grid.appendChild(div);
+        } else {
+            grid.appendChild(createExoCard(item));
         }
-
-        return cardHtml;
-    }).join('');
-
-    document.getElementById('favoris-grid').innerHTML = html || '<div class="empty-state"><div class="empty-state-icon">💔</div><div class="empty-state-text">Aucun favori sauvegardé.<br>❤️-Clique sur les exos pour les ajouter!</div></div>';
+    });
 }
 
-// Initialize
+function renderAllPages() {
+    if (document.getElementById('nutrition').classList.contains('active')) renderNutrition();
+    if (document.getElementById('exos').classList.contains('active')) renderExos();
+    if (document.getElementById('noushi').classList.contains('active')) renderNoushi();
+    if (document.getElementById('relax').classList.contains('active')) renderRelax();
+    if (document.getElementById('favoris').classList.contains('active')) renderFavoris();
+}
+
+// ============= INIT TIME & BATTERY =============
+function updateTimeAndBattery() {
+    const now = new Date();
+    document.getElementById('time').textContent = now.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' });
+    document.getElementById('date').textContent = now.toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long' });
+    
+    if (navigator.getBattery) {
+        navigator.getBattery().then(battery => {
+            document.getElementById('battery').textContent = Math.round(battery.level * 100);
+        });
+    }
+}
+
+// ============= EVENT LISTENERS POUR IOS FIX =============
 document.addEventListener('DOMContentLoaded', () => {
-    renderFavoris();
+    updateTimeAndBattery();
+    setInterval(updateTimeAndBattery, 60000);
+    
+    // Fix iOS event handling
+    document.addEventListener('touchstart', () => {}, false);
+    document.addEventListener('touchend', () => {}, false);
+    document.addEventListener('touchcancel', () => {}, false);
+    
+    // Ajouter cursor pointer à tous les boutons
+    document.querySelectorAll('button, .card, .tab-btn, .top-nav-btn').forEach(el => {
+        el.style.cursor = 'pointer';
+    });
 });
 </script>
 
 </body>
 </html>
+
