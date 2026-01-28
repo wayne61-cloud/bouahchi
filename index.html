@@ -326,7 +326,7 @@
         .card-fav-btn {
             background: none;
             border: none;
-            font-size: 24px;
+            font-size: 28px;
             cursor: pointer;
             opacity: 0.7;
             transition: all 0.2s;
@@ -1187,11 +1187,12 @@ function renderRelax() {
         filtered.forEach(relax => {
             const div = document.createElement('div');
             div.className = 'card relax-card';
+            const isFav = favorites.includes(relax.nom);
             div.innerHTML = `
                 <div class="card-header">
                     <div class="card-title">${relax.nom}</div>
-                    <button class="card-fav-btn ${favorites.includes(relax.nom) ? 'active' : ''}" data-name="${relax.nom}" onclick="toggleFav(event, '${relax.nom}')">
-                        ${favorites.includes(relax.nom) ? '❤️' : '🤍'}
+                    <button class="card-fav-btn ${isFav ? 'active' : ''}" data-name="${relax.nom}" onclick="toggleFav(event, '${relax.nom}')">
+                        ${isFav ? '❤️' : '🤍'}
                     </button>
                 </div>
                 <p class="card-text">${relax.desc}</p>
@@ -1277,4 +1278,3 @@ document.addEventListener('DOMContentLoaded', () => {
 
 </body>
 </html>
-
