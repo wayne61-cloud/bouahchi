@@ -5,104 +5,67 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>Bouahchi Gor</title>
+    <meta name="apple-mobile-web-app-title" content="Bouahchi Gor">
+    <meta name="theme-color" content="#000000">
+    <title>Bouahchi Gor - Fitness Complète</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
         html, body {
             width: 100%;
             height: 100%;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
             background: #000;
             color: #fff;
             overflow: hidden;
             -webkit-user-select: none;
             user-select: none;
+            position: fixed;
         }
+
         body {
             display: flex;
             flex-direction: column;
             padding: max(env(safe-area-inset-top), 8px) max(env(safe-area-inset-right), 8px) max(env(safe-area-inset-bottom), 8px) max(env(safe-area-inset-left), 8px);
         }
 
+        /* HEADER */
         .header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             height: 48px;
-            background: #0a0a0a;
+            background: linear-gradient(180deg, #0a0a0a 0%, #1a1a1a 100%);
             border-bottom: 1px solid #222;
             margin: -8px -8px 0 -8px;
             padding: 8px 12px;
             flex-shrink: 0;
             z-index: 50;
         }
-        .header-left { font-size: 11px; color: #ff5252; }
-        .header-title { font-weight: 700; font-size: 14px; }
-        .header-right { font-size: 11px; color: #ff5252; }
 
-        .top-nav {
-            display: flex;
-            gap: 6px;
-            margin-bottom: 12px;
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
-            padding-bottom: 4px;
-        }
-        .top-nav-btn {
-            padding: 8px 14px;
-            border: 1px solid rgba(255, 138, 128, 0.3);
-            background: rgba(255, 255, 255, 0.03);
-            color: #ffcccc;
-            border-radius: 20px;
+        .header-left, .header-right {
             font-size: 11px;
-            white-space: nowrap;
-            cursor: pointer;
-            transition: all 0.2s;
-            flex-shrink: 0;
-        }
-        .top-nav-btn.active {
-            background: #ff5252;
-            color: #fff;
-            border-color: #ff5252;
-        }
-
-        .nav-bottom {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 56px;
-            background: #0a0a0a;
-            border-top: 1px solid #222;
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            margin: 0 -8px -8px -8px;
-            padding-bottom: max(env(safe-area-inset-bottom), 4px);
-            z-index: 1000;
-        }
-        .nav-btn {
-            flex: 1;
-            height: 48px;
-            border: none;
-            background: none;
-            color: #666;
-            font-size: 12px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 3px;
-            cursor: pointer;
-            transition: all 0.2s;
-            padding: 0;
-        }
-        .nav-btn.active {
             color: #ff5252;
-            background: rgba(255, 82, 82, 0.1);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 4px;
         }
-        .nav-btn span:first-child { font-size: 18px; }
 
+        .header-title {
+            font-weight: 800;
+            font-size: 14px;
+            letter-spacing: 0.5px;
+            flex: 1;
+            text-align: center;
+        }
+
+        /* CONTAINER */
         .container {
             flex: 1;
             overflow-y: auto;
@@ -110,6 +73,7 @@
             padding: 0;
             -webkit-overflow-scrolling: touch;
             margin-bottom: 56px;
+            scroll-behavior: smooth;
         }
 
         .page {
@@ -117,137 +81,292 @@
             width: 100%;
             min-height: 100%;
             padding: 16px 12px 32px 12px;
+            animation: fadeIn 0.3s ease-in;
         }
-        .page.active { display: block; }
 
+        .page.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* TOP NAV & TABS */
+        .top-nav, .tabs {
+            display: flex;
+            gap: 6px;
+            margin-bottom: 12px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            padding-bottom: 4px;
+            scroll-snap-type: x mandatory;
+        }
+
+        .top-nav-btn, .tab-btn {
+            padding: 8px 14px;
+            border: 1px solid rgba(255, 82, 82, 0.3);
+            background: rgba(255, 82, 82, 0.08);
+            color: #ffcccc;
+            border-radius: 20px;
+            font-size: 11px;
+            white-space: nowrap;
+            cursor: pointer;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            flex-shrink: 0;
+            scroll-snap-align: start;
+            font-weight: 500;
+        }
+
+        .top-nav-btn:active, .tab-btn:active {
+            transform: scale(0.95);
+        }
+
+        .top-nav-btn.active, .tab-btn.active {
+            background: linear-gradient(135deg, #ff1744, #ff5252);
+            color: #fff;
+            border-color: #ff5252;
+            box-shadow: 0 2px 8px rgba(255, 23, 68, 0.3);
+        }
+
+        /* LAUNCHER */
         .launcher {
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            height: 100%;
+            height: calc(100vh - 180px);
             padding: 20px 0;
         }
-        .launcher-top { text-align: center; }
+
+        .launcher-top {
+            text-align: center;
+        }
+
         .launcher-time {
-            font-size: 32px;
+            font-size: 48px;
             font-weight: 800;
             color: #ff5252;
             margin-bottom: 4px;
             font-family: 'Courier New', monospace;
+            letter-spacing: 2px;
         }
+
         .launcher-date {
             font-size: 12px;
             color: #ff8a80;
             margin-bottom: 20px;
+            font-weight: 500;
         }
+
         .launcher-title {
-            font-size: 24px;
-            font-weight: 800;
+            font-size: 28px;
+            font-weight: 900;
             color: #fff;
-            margin-bottom: 8px;
+            margin-bottom: 4px;
+            letter-spacing: 1px;
         }
+
         .launcher-subtitle {
             font-size: 13px;
             color: #ffcccc;
-            margin-bottom: 16px;
+            margin-bottom: 24px;
+            font-style: italic;
         }
-        .launcher-middle { display: flex; flex-direction: column; gap: 12px; }
+
+        .launcher-middle {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
         .launcher-btn {
             padding: 16px;
             border: none;
             border-radius: 12px;
             font-size: 15px;
-            font-weight: 600;
+            font-weight: 700;
             color: #fff;
             cursor: pointer;
-            transition: all 0.2s;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             width: 100%;
-        }
-        .launcher-btn.primary {
-            background: linear-gradient(135deg, #ff1744, #ff5252);
-            box-shadow: 0 4px 12px rgba(255, 23, 68, 0.3);
-        }
-        .launcher-btn.secondary {
-            background: rgba(255, 82, 82, 0.15);
-            border: 1px solid rgba(255, 82, 82, 0.5);
-        }
-        .launcher-stats { display: flex; gap: 8px; margin-top: 20px; }
-        .stat {
-            flex: 1;
-            padding: 12px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 8px;
-            border: 1px solid rgba(255, 138, 128, 0.2);
-            text-align: center;
-            font-size: 11px;
-        }
-        .stat-value {
-            font-size: 18px;
-            font-weight: 700;
-            color: #ff5252;
+            letter-spacing: 0.5px;
         }
 
-        .section-title {
+        .launcher-btn.primary {
+            background: linear-gradient(135deg, #ff1744, #ff5252);
+            box-shadow: 0 4px 16px rgba(255, 23, 68, 0.35);
+        }
+
+        .launcher-btn.primary:active {
+            transform: scale(0.98);
+            box-shadow: 0 2px 8px rgba(255, 23, 68, 0.25);
+        }
+
+        .launcher-btn.secondary {
+            background: rgba(255, 82, 82, 0.12);
+            border: 1.5px solid rgba(255, 82, 82, 0.5);
+        }
+
+        .launcher-btn.secondary:active {
+            background: rgba(255, 82, 82, 0.18);
+        }
+
+        .launcher-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+            margin-top: 20px;
+        }
+
+        .stat {
+            padding: 12px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+            border-radius: 10px;
+            border: 1px solid rgba(255, 82, 82, 0.2);
+            text-align: center;
+            font-size: 11px;
+            color: #ffcccc;
+            font-weight: 500;
+        }
+
+        .stat-value {
             font-size: 20px;
             font-weight: 800;
             color: #ff5252;
-            margin-bottom: 12px;
+            margin-top: 4px;
         }
+
+        /* SECTION */
+        .section-title {
+            font-size: 24px;
+            font-weight: 900;
+            color: #ff5252;
+            margin-bottom: 8px;
+            letter-spacing: 0.5px;
+        }
+
         .section-sub {
             font-size: 12px;
             color: #ffcccc;
             margin-bottom: 16px;
+            font-weight: 500;
         }
 
-        .tabs {
-            display: flex;
-            gap: 8px;
-            margin-bottom: 16px;
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
-            padding-bottom: 4px;
-        }
-        .tab-btn {
-            padding: 6px 12px;
-            border: 1px solid rgba(255, 138, 128, 0.3);
-            background: rgba(255, 255, 255, 0.03);
-            color: #ffcccc;
-            border-radius: 20px;
-            font-size: 12px;
-            white-space: nowrap;
-            cursor: pointer;
-            transition: all 0.2s;
-            flex-shrink: 0;
-        }
-        .tab-btn.active {
-            background: #ff5252;
-            color: #fff;
-            border-color: #ff5252;
-        }
-
-        .grid { display: grid; grid-template-columns: 1fr; gap: 12px; }
-        .card {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 138, 128, 0.2);
+        /* SEARCH */
+        .search-box {
+            width: 100%;
+            padding: 10px 14px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 82, 82, 0.3);
             border-radius: 10px;
-            padding: 14px;
+            color: #fff;
+            font-size: 13px;
+            margin-bottom: 12px;
+            outline: none;
+            transition: all 0.2s;
         }
+
+        .search-box:focus {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: #ff5252;
+            box-shadow: 0 0 8px rgba(255, 82, 82, 0.2);
+        }
+
+        .search-box::placeholder {
+            color: #ff8a80;
+        }
+
+        /* GRID */
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+        }
+
+        /* CARD */
+        .card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.01));
+            border: 1px solid rgba(255, 138, 128, 0.2);
+            border-radius: 12px;
+            padding: 14px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+        }
+
+        .card:active {
+            transform: scale(0.98);
+            border-color: rgba(255, 82, 82, 0.4);
+        }
+
+        .card.favorited {
+            background: linear-gradient(135deg, rgba(255, 82, 82, 0.15), rgba(255, 82, 82, 0.08));
+            border-color: rgba(255, 82, 82, 0.4);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 8px;
+        }
+
         .card-title {
             font-size: 14px;
             font-weight: 700;
             color: #ff8a80;
-            margin-bottom: 6px;
+            flex: 1;
         }
+
+        .card-fav-btn {
+            background: none;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            opacity: 0.6;
+            transition: all 0.2s;
+            padding: 4px;
+        }
+
+        .card-fav-btn.active {
+            opacity: 1;
+            transform: scale(1.2);
+        }
+
+        /* RECIPE IMAGE */
+        .recipe-image {
+            width: 100%;
+            height: 200px;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 12px;
+            border: 1px solid rgba(255, 138, 128, 0.2);
+            background: #1a1a1a;
+        }
+
+        .recipe-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
         .card-meta {
             font-size: 11px;
             color: #ffcccc;
             margin-bottom: 8px;
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
         }
+
         .card-text {
             font-size: 11px;
             color: #ffebee;
             margin-bottom: 8px;
+            line-height: 1.5;
         }
+
         .card-section {
             background: rgba(255, 82, 82, 0.1);
             padding: 8px;
@@ -255,14 +374,16 @@
             border-left: 2px solid #ff5252;
             margin-bottom: 8px;
         }
+
         .card-section-title {
             font-size: 11px;
             font-weight: 600;
             color: #ff8a80;
             margin-bottom: 4px;
         }
+
         .card-section-content {
-            font-size: 11px;
+            font-size: 10.5px;
             color: #ffebee;
             line-height: 1.6;
             white-space: pre-wrap;
@@ -278,6 +399,7 @@
             border: 1px solid rgba(255, 138, 128, 0.2);
             background: #1a1a1a;
         }
+
         .video-container iframe {
             width: 100%;
             height: 100%;
@@ -291,6 +413,7 @@
             padding-top: 12px;
             border-top: 1px solid rgba(255, 138, 128, 0.2);
         }
+
         .nav-btn-prev, .nav-btn-next {
             flex: 1;
             padding: 10px;
@@ -303,147 +426,346 @@
             cursor: pointer;
             transition: all 0.2s;
         }
+
+        .nav-btn-prev:active, .nav-btn-next:active {
+            transform: scale(0.95);
+        }
+
         .nav-btn-prev:disabled, .nav-btn-next:disabled {
-            opacity: 0.4;
+            opacity: 0.3;
             cursor: not-allowed;
         }
 
+        /* RELAX CARD */
         .relax-card {
-            background: linear-gradient(135deg, rgba(100, 149, 237, 0.2), rgba(65, 105, 225, 0.1));
+            background: linear-gradient(135deg, rgba(100, 149, 237, 0.15), rgba(65, 105, 225, 0.08));
             border: 1px solid rgba(100, 149, 237, 0.4);
         }
-        .relax-card .card-title { color: #6495ed; }
 
-        .container::-webkit-scrollbar { width: 4px; }
-        .container::-webkit-scrollbar-thumb { background: rgba(255, 82, 82, 0.4); border-radius: 2px; }
+        .relax-card .card-title {
+            color: #6495ed;
+        }
+
+        /* NOUSHI CARD */
+        .noushi-card {
+            background: linear-gradient(135deg, rgba(255, 87, 34, 0.15), rgba(255, 152, 0, 0.08));
+            border: 1px solid rgba(255, 87, 34, 0.4);
+        }
+
+        .noushi-card .card-title {
+            color: #ff6e40;
+        }
+
+        /* NAV BOTTOM */
+        .nav-bottom {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 56px;
+            background: linear-gradient(180deg, #0a0a0a 0%, #1a1a1a 100%);
+            border-top: 1px solid #222;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin: 0 -8px -8px -8px;
+            padding-bottom: max(env(safe-area-inset-bottom), 4px);
+            z-index: 1000;
+        }
+
+        .nav-btn {
+            flex: 1;
+            height: 48px;
+            border: none;
+            background: none;
+            color: #666;
+            font-size: 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 3px;
+            cursor: pointer;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 0;
+        }
+
+        .nav-btn.active {
+            color: #ff5252;
+            background: rgba(255, 82, 82, 0.1);
+        }
+
+        .nav-btn span:first-child {
+            font-size: 20px;
+        }
+
+        /* SCROLLBAR */
+        .container::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .container::-webkit-scrollbar-thumb {
+            background: rgba(255, 82, 82, 0.4);
+            border-radius: 2px;
+        }
+
+        .container::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        /* EMPTY STATE */
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: #ffcccc;
+        }
+
+        .empty-state-icon {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+
+        .empty-state-text {
+            font-size: 13px;
+        }
+
+        /* RECIPE NUTRITION INFO */
+        .recipe-nutrition {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        .nutrition-item {
+            background: rgba(255, 82, 82, 0.08);
+            padding: 8px;
+            border-radius: 6px;
+            border: 1px solid rgba(255, 82, 82, 0.2);
+            text-align: center;
+            font-size: 10px;
+        }
+
+        .nutrition-label {
+            color: #ff8a80;
+            font-weight: 600;
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        .nutrition-value {
+            color: #ffebee;
+            font-weight: 700;
+            font-size: 11px;
+        }
+
+        /* INGREDIENT LIST */
+        .ingredient-list {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 8px;
+            border-radius: 6px;
+            margin-bottom: 8px;
+            border-left: 2px solid #ff5252;
+        }
+
+        .ingredient-item {
+            font-size: 10.5px;
+            color: #ffebee;
+            padding: 3px 0;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .ingredient-item:before {
+            content: "✓";
+            color: #ff5252;
+            font-weight: 700;
+        }
+
+        /* STEP LIST */
+        .step-list {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 8px;
+            border-radius: 6px;
+            margin-bottom: 8px;
+            border-left: 2px solid #6495ed;
+        }
+
+        .step-item {
+            font-size: 10.5px;
+            color: #ffebee;
+            padding: 4px 0;
+            display: flex;
+            gap: 6px;
+        }
+
+        .step-number {
+            background: #6495ed;
+            color: #000;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 9px;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .step-content {
+            flex: 1;
+            line-height: 1.4;
+            margin-top: 2px;
+        }
     </style>
 </head>
 <body>
 
 <div class="header">
-    <div class="header-left">🌡️ <span id="temp">--</span>°</div>
-    <div class="header-title">Bouahchi Gor</div>
-    <div class="header-right">⚡</div>
+    <div class="header-left">🔥 <span id="temp">--</span>°</div>
+    <div class="header-title">BOUAHCHI GOR</div>
+    <div class="header-right">⚡ <span id="battery">--</span>%</div>
 </div>
 
 <div class="container">
+    <!-- HOME PAGE -->
     <div class="page active" id="home">
         <div class="launcher">
             <div class="launcher-top">
                 <div class="launcher-time" id="time">00:00</div>
-                <div class="launcher-date" id="date">Mardi, 27 Janvier</div>
+                <div class="launcher-date" id="date">Mercredi, 28 Janvier</div>
                 <div class="launcher-title">BOUAHCHI GOR</div>
-                <div class="launcher-subtitle">La montagne n'attend personne</div>
+                <div class="launcher-subtitle">La montagne n'attend personne 🏔️</div>
             </div>
             <div class="launcher-middle">
-                <button class="launcher-btn primary" id="btnMaison">🏠 ENTRAÎNEMENT MAISON</button>
-                <button class="launcher-btn primary" id="btnSalle">💪 ENTRAÎNEMENT SALLE</button>
-                <button class="launcher-btn secondary" id="btnRelax">🧘 REPOS & RELAXATION</button>
+                <button class="launcher-btn primary" id="btnMaison" onclick="chooseMode('maison')">🏠 ENTRAÎNEMENT MAISON</button>
+                <button class="launcher-btn primary" id="btnSalle" onclick="chooseMode('salle')">💪 ENTRAÎNEMENT SALLE</button>
+                <button class="launcher-btn primary" id="btnNutrition" onclick="goToPage('nutrition')">🍽️ NUTRITION</button>
+                <button class="launcher-btn primary" id="btnNoushi" onclick="goToPage('noushi')">🔥 NOUSHI MODE</button>
+                <button class="launcher-btn secondary" id="btnRelax" onclick="goToPage('relax')">🧘 REPOS & RELAXATION</button>
             </div>
             <div class="launcher-stats">
-                <div class="stat"><div>🔥 Streak</div><div class="stat-value">0</div></div>
-                <div class="stat"><div>🍽️ Calories</div><div class="stat-value">0</div></div>
-                <div class="stat"><div>💪 Séances</div><div class="stat-value">0</div></div>
+                <div class="stat"><div>🎯</div><div class="stat-value" id="statStreak">0</div></div>
+                <div class="stat"><div>🍽️</div><div class="stat-value" id="statMeals">0</div></div>
+                <div class="stat"><div>💪</div><div class="stat-value" id="statSessions">0</div></div>
             </div>
         </div>
     </div>
 
+    <!-- EXOS PAGE -->
     <div class="page" id="exos">
-        <h1 class="section-title">Entraînement</h1>
-        <p class="section-sub" id="exos-sub">Choisis un groupe musculaire</p>
+        <h1 class="section-title">💪 ENTRAÎNEMENT</h1>
+        <p class="section-sub" id="exos-sub">Choisis ton programme</p>
         <div class="top-nav" id="mode-nav"></div>
+        <input type="text" class="search-box" id="exos-search" placeholder="🔍 Cherche un exercice...">
         <div class="tabs" id="muscle-tabs"></div>
         <div class="grid" id="exos-grid"></div>
     </div>
 
+    <!-- NUTRITION PAGE -->
     <div class="page" id="nutrition">
-        <h1 class="section-title">Nutrition</h1>
-        <p class="section-sub">20+ recettes complètes (2+ mois)</p>
+        <h1 class="section-title">🍽️ NUTRITION</h1>
+        <p class="section-sub">Recettes complètes (2+ mois de variété)</p>
+        <input type="text" class="search-box" id="recipes-search" placeholder="🔍 Cherche une recette...">
         <div class="tabs" id="meal-tabs"></div>
         <div class="grid" id="recipes-grid"></div>
     </div>
 
+    <!-- NOUSHI PAGE -->
     <div class="page" id="noushi">
         <h1 class="section-title">🔥 NOUSHI MODE</h1>
-        <p class="section-sub">Les exercices les plus extrêmes du monde</p>
+        <p class="section-sub">Les exos les plus extrêmes (6-12 mois de progression)</p>
+        <input type="text" class="search-box" id="noushi-search" placeholder="🔍 Cherche une exo...">
         <div class="tabs" id="noushi-tabs"></div>
         <div class="grid" id="noushi-grid"></div>
     </div>
 
+    <!-- RELAX PAGE -->
     <div class="page" id="relax">
-        <h1 class="section-title">🧘 Relaxation & Récupération</h1>
-        <p class="section-sub">10+ techniques de détente et yoga</p>
+        <h1 class="section-title">🧘 RELAXATION</h1>
+        <p class="section-sub">Récupération complète (yoga, méditation, étirement)</p>
+        <input type="text" class="search-box" id="relax-search" placeholder="🔍 Cherche une séance...">
         <div class="tabs" id="relax-tabs"></div>
         <div class="grid" id="relax-grid"></div>
+    </div>
+
+    <!-- FAVORIS PAGE -->
+    <div class="page" id="favoris">
+        <h1 class="section-title">❤️ MES FAVORIS</h1>
+        <p class="section-sub">Tes exos et recettes préférées</p>
+        <div class="grid" id="favoris-grid"></div>
     </div>
 </div>
 
 <div class="nav-bottom">
-    <button class="nav-btn active" id="navHome"><span>🏠</span><span>Home</span></button>
-    <button class="nav-btn" id="navExos"><span>💪</span><span>Exos</span></button>
-    <button class="nav-btn" id="navFood"><span>🍽️</span><span>Food</span></button>
-    <button class="nav-btn" id="navNoushi"><span>🔥</span><span>Noushi</span></button>
-    <button class="nav-btn" id="navRelax"><span>🧘</span><span>Relax</span></button>
+    <button class="nav-btn active" id="navHome" onclick="goToPage('home')"><span>🏠</span><span>Home</span></button>
+    <button class="nav-btn" id="navExos" onclick="goToPage('exos')"><span>💪</span><span>Exos</span></button>
+    <button class="nav-btn" id="navFood" onclick="goToPage('nutrition')"><span>🍽️</span><span>Food</span></button>
+    <button class="nav-btn" id="navNoushi" onclick="goToPage('noushi')"><span>🔥</span><span>Noushi</span></button>
+    <button class="nav-btn" id="navRelax" onclick="goToPage('relax')"><span>🧘</span><span>Relax</span></button>
+    <button class="nav-btn" id="navFavoris" onclick="goToPage('favoris')"><span>❤️</span><span>Favoris</span></button>
 </div>
 
 <script>
 // ============= VERIFIED YOUTUBE VIDEOS 2025-2026 =============
 const YOUTUBE_VIDEOS = {
-    'Pompes classiques': 'https://youtu.be/y68UkKWkh08?si=bj9Qq9TSxVUBMhDd',
-    'Pompes inclinées': 'https://youtu.be/rtqbRn5tqrs?si=38NcYlWu_CvGIXsz',
-    'Pompes déclinées': 'https://youtu.be/1eccZxpmRsk?si=ZwxjDGwQOENF2Opb',
-    'Pompes serrées': 'https://youtu.be/REjGhqa-63E?si=aSLonrQ_09SJ2lSo',
-    'Pompes explosives': 'https://youtu.be/zGmCCtt2R48?si=8HIoTrayBel_s98_',
-    'Pompes large écart': 'https://youtu.be/mbdJlPnIhXQ?si=JqyLvpoy8cjDrsV8',
-    'Dips sur chaise': 'https://youtu.be/PjVF-FF8JkU?si=SfJNyCd3z2iEg7w7',
-    'Curl élastique': 'https://youtu.be/2KzSMYRXB-8?si=UKCwiKqPbcigkr_U',
-    'Pompes triceps mur': 'https://youtu.be/6q6OhfP33bk?si=kfrexOovdxfvGtnJ',
+    'Pompes classiques': 'https://www.youtube.com/embed/y68UkKWkh08',
+    'Pompes inclinées': 'https://www.youtube.com/embed/rtqbRn5tqrs',
+    'Pompes déclinées': 'https://www.youtube.com/embed/1eccZxpmRsk',
+    'Pompes serrées': 'https://www.youtube.com/embed/REjGhqa-63E',
+    'Pompes explosives': 'https://www.youtube.com/embed/zGmCCtt2R48',
+    'Pompes large écart': 'https://www.youtube.com/embed/mbdJlPnIhXQ',
+    'Dips sur chaise': 'https://www.youtube.com/embed/PjVF-FF8JkU',
+    'Curl élastique': 'https://www.youtube.com/embed/2KzSMYRXB-8',
+    'Pompes triceps mur': 'https://www.youtube.com/embed/6q6OhfP33bk',
     'Dips sol chevilles': 'https://www.youtube.com/embed/bO5zK8AKkI4',
-    'Punch en l'air': 'https://www.youtube.com/embed/fRrQLI8pBLU',
-    'Squat poids corps': 'https://youtu.be/hNOGNlTKIYg?si=7uxu8igtCzUeCSj4',
-    'Fentes avant': 'https://youtu.be/1Ac8Z0RyDX4?si=yX6EpZy65degnNQx',
-    'Fentes arrière': 'https://youtu.be/7FADlBI9H_4?si=qOf7h4etuIIVd1k9',
-    'Hip thrust canapé': 'https://youtu.be/RR0oZhhUVWo?si=sJNkMPIROvLqfaAF',
-    'Squats pistol progression': 'https://youtu.be/vq5-vdgJc0I?si=YUMWjY7FiXO5Tfxd',
-    'Sauts box poids corps': 'https://youtu.be/YwlXzR6txd8?si=by2peSyLl8FLmyfQ',
-    'Planche classique': 'https://youtu.be/b7LmuXITeVM?si=sR2gcDZb4J-4PUOG',
-    'Crunch au sol': 'https://youtu.be/ylepxaWA0ng?si=uni_2p9yNRa21iX_',
-    'Planche latérale': 'https://youtu.be/fIkpxa-kuIA?si=-D9DhJoiCEqN0S3p',
-    'Relever jambes sol': 'https://youtu.be/ECSl36lXRB0?si=kpyF12Nth1uo_-DD',
-    'Bicycle crunch': 'https://youtu.be/VaL7XWK3MVE?si=7jNLK8NzLgYqc8hX',
-    'Superman au sol': 'https://youtu.be/dmaDOON5JBU?si=hG3WrswoisYduGMh',
-    'Rowing élastique': 'https://youtu.be/BI647VkG0iY?si=U9HQwr7eOe1se54Y',
-    'Bird dog': 'https://youtu.be/k2azbhhuKuM?si=kGDGvj2OlXNf8hwp',
-    'Squat barre': 'https://youtu.be/J_Zm4XvE__s?si=VUWBS24VcOoCnlwq',
-    'Presse cuisses': 'https://youtu.be/h5NxegwgEkU?si=Ev-8G-m7Z2ooYmP-',
-    'Leg curl allongé': 'https://youtu.be/SbSNUXPRkc8?si=TDMCSslLBYLiVjp9',
-    'Leg extension': 'https://youtu.be/4ZDm5EbiFI8?si=OmDnfWQLvZ0xWQ_n',
-    'Fente barre salle': 'https://youtu.be/VQoCfxPNpiU?si=D5L2ky7xR1c0NFQi',
-    'Hack squat machine': 'https://youtu.be/u_1a0nWG7vQ?si=doyLNcZuXETF_P95',
-    'Développé couché barre': 'https://youtu.be/SngodvMU0JA?si=CXjtvdFhWDddJ05V',
-    'Développé incliné barre': 'https://youtu.be/RQ7U42i2DH4?si=e4BYQnli9oIOpqYq',
-    'Développé couché haltères': 'https://youtu.be/UKSxlfZ9dm8?si=4RHFXczhqDWZ4iII',
-    'Écartés machine pec deck': 'https://youtu.be/DtiDEA-UqwA?si=fSwhE17iGvy1SW5B',
-    'Écartés inclinés haltères': 'https://youtu.be/FXr_JS4yVdA?si=GrtmHEhDNrTAEWGj',
-    'Push up décliné barre': 'https://youtu.be/QBlYp-EwHlo?si=gU_bKAmjMDghUOu0,
+    'Punch en l\'air': 'https://www.youtube.com/embed/fRrQLI8pBLU',
+    'Squat poids corps': 'https://www.youtube.com/embed/hNOGNlTKIYg',
+    'Fentes avant': 'https://www.youtube.com/embed/1Ac8Z0RyDX4',
+    'Fentes arrière': 'https://www.youtube.com/embed/7FADlBI9H_4',
+    'Hip thrust canapé': 'https://www.youtube.com/embed/RR0oZhhUVWo',
+    'Squats pistol progression': 'https://www.youtube.com/embed/vq5-vdgJc0I',
+    'Sauts box poids corps': 'https://www.youtube.com/embed/YwlXzR6txd8',
+    'Planche classique': 'https://www.youtube.com/embed/b7LmuXITeVM',
+    'Crunch au sol': 'https://www.youtube.com/embed/ylepxaWA0ng',
+    'Planche latérale': 'https://www.youtube.com/embed/fIkpxa-kuIA',
+    'Relever jambes sol': 'https://www.youtube.com/embed/ECSl36lXRB0',
+    'Bicycle crunch': 'https://www.youtube.com/embed/VaL7XWK3MVE',
+    'Superman au sol': 'https://www.youtube.com/embed/dmaDOON5JBU',
+    'Rowing élastique': 'https://www.youtube.com/embed/BI647VkG0iY',
+    'Bird dog': 'https://www.youtube.com/embed/k2azbhhuKuM',
+    'Squat barre': 'https://www.youtube.com/embed/J_Zm4XvE__s',
+    'Presse cuisses': 'https://www.youtube.com/embed/h5NxegwgEkU',
+    'Leg curl allongé': 'https://www.youtube.com/embed/SbSNUXPRkc8',
+    'Leg extension': 'https://www.youtube.com/embed/4ZDm5EbiFI8',
+    'Fente barre salle': 'https://www.youtube.com/embed/VQoCfxPNpiU',
+    'Hack squat machine': 'https://www.youtube.com/embed/u_1a0nWG7vQ',
+    'Développé couché barre': 'https://www.youtube.com/embed/SngodvMU0JA',
+    'Développé incliné barre': 'https://www.youtube.com/embed/RQ7U42i2DH4',
+    'Développé couché haltères': 'https://www.youtube.com/embed/UKSxlfZ9dm8',
+    'Écartés machine pec deck': 'https://www.youtube.com/embed/DtiDEA-UqwA',
+    'Écartés inclinés haltères': 'https://www.youtube.com/embed/FXr_JS4yVdA',
+    'Push up décliné barre': 'https://www.youtube.com/embed/QBlYp-EwHlo',
     'Tractions large': 'https://www.youtube.com/embed/eGo4IYlbE5g',
-    'Rowing barre': 'https://youtu.be/_W377Z_TPxs?si=MpKLO-WG7ePDrUXC',
-    'Rowing haltères unilatéral': 'https://youtu.be/10FJPoDm9gw?si=SkMkuuWNtrEqvhhW',
-    'Tirage vertical': 'https://youtu.be/2Y4N2KoFg08?si=OfnuNczRkNNgFf62',
-    'Pull-over poulie': 'https://youtu.be/nGOUrdqpwNs?si=i5fS3Mpcsxkczc0i',
-    'Rowing machine': 'https://youtu.be/ij4095Oo1BA?si=CF7L-WMC4I2YB9bZ',
-    'Développé épaules haltères': 'https://youtu.be/CE9KiCPFw0E?si=zqN9P95ToxiOTzVT',
-    'Élévations latérales haltères': 'https://youtu.be/DC8ceKPj4TM?si=kfTtsoWdGZg_W77F',
-    'Oiseau haltères incliné': 'https://youtu.be/CqfSOJcvo04?si=ziX_VelZdMXIspdP',
-    'Élévations frontales haltères': 'https://youtu.be/B4KaLoOXl0Q?si=375X0jeuVWNvHfzc',
-    'Crunch poulie': 'https://youtu.be/_z8OvPOl4yc?si=ugeCieSmzcOrSA3V',
-    'Ab wheel rollout': 'https://youtu.be/A3uK5TPzHq8?si=ryJXI1_pmuZNNugk',
-    'Relevés jambes barre': 'https://youtu.be/LxNxg8VATOg?si=JHpV6yu95u8kOK2i',
-    'One Arm Pull-up': 'https://youtu.be/zoOC1BIriAU?si=5LPAHQGrSLF__Ryr',
-    'Muscle Up': 'https://youtu.be/_eQ2gw_Gg5Y?si=U83WBa2GxXfg8-C0',
-    'Front Lever Hold': 'https://youtu.be/srMJ0FvF-6s?si=XVK-G8G3nAAJhejq',
-    'Handstand Push-up': 'https://youtu.be/qbRbM6d5ddM?si=GRwbIksItXQKP6xU',
-    'Pistol Squat (1 jambe)': 'https://youtu.be/snNPOu6KeAI?si=FpVqdflA5jN9DJiw',
+    'Rowing barre': 'https://www.youtube.com/embed/_W377Z_TPxs',
+    'Rowing haltères unilatéral': 'https://www.youtube.com/embed/10FJPoDm9gw',
+    'Tirage vertical': 'https://www.youtube.com/embed/2Y4N2KoFg08',
+    'Pull-over poulie': 'https://www.youtube.com/embed/nGOUrdqpwNs',
+    'Rowing machine': 'https://www.youtube.com/embed/ij4095Oo1BA',
+    'Développé épaules haltères': 'https://www.youtube.com/embed/CE9KiCPFw0E',
+    'Élévations latérales haltères': 'https://www.youtube.com/embed/DC8ceKPj4TM',
+    'Oiseau haltères incliné': 'https://www.youtube.com/embed/CqfSOJcvo04',
+    'Élévations frontales haltères': 'https://www.youtube.com/embed/B4KaLoOXl0Q',
+    'Crunch poulie': 'https://www.youtube.com/embed/_z8OvPOl4yc',
+    'Ab wheel rollout': 'https://www.youtube.com/embed/A3uK5TPzHq8',
+    'Relevés jambes barre': 'https://www.youtube.com/embed/LxNxg8VATOg',
+    'One Arm Pull-up': 'https://www.youtube.com/embed/zoOC1BIriAU',
+    'Muscle Up': 'https://www.youtube.com/embed/dgJsU_JWD_w',
+    'Front Lever Hold': 'https://www.youtube.com/embed/srMJ0FvF-6s',
+    'Handstand Push-up': 'https://www.youtube.com/embed/qbRbM6d5ddM',
+    'Pistol Squat (1 jambe)': 'https://www.youtube.com/embed/snNPOu6KeAI',
 };
 
 // ============= DATA EXERCICES =============
@@ -500,51 +822,760 @@ const EXOS = [
     { nom: 'Relevés jambes barre', pole: 'salle', muscle: 'abdos', desc: 'Abdos bas intense', prep: 'Suspendu, relever jambes 90°. 3x10-12 reps', tips: 'Très efficace.' },
 ];
 
+// ============= DATA RECETTES COMPLÈTES AVEC IMAGES =============
 const RECIPES_DATA = [
-    { repas: 'petit-dej', nom: 'Pudding chia fraise protéiné', temps: 15, prot: 20, cal: 280, benefices: 'Petit-déj protéiné parfait, sans cuisson.', prep: 'INGRÉDIENTS: 40g chia, 200ml lait, 80g yaourt grec, 100g fraises, 10ml miel.\nPRÉP (veille): Mélanger chia+lait+yaourt, laisser 4h frigo.\nMATIN: Ajouter fraises, miel, mélanger 30sec.' },
-    { repas: 'petit-dej', nom: 'Pancakes vegan banane', temps: 30, prot: 12, cal: 320, benefices: 'Énergie durable pré-séance, sans œufs.', prep: 'INGRÉDIENTS: 2 bananes, 150ml lait veg, 150g farine, 5g levure, sel, 5ml huile coco.\nMÉLANGER: Bananes écrasées + lait+farine+levure+sel lisse.\nCUISSON: Poêle medium 2-3min chaque côté.' },
-    { repas: 'petit-dej', nom: 'Œufs brouillés + toast complet', temps: 10, prot: 18, cal: 280, benefices: 'Protéines simples rapides.', prep: 'INGRÉDIENTS: 3 œufs, 2 tranches pain complet, 10g beurre, sel/poivre.\nCUISSON: Beurre poêle moyen-bas. Œufs mélanger 4-5min. Toast parallèle 2-3min.' },
-    { repas: 'petit-dej', nom: 'Smoothie protéiné miel', temps: 5, prot: 25, cal: 300, benefices: 'Rapide absorption pré-entraînement.', prep: 'INGRÉDIENTS: 1 banane, 200ml lait, 30g whey chocolat, 15ml miel, 50g avoine.\nMIXER: Tous ingrédients 30sec.\nAJOUTER: Glaçons si froid souhaité.' },
-    { repas: 'petit-dej', nom: 'Oeufs à la coque tomate', temps: 8, prot: 16, cal: 200, benefices: 'Léger rapide riche minéraux.', prep: 'INGRÉDIENTS: 2 œufs bio, 150g tomates cerises, sel, poivre, 5ml huile olive.\nCUISSON: Eau bouillante 6min, tremper eau froide 30sec.\nVERSER: Huile + tomates + sel + poivre sur le côté.' },
-    { repas: 'petit-dej', nom: 'Cottage cheese pancakes', temps: 12, prot: 22, cal: 310, benefices: 'Ultra protéiné faible carbs.', prep: 'INGRÉDIENTS: 150g cottage cheese, 2 œufs, 1 banane, 5ml vanille, cannelle.\nMIXER: 30sec lisse parfait.\nCUISSON: Poêle medium 3min chaque côté.' },
-    { repas: 'dejeuner', nom: 'Riz blanc + poulet grillé', temps: 45, prot: 45, cal: 580, benefices: 'Post-séance carbs + protéines.', prep: 'RIZ: 200g riz blanc, eau 2:1, bouillir 18min.\nPOULET: 250g poitrine, sel/poivre, poêle 12min deux côtés.\nSAUCE: citron+ail+herbes.' },
-    { repas: 'dejeuner', nom: 'Pasta complet + sauce tomate', temps: 30, prot: 20, cal: 520, benefices: 'Carbs complexes + lycopène.', prep: 'PASTA: 200g fusilli complet, eau bouillante 12min.\nSAUCE: Tomates 400g + oignon+ail, mijoter 15min.\nMIX: Pâtes+sauce, PARMESAN râpé.' },
-    { repas: 'dejeuner', nom: 'Quinoa + légumes rôtis', temps: 40, prot: 16, cal: 450, benefices: 'Grains complets + fibres.', prep: 'QUINOA: 150g quinoa, eau 2:1, cuire 15min.\nLÉGUMES: Courgettes+poivrons+carottes, huile+herbes, rôtir 25min 200°C.\nMIX: Quinoa+légumes.' },
-    { repas: 'dejeuner', nom: 'Chipotle chicken bowl', temps: 35, prot: 42, cal: 580, benefices: 'Épices + protéines maximize.', prep: 'RIZ: 200g riz basmati, eau 2:1, bouillir 18min.\nPOULET: 250g poitrine, sauce chipotle mayonnaise, poêle 12min.\nGARNISH: Cheddar râpé, poivrons, oignons, coriandre frais.' },
-    { repas: 'dejeuner', nom: 'Beef taco grande', temps: 25, prot: 38, cal: 520, benefices: 'Boeuf savoureux simple.', prep: 'VIANDE: 250g boeuf haché 90%, épices taco, poêle 10min.\nTORTILLAS: 3 tortillas complet réchauffées 1min.\nGARNISH: Laitue, tomate, fromage, sauce sour cream 20ml.' },
-    { repas: 'dejeuner', nom: 'Tofu scramble', temps: 15, prot: 19, cal: 280, benefices: 'Végétarien protéiné.', prep: 'TOFU: 300g tofu nature écrasé à la fourchette.\nCUISSON: Poêle + curcuma (couleur jaune), ail, oignon, 8min.\nGARNISH: Basilic frais, poivre noir, sel himalayan.' },
-    { repas: 'collation', nom: 'Barre protéinée maison', temps: 15, prot: 20, cal: 280, benefices: 'Collation entre séances.', prep: 'INGRÉDIENTS: 100g avoine, 50g beurre cacahuète, 50g whey, 30ml miel, chocolat 50g.\nMÉLANGER: Avoine+beurre+whey+miel.\nMOULER: Chocolat fondu, couche base, puis mélange, puis chocolat dessus.\nFRIGO 4h.' },
-    { repas: 'collation', nom: 'Greek yogurt myrtilles', temps: 5, prot: 15, cal: 200, benefices: 'Antioxydants + protéines.', prep: 'INGRÉDIENTS: 200g yaourt grec, 100g myrtilles fraiches, 15g miel, 20g granola.\nVERSER: Yaourt bol.\nAJOUTER: Myrtilles+miel+granola.\nCONSOMMER direct.' },
-    { repas: 'collation', nom: 'Protein shake banane', temps: 3, prot: 28, cal: 250, benefices: 'Rapide complète post-séance.', prep: 'INGRÉDIENTS: 1 banane, 250ml lait écrémé, 35g whey, 10g cacahuète poudre, glaçons.\nMIXER: 45sec smooth.' },
-    { repas: 'collation', nom: 'Cacahuètes noix mix', temps: 1, prot: 12, cal: 200, benefices: 'Gras sain énergie.', prep: 'INGRÉDIENTS: 50g cacahuètes non salées, 30g noix, 20g raisins secs.\nMELANGER: Bol sec.' },
-    { repas: 'diner', nom: 'Saumon + riz patate douce', temps: 50, prot: 50, cal: 650, benefices: 'Omega-3 + carbs complexes.', prep: 'SAUMON: 250g filet, citron+sel, four 180°C 12min.\nPATATE: 300g patate douce, eau bouillante, 15min.\nMIX: Saumon+patate+riz.' },
-    { repas: 'diner', nom: 'Steak + légumes vapeur', temps: 35, prot: 55, cal: 580, benefices: 'Protéines rouges + micronutriments.', prep: 'STEAK: 250g bœuf, sel/poivre, poêle chaude 3-4min chaque côté saignant.\nLÉGUMES: Brocoli+carottes, vapeur 10min.\nSAUCE: Persil+ail.' },
-    { repas: 'diner', nom: 'Poulet feta légumes', temps: 40, prot: 48, cal: 520, benefices: 'Méditerranéen savoureux.', prep: 'POULET: 250g poitrine, herbes provençales, four 200°C 18min.\nLÉGUMES: Tomates, roquette, oignon rouge.\nFETYA: 60g feta émiettée.' },
-    { repas: 'diner', nom: 'Morue blanche broccoli', temps: 35, prot: 44, cal: 380, benefices: 'Poisson maigre léger.', prep: 'POISSON: 250g morue, citron+estragon, vapeur 12min.\nBROCCOLI: 300g frais vapeur 10min.\nSAUCE: Huile olive+citron pressé.' },
-    { repas: 'diner', nom: 'Tilapia riz complet', temps: 30, prot: 40, cal: 450, benefices: 'Poisson économique complet.', prep: 'TILAPIA: 250g filet, sel, gril 8-10min deux côtés.\nRIZ: 150g riz complet, eau 2.5:1, 25min.\nLÉGUME: Haricots verts vapeur.' },
+    {
+        repas: 'petit-dej',
+        nom: 'Pudding chia fraise protéiné',
+        temps: 15,
+        prot: 20,
+        cal: 280,
+        benefices: 'Petit-déj protéiné parfait, sans cuisson. Riche en oméga-3 et fibres.',
+        image: 'https://images.unsplash.com/photo-1590080876-b4ccd4c37d5e?w=400&h=300&fit=crop',
+        ingredients: [
+            '40g graines de chia',
+            '200ml lait demi-écrémé',
+            '80g yaourt grec nature',
+            '100g fraises fraiches',
+            '10ml miel brut',
+            'Pincée de vanille',
+            '5g granola (optionnel)'
+        ],
+        preparation: [
+            'La veille: Verser le lait dans un verre ou un bol.',
+            'Ajouter les graines de chia et bien mélanger (éviter les grumeaux).',
+            'Incorporer le yaourt grec et la vanille.',
+            'Laisser reposer au réfrigérateur minimum 4 heures (ou toute la nuit).',
+            'Le matin: Ajouter les fraises fraîches coupées en morceaux.',
+            'Verser le miel par-dessus.',
+            'Garnir avec du granola si souhaité.',
+            'Mélanger légèrement et déguster frais.'
+        ]
+    },
+    {
+        repas: 'petit-dej',
+        nom: 'Pancakes vegan banane',
+        temps: 30,
+        prot: 12,
+        cal: 320,
+        benefices: 'Énergie durable pré-séance, sans œufs ni produits laitiers.',
+        image: 'https://images.unsplash.com/photo-1490025195234-efedee1c5218?w=400&h=300&fit=crop',
+        ingredients: [
+            '2 bananes mûres écrasées',
+            '150ml lait végétal (amande, soja ou avoine)',
+            '150g farine blanche ou complète',
+            '5g levure chimique',
+            'Pincée de sel marin',
+            '5ml huile de coco',
+            '5ml vanille liquide',
+            '30g sirop d\'érable'
+        ],
+        preparation: [
+            'Écraser les 2 bananes mûres à la fourchette jusqu\'à obtenir une purée lisse.',
+            'Ajouter le lait végétal progressivement en mélangeant.',
+            'Dans un autre bol, verser la farine, levure, sel et vanille.',
+            'Mélanger les ingrédients secs à la fourchette.',
+            'Verser le mélange humide sur le sec et mélanger jusqu\'à homogénéité (quelques grumeaux OK).',
+            'Chauffer l\'huile de coco à feu moyen dans une poêle antiadhésive.',
+            'Verser des petites portions de pâte et cuire 2-3 minutes jusqu\'à léger dorage.',
+            'Retourner délicatement et cuire 2-3 minutes de l\'autre côté.',
+            'Servir avec le sirop d\'érable et des fruits frais.'
+        ]
+    },
+    {
+        repas: 'petit-dej',
+        nom: 'Œufs brouillés + toast complet',
+        temps: 10,
+        prot: 18,
+        cal: 280,
+        benefices: 'Protéines simples et rapides à préparer. Très rassasiant.',
+        image: 'https://images.unsplash.com/photo-1541519227354-08fa5d50c44d?w=400&h=300&fit=crop',
+        ingredients: [
+            '3 œufs fermiers',
+            '2 tranches pain complet riche en fibres',
+            '10g beurre doux',
+            'Sel marin au goût',
+            'Poivre noir moulu',
+            'Herbes fraîches (persil, ciboulette optionnel)'
+        ],
+        preparation: [
+            'Casser les 3 œufs dans un bol et battre légèrement avec une fourchette.',
+            'Verser le beurre dans une poêle à feu moyen-bas.',
+            'Laisser fondre le beurre sans le brûler (attendez un léger sifflement).',
+            'Verser les œufs battus dans la poêle.',
+            'Mélanger lentement et continuellement avec une spatule en bois, 4-5 minutes.',
+            'Les œufs doivent rester moelleux et ne pas cuire trop longtemps.',
+            'Assaisonner avec sel et poivre noir. Ajouter les herbes fraîches.',
+            'Toaster les 2 tranches de pain complet 2-3 minutes au grille-pain.',
+            'Servir les œufs brouillés sur ou à côté du toast chaud.'
+        ]
+    },
+    {
+        repas: 'petit-dej',
+        nom: 'Smoothie protéiné miel',
+        temps: 5,
+        prot: 25,
+        cal: 300,
+        benefices: 'Rapide absorption pré-entraînement. Excellent pour le muscle.',
+        image: 'https://images.unsplash.com/photo-1590080875515-8a3a8dc5f156?w=400&h=300&fit=crop',
+        ingredients: [
+            '1 banane moyenne fraîche',
+            '250ml lait demi-écrémé froid',
+            '35g whey protéine saveur chocolat ou neutre',
+            '15ml miel liquide pur',
+            '50g avoine flocons',
+            '1 poignée glaçons',
+            'Facultatif: 10g cacahuète poudre'
+        ],
+        preparation: [
+            'Verser le lait froid dans le mixeur.',
+            'Ajouter la banane coupée en rondelles.',
+            'Verser la poudre de whey protéine.',
+            'Ajouter le miel et l\'avoine flocons.',
+            'Ajouter les glaçons (environ 5-6 glaçons).',
+            'Facultatif: Ajouter la poudre de cacahuète.',
+            'Mixer à vitesse élevée pendant 30-45 secondes.',
+            'Verser dans un verre haute et déguster immédiatement.',
+            'Note: Plus les glaçons sont nombreux, plus le smoothie sera épais et froid.'
+        ]
+    },
+    {
+        repas: 'petit-dej',
+        nom: 'Oeufs à la coque tomate',
+        temps: 8,
+        prot: 16,
+        cal: 200,
+        benefices: 'Léger, rapide et riche en minéraux. Parfait petit-déj léger.',
+        image: 'https://images.unsplash.com/photo-1539755519065-edc15cfdaae4?w=400&h=300&fit=crop',
+        ingredients: [
+            '2 œufs bio fermiers',
+            '150g tomates cerises fraîches',
+            'Sel marin fin au goût',
+            'Poivre noir moulin',
+            '5ml huile d\'olive extra vierge',
+            'Basilic frais (optionnel)',
+            'Filet de vinaigre balsamique (optionnel)'
+        ],
+        preparation: [
+            'Porter l\'eau à ébullition dans une petite casserole.',
+            'Plonger délicatement les 2 œufs dans l\'eau bouillante.',
+            'Laisser cuire exactement 6 minutes (coque moelleux).',
+            'Pendant ce temps, couper les tomates cerises en 2.',
+            'Verser l\'huile d\'olive dans un petit bol.',
+            'Après 6 min, tremper les œufs 30 secondes dans eau froide pour arrêter la cuisson.',
+            'Placer les œufs dans les coquetiers.',
+            'Mettre les tomates cerises sur un petit assiette à côté.',
+            'Verser l\'huile d\'olive sur les tomates.',
+            'Assaisonner avec sel, poivre, et basilic frais.',
+            'Déguster les œufs à la cuillère directement de la coquille avec les tomates.'
+        ]
+    },
+    {
+        repas: 'petit-dej',
+        nom: 'Cottage cheese pancakes',
+        temps: 12,
+        prot: 22,
+        cal: 310,
+        benefices: 'Ultra protéiné, faible en carbs. Parfait post-séance.',
+        image: 'https://images.unsplash.com/photo-1567521464027-f127ff144326?w=400&h=300&fit=crop',
+        ingredients: [
+            '150g cottage cheese nature',
+            '2 œufs entiers',
+            '1 banane de taille moyenne',
+            '5ml extrait de vanille',
+            'Pincée de cannelle',
+            'Pincée de sel',
+            '5ml huile de coco',
+            '15ml sirop d\'érable'
+        ],
+        preparation: [
+            'Verser le cottage cheese dans un mixeur.',
+            'Ajouter les 2 œufs entiers.',
+            'Ajouter la banane coupée en morceaux.',
+            'Verser la vanille et ajouter cannelle et sel.',
+            'Mixer jusqu\'à obtenir une pâte lisse sans grumeaux (30 secondes).',
+            'Verser la pâte dans un bol et laisser reposer 1 minute.',
+            'Chauffer l\'huile de coco dans une poêle antiadhésive à feu moyen.',
+            'Verser des portions de pâte et cuire 3 minutes de chaque côté.',
+            'Les pancakes doivent être légèrement dorés sur les bords.',
+            'Servir immédiatement avec le sirop d\'érable.'
+        ]
+    },
+    {
+        repas: 'dejeuner',
+        nom: 'Riz blanc + poulet grillé',
+        temps: 45,
+        prot: 45,
+        cal: 580,
+        benefices: 'Post-séance idéal. Carbs + protéines pour la récupération.',
+        image: 'https://images.unsplash.com/photo-1598103442097-8b74394b95c6?w=400&h=300&fit=crop',
+        ingredients: [
+            '200g riz blanc basmati grain long',
+            '250g poitrine de poulet fermier',
+            'Sel marin fin',
+            'Poivre noir moulu',
+            '10ml huile d\'olive',
+            '1 citron frais',
+            '2 gousses ail',
+            'Herbes fraîches (persil, thym)'
+        ],
+        preparation: [
+            'RIZ: Rincer le riz blanc sous eau froide jusqu\'à eau claire.',
+            'Verser 200ml d\'eau dans une casserole.',
+            'Ajouter le riz rincé et un pincée de sel.',
+            'Porter à ébullition, puis baisser le feu au minimum.',
+            'Couvrir et laisser cuire 18 minutes sans soulever le couvercle.',
+            'POULET: Sortir la poitrine de poulet et la sécher avec du papier essuie-tout.',
+            'Hacher l\'ail finement.',
+            'Frotter le poulet avec l\'huile d\'olive, sel, poivre et ail.',
+            'Chauffer une poêle grill à feu vif (très chaude).',
+            'Placer le poulet sur la poêle chaude, cuire 6 minutes sans bouger.',
+            'Retourner et cuire 6 minutes de l\'autre côté (la viande doit être blanche à cœur).',
+            'Presser le citron sur le poulet chaud.',
+            'Servir le riz avec le poulet tranchés fin. Garnir avec herbes fraîches.'
+        ]
+    },
+    {
+        repas: 'dejeuner',
+        nom: 'Pasta complet + sauce tomate',
+        temps: 30,
+        prot: 20,
+        cal: 520,
+        benefices: 'Carbs complexes riches en fibres. Lycopène antioxydant.',
+        image: 'https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=400&h=300&fit=crop',
+        ingredients: [
+            '200g pâtes complet (fusilli, penne ou spaghetti)',
+            '400g tomates cerises fraîches OU 1 boîte 400g tomates concassées',
+            '1 oignon rouge moyen',
+            '3 gousses ail',
+            '10ml huile d\'olive',
+            'Sel marin, poivre noir',
+            '50g parmesan râpé frais',
+            'Basilic frais (1/2 botte)',
+            'Pincée sucre ou miel'
+        ],
+        preparation: [
+            'SAUCE: Émincer l\'oignon rouge finement.',
+            'Hacher l\'ail pressé ou très finement.',
+            'Verser l\'huile d\'olive dans une casserole à feu moyen.',
+            'Faire revenir l\'oignon 3 minutes jusqu\'à translucide.',
+            'Ajouter l\'ail et cuire 1 minute (ne pas brûler).',
+            'Ajouter les tomates (fraîches coupées ou en boîte).',
+            'Ajouter sel, poivre et une pincée de sucre pour équilibrer l\'acidité.',
+            'Laisser mijoter 15 minutes à feu moyen, remuer occasionnellement.',
+            'PÂTES: Remplir une grande casserole d\'eau et porter à ébullition.',
+            'Ajouter sel marin généreux (l\'eau doit être comme l\'eau de mer).',
+            'Verser les pâtes complet et remuer.',
+            'Cuire 12 minutes selon l\'emballage (al dente).',
+            'Égoutter les pâtes (réserver 100ml eau de cuisson).',
+            'Verser les pâtes dans la sauce.',
+            'Ajouter 50ml eau de cuisson et mélanger 1 minute (la sauce doit napper les pâtes).',
+            'Servir dans une assiette creuse.',
+            'Garnir généreusement avec parmesan râpé et basilic frais.'
+        ]
+    },
+    {
+        repas: 'dejeuner',
+        nom: 'Quinoa + légumes rôtis',
+        temps: 40,
+        prot: 16,
+        cal: 450,
+        benefices: 'Grains complets + fibres. Protéines complètes du quinoa.',
+        image: 'https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=400&h=300&fit=crop',
+        ingredients: [
+            '150g quinoa sec',
+            '1 courgette verte moyenne',
+            '1 poivron rouge frais',
+            '1 carotte moyenne',
+            '10ml huile d\'olive',
+            'Sel marin, poivre noir',
+            'Herbes provençales séchées',
+            '30g graines courge (optionnel)',
+            '5ml vinaigre de riz (optionnel)'
+        ],
+        preparation: [
+            'QUINOA: Rincer le quinoa sec sous eau froide dans une passoire.',
+            'Verser 300ml eau dans une casserole.',
+            'Ajouter le quinoa rincé et sel.',
+            'Porter à ébullition, puis baisser le feu.',
+            'Couvrir et laisser cuire 15 minutes.',
+            'Laisser reposer 5 minutes hors du feu (couvrir).',
+            'LÉGUMES: Préchauffer le four à 200°C.',
+            'Laver et couper les légumes en cubes uniformes (1cm).',
+            'Courgette: cubes réguliers.',
+            'Poivron: enlever les graines et couper en carrés.',
+            'Carotte: couper en petits bâtonnets ou cubes.',
+            'Verser huile d\'olive sur une plaque de cuisson.',
+            'Ajouter les légumes, sel, poivre, herbes provençales.',
+            'Bien mélanger pour que tous les légumes soient huilés.',
+            'Étaler sur la plaque en une seule couche.',
+            'Rôtir au four 25 minutes, remuer à mi-cuisson (après 12 min).',
+            'Les légumes doivent être tendres et légèrement caramélisés.',
+            'Verser le quinoa dans un bol.',
+            'Ajouter les légumes rôtis chauds.',
+            'Ajouter les graines de courge et un trait de vinaigre de riz.',
+            'Mélanger délicatement et servir chaud ou tiède.'
+        ]
+    },
+    {
+        repas: 'dejeuner',
+        nom: 'Chipotle chicken bowl',
+        temps: 35,
+        prot: 42,
+        cal: 580,
+        benefices: 'Épices + protéines. Saveur épicée réveille la séance.',
+        image: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400&h=300&fit=crop',
+        ingredients: [
+            '250g poitrine poulet fermier',
+            '200g riz basmati blanc',
+            '2 piments chipotle en conserve (ou 10g chipotle poudre)',
+            '50g mayonnaise légère',
+            '30g cheddar râpé fort',
+            '1 poivron multicolore',
+            '1 oignon rouge',
+            '30g coriandre fraîche',
+            'Sel, poivre, citron frais',
+            '10ml huile d\'olive'
+        ],
+        preparation: [
+            'RIZ: Rincer le riz basmati.',
+            'Verser 400ml eau avec pincée de sel.',
+            'Verser le riz et porter à ébullition.',
+            'Couvrir, réduire le feu, cuire 18 minutes.',
+            'SAUCE CHIPOTLE: Égoutter les piments chipotle.',
+            'Hacher finement les piments chipotle.',
+            'Mélanger avec 50g mayonnaise.',
+            'Ajouter jus de citron et sel au goût.',
+            'POULET: Couper la poitrine en cubes réguliers (2cm).',
+            'Chauffer l\'huile dans une poêle à feu vif.',
+            'Saler et poivrer le poulet.',
+            'Cuire 5 minutes de chaque côté (cuit à cœur).',
+            'PRÉPARATION BOWL: Placer le riz basmati dans un bol large.',
+            'Ajouter les cubes de poulet chauds sur le riz.',
+            'Napper généreusement avec la sauce chipotle mayo.',
+            'Ajouter les poivrons multicolores coupés en fines tranches.',
+            'Ajouter l\'oignon rouge coupé très fin.',
+            'Garnir avec cheddar râpé et coriandre fraîche.',
+            'Presser du citron frais par-dessus et servir chaud.'
+        ]
+    },
+    {
+        repas: 'dejeuner',
+        nom: 'Beef taco grande',
+        temps: 25,
+        prot: 38,
+        cal: 520,
+        benefices: 'Boeuf savoureux simple et rapide. High protein.',
+        image: 'https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=400&h=300&fit=crop',
+        ingredients: [
+            '250g boeuf haché 5% matière grasse',
+            '3 tortillas complet grand format',
+            '15ml épices taco (mélange maison ou du commerce)',
+            '1 laitue fraîche (romaine ou laitue iceberg)',
+            '2 tomates fraîches moyennes',
+            '50g fromage cheddar râpé fort',
+            '30ml crème fraîche légère (sour cream)',
+            '1 oignon blanc',
+            'Sel et poivre'
+        ],
+        preparation: [
+            'VIANDE: Émincer l\'oignon blanc finement.',
+            'Chauffer une poêle à feu vif (très chaude).',
+            'Verser le boeuf haché et l\'oignon.',
+            'Casser la viande avec une cuillère en bois pendant la cuisson.',
+            'Cuire 7 minutes à feu vif (la viande doit être bien cuite et dorée).',
+            'Ajouter les épices taco (15ml).',
+            'Ajouter 50ml eau pour créer une sauce légère.',
+            'Laisser mijoter 3 minutes (la viande doit être humide, pas sèche).',
+            'Assaisonner avec sel et poivre au goût.',
+            'GARNITURE: Laver et égoutter la laitue. Couper en lanières.',
+            'Couper les tomates en dés ou tranches fines.',
+            'TORTILLAS: Chauffer les tortillas directement dans une poêle sèche, 1 minute de chaque côté (les assouplir).',
+            'MONTAGE: Placer une tortilla sur un planche ou assiette.',
+            'Ajouter une portion de laitue au centre.',
+            'Ajouter une cuillère généreuse de boeuf épicé chaud.',
+            'Garnir avec tomates, cheddar râpé et sour cream.',
+            'Replier ou rouler légèrement la tortilla.',
+            'Répéter pour 3 tacos.',
+            'Servir immédiatement avec sauce piment frais en accompagnement (optionnel).'
+        ]
+    },
+    {
+        repas: 'dejeuner',
+        nom: 'Tofu scramble',
+        temps: 15,
+        prot: 19,
+        cal: 280,
+        benefices: 'Végétarien protéiné. Alternative saine aux œufs.',
+        image: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400&h=300&fit=crop',
+        ingredients: [
+            '300g tofu ferme nature (bloc).',
+            '1 oignon jaune moyen',
+            '2 gousses ail',
+            '3g curcuma poudre (pour couleur jaune)',
+            '10ml huile d\'olive',
+            'Sel marin, poivre noir',
+            'Basilic frais 1/2 botte',
+            'Sel himalayan (optionnel)',
+            '100ml lait végétal (facultatif pour sauce)'
+        ],
+        preparation: [
+            'Égoutter le bloc de tofu (l\'éponger avec du papier essuie-tout).',
+            'Écraser le tofu à la fourchette ou casser en petits cubes irréguliers.',
+            'Émincer l\'oignon jaune finement.',
+            'Hacher l\'ail très finement.',
+            'Chauffer l\'huile d\'olive dans une grande poêle à feu moyen.',
+            'Faire revenir l\'oignon 3 minutes jusqu\'à translucide.',
+            'Ajouter l\'ail et cuire 1 minute.',
+            'Verser le tofu écrasé dans la poêle.',
+            'Saupoudrer avec le curcuma et bien mélanger (le tofu doit prendre une teinte jaune dorée).',
+            'Cuire 8 minutes à feu moyen, remuer fréquemment.',
+            'Le tofu doit se dessécher légèrement et devenir croustillant sur les bords.',
+            'Assaisonner avec sel marin, poivre noir et sel himalayan au goût.',
+            'Ajouter le basilic frais haché en fin de cuisson.',
+            'Servir chaud avec du pain complet ou en burrito avec légumes.'
+        ]
+    },
+    {
+        repas: 'collation',
+        nom: 'Barre protéinée maison',
+        temps: 15,
+        prot: 20,
+        cal: 280,
+        benefices: 'Collation entre séances. Sans additifs de la grande distribution.',
+        image: 'https://images.unsplash.com/photo-1603046891726-36bfd957e2af?w=400&h=300&fit=crop',
+        ingredients: [
+            '100g avoine flocons fins',
+            '50g beurre de cacahuète naturel',
+            '50g whey protéine poudre saveur chocolat',
+            '30ml miel pur liquide',
+            '50g chocolat noir 70% (pour enrobage)',
+            'Pincée sel marin',
+            '5ml huile de coco (pour enrobage)'
+        ],
+        preparation: [
+            'Verser l\'avoine flocons dans un bol.',
+            'Ajouter le beurre de cacahuète (bien mixer si grumeleux).',
+            'Ajouter la poudre de whey protéine.',
+            'Verser le miel.',
+            'Mélanger intensément à la main (c\'est assez dense).',
+            'Goûter et ajuster le sucre si nécessaire.',
+            'Former des barres de 8x4cm (environ) et les aplatir légèrement.',
+            'Placer les barres sur un papier parchemin.',
+            'ENROBAGE: Casser le chocolat noir en morceaux.',
+            'Faire fondre le chocolat au bain-marie (bol sur casserole d\'eau bouillante).',
+            'Ajouter l\'huile de coco au chocolat fondu (aide au démoulage).',
+            'Tremper chaque barre dans le chocolat fondu pour bien l\'enrober.',
+            'Secouer légèrement l\'excès de chocolat.',
+            'Remettre sur le papier parchemin.',
+            'Placer au réfrigérateur 4 heures minimum (le chocolat doit durcir).',
+            'Stocker dans un conteneur hermétique au réfrigérateur (5-7 jours) ou congélateur (3 semaines).'
+        ]
+    },
+    {
+        repas: 'collation',
+        nom: 'Greek yogurt myrtilles',
+        temps: 5,
+        prot: 15,
+        cal: 200,
+        benefices: 'Antioxydants + protéines. Snack super rapide.',
+        image: 'https://images.unsplash.com/photo-1488477181946-6428a0291840?w=400&h=300&fit=crop',
+        ingredients: [
+            '200g yaourt grec nature épais 0% matière grasse',
+            '100g myrtilles fraîches frais (ou surgelées décongelées)',
+            '15ml miel cru liquide',
+            '20g granola lowfat',
+            'Pincée cannelle moulue (optionnel)',
+            'Glaçons (optionnel)'
+        ],
+        preparation: [
+            'Verser le yaourt grec dans un bol ou un verre haut.',
+            'Ajouter les myrtilles fraîches.',
+            'Verser le miel par-dessus en filet régulier.',
+            'Ajouter la cannelle moulue légèrement.',
+            'Garnir avec le granola lowfat.',
+            'Mélanger légèrement si souhaité (ou laisser stratifié pour plus de texture).',
+            'Ajouter des glaçons si tu souhaites que ce soit plus frais.',
+            'Déguster immédiatement.'
+        ]
+    },
+    {
+        repas: 'collation',
+        nom: 'Protein shake banane',
+        temps: 3,
+        prot: 28,
+        cal: 250,
+        benefices: 'Rapide et complet post-séance. 1 minute de préparation.',
+        image: 'https://images.unsplash.com/photo-1590080876515-8a3a8dc5f156?w=400&h=300&fit=crop',
+        ingredients: [
+            '1 banane de taille moyenne',
+            '250ml lait demi-écrémé froid',
+            '35g whey protéine poudre vanille ou neutre',
+            '10g poudre de cacahuète naturelle',
+            '3-4 glaçons',
+            '5ml miel (optionnel)'
+        ],
+        preparation: [
+            'Verser le lait froid dans le mixeur.',
+            'Couper la banane en rondelles et ajouter.',
+            'Verser la poudre de whey protéine.',
+            'Ajouter la poudre de cacahuète.',
+            'Ajouter les glaçons.',
+            'Facultatif: Ajouter 5ml miel pour plus de sucre.',
+            'Mixer à vitesse élevée pendant 45 secondes.',
+            'Verser dans un verre haute.',
+            'Déguster immédiatement après l\'entraînement.'
+        ]
+    },
+    {
+        repas: 'collation',
+        nom: 'Cacahuètes noix mix',
+        temps: 1,
+        prot: 12,
+        cal: 200,
+        benefices: 'Gras sain et énergie rapide. Idéal avant séance.',
+        image: 'https://images.unsplash.com/photo-1585960545080-5deae50416e9?w=400&h=300&fit=crop',
+        ingredients: [
+            '50g cacahuètes non salées décortiquées',
+            '30g noix cerneaux (noix classiques)',
+            '20g raisins secs naturels',
+            'Pincée sel marin (optionnel)',
+            'Trace miel (optionnel)'
+        ],
+        preparation: [
+            'Verser les cacahuètes dans un petit bol.',
+            'Ajouter les noix cerneau.',
+            'Ajouter les raisins secs.',
+            'Mélanger à la main pour bien combiner.',
+            'Ajouter une pincée de sel si souhaité.',
+            'Verser dans un petit sac zippé ou une boîte.',
+            'À manger comme snack ou en apéro (portion 50g).',
+            'Se conserve 2-3 semaines à température ambiante dans un lieu sec.'
+        ]
+    },
+    {
+        repas: 'diner',
+        nom: 'Saumon + riz patate douce',
+        temps: 50,
+        prot: 50,
+        cal: 650,
+        benefices: 'Omega-3 anti-inflammatoire + carbs complexes. Perfect recovery.',
+        image: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400&h=300&fit=crop',
+        ingredients: [
+            '250g filet de saumon sauvage frais',
+            '300g patate douce (1 medium)',
+            '150g riz basmati blanc',
+            '1 citron frais pressé',
+            '10ml huile d\'olive',
+            'Sel marin, poivre noir',
+            'Herbes fraîches (persil, aneth)'
+        ],
+        preparation: [
+            'SAUMON: Préchauffer le four à 180°C.',
+            'Sortir le filet de saumon et le sécher avec du papier essuie-tout.',
+            'Placer sur une plaque de cuisson couverte de papier parchemin.',
+            'Arroser avec l\'huile d\'olive.',
+            'Presser le jus de citron par-dessus.',
+            'Saler, poivrer généreusement.',
+            'Enfourner 12 minutes (le saumon doit être opaque à cœur).',
+            'PATATE: Éplucher ou brosser la patate douce.',
+            'Couper en cubes réguliers.',
+            'Mettre dans l\'eau bouillante salée.',
+            'Cuire 15 minutes jusqu\'à tendreté (vérifier avec fourchette).',
+            'RIZ: Rincer et cuire 18 minutes dans le rapport eau/riz 2:1.',
+            'MONTAGE: Placer le riz basmati dans l\'assiette.',
+            'Ajouter les cubes de patate douce chaude.',
+            'Placer le filet de saumon par-dessus.',
+            'Garnir avec herbes fraîches et un trait de citron frais.'
+        ]
+    },
+    {
+        repas: 'diner',
+        nom: 'Steak + légumes vapeur',
+        temps: 35,
+        prot: 55,
+        cal: 580,
+        benefices: 'Protéines rouges complètes + micronutriments des légumes.',
+        image: 'https://images.unsplash.com/photo-1432139555190-58524dae6a55?w=400&h=300&fit=crop',
+        ingredients: [
+            '250g steak rumsteak ou faux-filet',
+            '200g brocoli frais (1/2 brocoli)',
+            '150g carottes fraîches',
+            '10ml huile d\'olive',
+            'Sel marin gros grain',
+            'Poivre noir moulin',
+            '3 gousses ail',
+            'Herbes fraîches (persil, thym)'
+        ],
+        preparation: [
+            'STEAK: Sortir le steak 20 minutes avant cuisson (température ambiante).',
+            'Sécher avec du papier essuie-tout.',
+            'Chauffer une poêle grill à très haut feu (très chaude).',
+            'Verser l\'huile d\'olive dans la poêle (elle doit fumer légèrement).',
+            'Saler généreusement le steak avec gros sel marin.',
+            'Placer le steak dans la poêle chaude (doit siffler).',
+            'Laisser 3-4 minutes sans bouger (croûte dorée se forme).',
+            'Retourner et cuire 3-4 minutes de l\'autre côté (saignant à cœur).',
+            'Ajouter l\'ail écrasé et herbes fraîches en fin de cuisson.',
+            'Poivrer et laisser reposer 5 minutes (couvert) avant de servir.',
+            'LÉGUMES: Couper le brocoli en fleurons réguliers.',
+            'Couper les carottes en bâtonnets ou rondelles moyennes.',
+            'Remplir un faitout d\'eau et placer un panier vapeur.',
+            'Porter l\'eau à ébullition.',
+            'Placer les légumes dans le panier.',
+            'Cuire à la vapeur 10 minutes (les légumes doivent rester un peu croquants).',
+            'Servir le steak chaud avec les légumes vapeur à côté.',
+            'Arroser légèrement avec un filet d\'huile d\'olive et herbes fraîches.'
+        ]
+    },
+    {
+        repas: 'diner',
+        nom: 'Poulet feta légumes',
+        temps: 40,
+        prot: 48,
+        cal: 520,
+        benefices: 'Méditerranéen savoureux et équilibré. Light mais satisfaisant.',
+        image: 'https://images.unsplash.com/photo-1598103442097-8b74394b95c6?w=400&h=300&fit=crop',
+        ingredients: [
+            '250g poitrine de poulet fermier',
+            '60g fromage féta frais bloc',
+            '200g tomates cerise fraîches',
+            '100g roquette fraîche',
+            '1 oignon rouge moyen',
+            '10ml huile d\'olive',
+            'Herbes provençales séchées',
+            'Sel marin, poivre noir',
+            '5ml vinaigre balsamique (optionnel)'
+        ],
+        preparation: [
+            'POULET: Préchauffer le four à 200°C.',
+            'Placer la poitrine sur un papier parchemin.',
+            'Saupoudrer avec herbes provençales, sel et poivre.',
+            'Arroser légèrement d\'huile d\'olive.',
+            'Enfourner 18 minutes (le poulet doit être blanc à cœur).',
+            'LÉGUMES: Couper les tomates cerises en 2.',
+            'Émincer l\'oignon rouge très finement.',
+            'Écraser la féta légèrement avec une fourchette.',
+            'MONTAGE: Placer la roquette fraîche dans une assiette.',
+            'Verser l\'oignon rouge sur la roquette.',
+            'Ajouter les tomates cerises coupées.',
+            'Découper le poulet chaud en lanières.',
+            'Placer les lanières de poulet sur la salade.',
+            'Émietter la féta par-dessus.',
+            'Arroser avec un filet d\'huile d\'olive.',
+            'Ajouter un trait de vinaigre balsamique si souhaité.',
+            'Servir immédiatement.'
+        ]
+    },
+    {
+        repas: 'diner',
+        nom: 'Morue blanche broccoli',
+        temps: 35,
+        prot: 44,
+        cal: 380,
+        benefices: 'Poisson maigre très léger. Perfect dîner minceur.',
+        image: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400&h=300&fit=crop',
+        ingredients: [
+            '250g filet de morue blanche frais',
+            '300g brocoli frais (entier)',
+            '1 citron frais pressé',
+            '10ml huile d\'olive extra vierge',
+            'Sel marin fin',
+            'Poivre noir moulin',
+            'Estragon ou persil frais'
+        ],
+        preparation: [
+            'MORUE: Placer le filet de morue dans un panier vapeur.',
+            'Verser eau chaude dans le faitout en-dessous.',
+            'Presser le citron sur le poisson.',
+            'Saler et poivrer légèrement.',
+            'Ajouter herbes fraîches (estragon).',
+            'Couvrir et cuire à la vapeur 12 minutes (le poisson doit être blanc et floconneux).',
+            'BROCOLI: Couper le brocoli en fleurons réguliers.',
+            'Placer dans le panier vapeur avec le poisson (ajouter 2-3 minutes de cuisson si en même temps).',
+            'Ou cuire séparément 10 minutes à la vapeur.',
+            'Le brocoli doit rester légèrement croquant.',
+            'MONTAGE: Placer le brocoli vapeur dans l\'assiette.',
+            'Ajouter le filet de morue vapeur par-dessus.',
+            'Arroser généreusement avec huile d\'olive extra vierge.',
+            'Presser du citron frais par-dessus.',
+            'Garnir avec persil frais haché.',
+            'Servir chaud.'
+        ]
+    },
+    {
+        repas: 'diner',
+        nom: 'Tilapia riz complet',
+        temps: 30,
+        prot: 40,
+        cal: 450,
+        benefices: 'Poisson économique et complet. Carbs + protéines. Très rassasiant.',
+        image: 'https://images.unsplash.com/photo-1614866535308-eb5ec3a7e4e9?w=400&h=300&fit=crop',
+        ingredients: [
+            '250g filet de tilapia frais ou surgelé',
+            '150g riz complet grains long',
+            '150g haricots verts frais',
+            '10ml huile d\'olive',
+            'Sel marin, poivre noir',
+            '1 citron frais',
+            'Herbes fraîches (persil, ciboulette)',
+            '2 gousses ail'
+        ],
+        preparation: [
+            'RIZ: Rincer le riz complet sous eau froide.',
+            'Verser 375ml eau dans une casserole (ratio 2.5:1 eau/riz pour riz complet).',
+            'Ajouter pincée sel.',
+            'Verser le riz et porter à ébullition.',
+            'Couvrir, réduire le feu au minimum.',
+            'Cuire 25 minutes sans ouvrir.',
+            'TILAPIA: Sécher le filet avec du papier essuie-tout.',
+            'Chauffer l\'huile dans une poêle antiadhésive à feu moyen-vif.',
+            'Placer le tilapia dans la poêle.',
+            'Cuire 4-5 minutes (vérifier que c\'est opaque).',
+            'Retourner délicatement et cuire 4-5 minutes de l\'autre côté.',
+            'Saler, poivrer, ajouter jus de citron frais.',
+            'HARICOTS: Nettoyer les haricots verts (enlever les bouts).',
+            'Remplir une casserole d\'eau salée et porter à ébullition.',
+            'Ajouter les haricots verts.',
+            'Cuire 8-10 minutes (al dente, pas mous).',
+            'Égoutter et ajouter un trait d\'huile d\'olive.',
+            'MONTAGE: Placer le riz complet chaud dans une assiette creuse.',
+            'Ajouter le filet de tilapia par-dessus.',
+            'Garnir avec les haricots verts.',
+            'Verser le jus citron restant par-dessus.',
+            'Garnir avec herbes fraîches et servir chaud.'
+        ]
+    }
 ];
 
+// ============= DATA NOUSHI =============
 const NOUSHI_EXOS = [
     { nom: 'One Arm Pull-up', muscles: ['dos', 'bras'], desc: 'Un seul bras! Expertise max', prep: 'Traction complète un seul bras, l\'autre dos. Exige force extrême, technique parfaite. Progression: bandes élastiques 6+ mois.', tips: '⚠️ TRÈS DANGEREUX - Bandes d\'abord' },
     { nom: 'Muscle Up', muscles: ['dos', 'bras', 'epaules'], desc: 'Tractions + Dips explosif', prep: 'Traction explosive → transition dips, corps au-dessus barre. Chaîne complète. 5x1-3 reps.', tips: '⚠️ EXTRÊME - Puissance tractions ET dips avancés' },
-    { nom: 'Front Lever Hold', muscles: ['dos', 'abdos', 'fullbody'], desc: 'Corps horizontal en avant', prep: 'Suspendu à barre, maintenir horizontal face avant. Progression: jambes fléchies, une jambe, puis deux.', tips: '⚠️ L\'UN DES PLUS DIFFICILES - 6-12 mois progression minimum' },
+    { nom: 'Front Lever Hold', muscles: ['dos', 'abdos', 'fullbody'], desc: 'Corps horizontal en avant', prep: 'Suspendu à barre, maintenir horizontal face avant. Progression: jambes fléchies, une jambe, puis deux.', tips: '⚠️ L\'UN DES PLUS DIFFICILES - 6-12 mois progression' },
     { nom: 'Handstand Push-up', muscles: ['epaules', 'bras', 'abdos'], desc: 'Pompes sur les mains', prep: 'Équilibre mains contre mur. Pompes descendre tête vers sol. 3x2-5 reps quand maîtrisé. Mur essentiel.', tips: '⚠️ DANGEREUX - Équilibre + force épaules extrême' },
     { nom: 'Pistol Squat (1 jambe)', muscles: ['jambes', 'fullbody'], desc: 'Squat profond 1 jambe INTENSE', prep: 'Sur une jambe, descendre squat complet, autre jambe tendue devant, remonter. Flexibilité hanche INDISPENSABLE. 3x3-5 reps.', tips: '⚠️ TRÈS DIFFICILE - Flexibilité hanche critique' },
 ];
 
+// ============= DATA RELAX =============
 const RELAX_DATA = [
-    { type: 'yoga', nom: 'Yoga restauratif complet', temps: 20, benefices: 'Relax total, récupération musculaire profonde', prep: 'SÉQUENCE: Allongé 3min respiration ventre. Jambes mur 5min (talons chaise assise, genoux 90°) = récup jambes intense. Chat-vache 3min (alternance lente). Torsion couché chaque côté 2min étirement profond. Pigeon 2min chaque côté (hanche deep stretch). Fermé yeux relaxation 3min finale.\nASTUCES: Idéal après séance jambes.' },
-    { type: 'yoga', nom: 'Yin yoga pour hanche', temps: 18, benefices: 'Hanche relax profond, mobilité', prep: 'ROUTINE: Pigeon 4min chaque côté (étirement hanche max). Dragon low lunge 3min chaque côté (fléchisseurs hanche). Butterfly 3min (soles pieds ensemble, hanches écart). Reclined figure 4 (lying twist) 2min chaque côté (hanche/dos).\nASTUCES: Aide flexibilité pistol squat.' },
-    { type: 'meditation', nom: 'Yoga Nidra relaxation', temps: 25, benefices: 'État liminal entre veille/sommeil, détente max', prep: 'POSITION: Allongé confortable, yeux fermés.\nGUIDÉE: Respiration consciente + rotation awareness corps entier (tête, bras, torse, jambes).\nDURÉE: 25min guidée.\nBENEFICES: Réduit stress, meilleures décisions, sommeil profond.\nASTUCES: Avant dodo optimal, vraiment change la qualité sommeil.' },
-    { type: 'meditation', nom: 'Méditation respiration 10min', temps: 10, benefices: 'Récupération mental + nerveux', prep: 'POSITION: Assis confortable, yeux fermés.\nRESPIRATION: 4-count inhale, 4-count hold, 6-count exhale (stimule parasympathique).\nDURÉE: 10min minimum.\nFOCUS: Suivre respiration, ignorer pensées.\nASTUCES: Matin ou avant dodo optimal.' },
-    { type: 'etirement', nom: 'Stretching complet 15min', temps: 15, benefices: 'Mobilité + souplesse progressive', prep: 'SÉQUENCE: Quadriceps 2min chaque jambe. Hamstring 2min chaque jambe. Hip flexor 2min chaque côté. Shoulder stretch 2min chaque bras. Spinal twist 2min chaque côté. Pigeon 3min chaque côté.\nASTUCES: Après séance quand muscles chauds. Respirer lentement.' },
-    { type: 'massage', nom: 'Auto-massage foam roller', temps: 15, benefices: 'Récupération musculaire, réduit DOMS', prep: 'OUTILS: Foam roller + balle massage.\nSÉQUENCE: Mollets 2min rouleau. Ischio-jambiers 3min rouleau. Quadriceps 3min rouleau. Dos/lats 3min rouleau. Pieds balle massage 2min chaque pied.\nASTUCES: Lent + appui lourd. Éviter colonne vertébrale direct.' },
-    { type: 'yoga', nom: 'Stretching full body 10min', temps: 10, benefices: 'Flexibilité quotidienne rapide', prep: 'ROUTINE rapide: Neck rolls 1min. Shoulder rolls 1min. Cat-cow 2min. Child\'s pose 1min. Downward dog 2min. Quad stretch 1.5min chaque. Hamstring 1.5min chaque.' },
-    { type: 'meditation', nom: 'Yoga Nidra New Year 40min', temps: 40, benefices: 'Très profond reset nerveux complet', prep: 'GUIDÉE: Sirah (respiration consciente) + Rotation consciousness corps entier + Visualization intentions. PHASE: Profonde relaxation corps asleep mais mind aware.' },
-    { type: 'stretching', nom: 'Stretching ciblé hanches', temps: 12, benefices: 'Hanches ouvertes mobilité max', prep: 'SÉQUENCE: Pigeon 3min ch côté. Butterfly 2min. Low lunge 2.5min ch côté. 90/90 stretch 2min ch côté. Reclined figure4 2min ch côté.' },
-    { type: 'breathing', nom: 'Respirations alternées nadi shodhana', temps: 8, benefices: 'Balance nerveux sympathique/parasympathique', prep: 'TECHNIQUE: Inhaler gauche (pouce ferme droite) 4count. Hold 4count. Exhaler droite 6count. Alterner 4min. BÉNÉFICE: Calme mental instant, focus clarity.' },
+    { type: 'yoga', nom: 'Yoga restauratif complet', temps: 20, benefices: 'Relax total, récupération musculaire profonde', prep: 'SÉQUENCE: Allongé 3min respiration ventre. Jambes mur 5min. Chat-vache 3min. Torsion couché 2min chaque côté. Pigeon 2min chaque côté. Fermé yeux 3min finale.\nASTUCES: Idéal après séance jambes.' },
+    { type: 'yoga', nom: 'Yin yoga pour hanche', temps: 18, benefices: 'Hanche relax profond, mobilité', prep: 'ROUTINE: Pigeon 4min ch côté. Dragon low lunge 3min ch côté. Butterfly 3min. Reclined figure 4 2min ch côté.\nASTUCES: Aide flexibilité pistol squat.' },
+    { type: 'meditation', nom: 'Yoga Nidra relaxation', temps: 25, benefices: 'État liminal veille/sommeil, détente max', prep: 'POSITION: Allongé confortable, yeux fermés.\nGUIDÉE: Respiration consciente + rotation awareness corps entier.\nDURÉE: 25min guidée.\nBENEFICES: Réduit stress, sommeil profond.\nASTUCES: Avant dodo optimal.' },
+    { type: 'meditation', nom: 'Méditation respiration 10min', temps: 10, benefices: 'Récupération mental + nerveux', prep: 'POSITION: Assis confortable, yeux fermés.\nRESPIRATION: 4-count inhale, 4-count hold, 6-count exhale (parasympathique).\nDURÉE: 10min minimum.\nFOCUS: Suivre respiration, ignorer pensées.' },
+    { type: 'etirement', nom: 'Stretching complet 15min', temps: 15, benefices: 'Mobilité + souplesse progressive', prep: 'SÉQUENCE: Quadriceps 2min ch jambe. Hamstring 2min. Hip flexor 2min ch côté. Shoulder 2min ch bras. Spinal twist 2min ch côté. Pigeon 3min ch côté.\nASTUCES: Après séance quand muscles chauds.' },
+    { type: 'massage', nom: 'Auto-massage foam roller', temps: 15, benefices: 'Récupération musculaire, réduit DOMS', prep: 'OUTILS: Foam roller + balle massage.\nSÉQUENCE: Mollets 2min. Ischio-jambiers 3min. Quadriceps 3min. Dos/lats 3min. Pieds 2min chaque.\nASTUCES: Lent + appui lourd. Éviter colonne vertébrale.' },
+    { type: 'yoga', nom: 'Stretching full body 10min', temps: 10, benefices: 'Flexibilité quotidienne rapide', prep: 'ROUTINE rapide: Neck rolls 1min. Shoulder rolls 1min. Cat-cow 2min. Child\'s pose 1min. Downward dog 2min. Quad stretch 1.5min ch. Hamstring 1.5min ch.' },
+    { type: 'meditation', nom: 'Yoga Nidra New Year 40min', temps: 40, benefices: 'Très profond reset nerveux complet', prep: 'GUIDÉE: Respiration consciente + rotation consciousness + Visualization intentions.\nPHASE: Profonde relaxation corps asleep mais mind aware.' },
+    { type: 'stretching', nom: 'Stretching ciblé hanches', temps: 12, benefices: 'Hanches ouvertes mobilité max', prep: 'SÉQUENCE: Pigeon 3min ch côté. Butterfly 2min. Low lunge 2.5min ch côté. 90/90 stretch 2min ch côté.' },
+    { type: 'breathing', nom: 'Respirations alternées nadi shodhana', temps: 8, benefices: 'Balance nerveux sympathique/parasympathique', prep: 'TECHNIQUE: Inhaler gauche (pouce ferme droite) 4count. Hold 4count. Exhaler droite 6count. Alterner 4min.\nBÉNÉFICE: Calme mental instant, focus clarity.' },
 ];
 
+// ============= STATE =============
+let currentMode = 'maison', currentMuscle = 'tous';
+let favoris = JSON.parse(localStorage.getItem('bouachiFavoris')) || [];
+
+// ============= FUNCTIONS =============
 function updateTime() {
     const now = new Date();
     document.getElementById('time').textContent = String(now.getHours()).padStart(2, '0') + ':' + String(now.getMinutes()).padStart(2, '0');
@@ -552,20 +1583,33 @@ function updateTime() {
     const months = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
     document.getElementById('date').textContent = days[now.getDay()] + ', ' + now.getDate() + ' ' + months[now.getMonth()];
 }
+
+function updateBattery() {
+    if (navigator.getBattery) {
+        navigator.getBattery().then(battery => {
+            document.getElementById('battery').textContent = Math.round(battery.level * 100);
+            battery.onlevelchange = () => document.getElementById('battery').textContent = Math.round(battery.level * 100);
+        });
+    }
+}
+
 updateTime();
 setInterval(updateTime, 60000);
-
-let currentMode = 'maison', currentMuscle = 'tous';
+updateBattery();
 
 function goToPage(name) {
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
     document.getElementById(name).classList.add('active');
     document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
-    if (name === 'home') document.getElementById('navHome').classList.add('active');
-    if (name === 'exos') { document.getElementById('navExos').classList.add('active'); renderExos(); }
-    if (name === 'nutrition') { document.getElementById('navFood').classList.add('active'); renderRecipes(); }
-    if (name === 'noushi') { document.getElementById('navNoushi').classList.add('active'); renderNoushi(); }
-    if (name === 'relax') { document.getElementById('navRelax').classList.add('active'); renderRelax(); }
+    const navMap = { 'home': 'navHome', 'exos': 'navExos', 'nutrition': 'navFood', 'noushi': 'navNoushi', 'relax': 'navRelax', 'favoris': 'navFavoris' };
+    if (navMap[name]) document.getElementById(navMap[name]).classList.add('active');
+    
+    if (name === 'exos') renderExos();
+    if (name === 'nutrition') renderRecipes();
+    if (name === 'noushi') renderNoushi();
+    if (name === 'relax') renderRelax();
+    if (name === 'favoris') renderFavoris();
+    
     window.scrollTo(0, 0);
 }
 
@@ -575,154 +1619,347 @@ function chooseMode(mode) {
     goToPage('exos');
 }
 
+function toggleFav(id, type) {
+    const key = `${type}-${id}`;
+    if (favoris.includes(key)) {
+        favoris = favoris.filter(f => f !== key);
+    } else {
+        favoris.push(key);
+    }
+    localStorage.setItem('bouachiFavoris', JSON.stringify(favoris));
+    renderFavoris();
+}
+
+function isFav(id, type) {
+    return favoris.includes(`${type}-${id}`);
+}
+
+function searchItems(data, query) {
+    if (!query) return data;
+    return data.filter(item => 
+        (item.nom && item.nom.toLowerCase().includes(query.toLowerCase())) ||
+        (item.muscle && item.muscle.toLowerCase().includes(query.toLowerCase())) ||
+        (item.repas && item.repas.toLowerCase().includes(query.toLowerCase())) ||
+        (item.type && item.type.toLowerCase().includes(query.toLowerCase()))
+    );
+}
+
 function renderExos() {
     const filtered = EXOS.filter(e => e.pole === currentMode);
     const muscles = [...new Set(filtered.map(e => e.muscle))];
     
-    let modeHTML = `<button class="top-nav-btn ${currentMode === 'maison' ? 'active' : ''}" data-mode="maison">🏠 Maison</button>`;
-    modeHTML += `<button class="top-nav-btn ${currentMode === 'salle' ? 'active' : ''}" data-mode="salle">💪 Salle</button>`;
+    let modeHTML = `<button class="top-nav-btn ${currentMode === 'maison' ? 'active' : ''}" onclick="currentMode='maison'; currentMuscle='tous'; renderExos()">🏠 Maison</button>`;
+    modeHTML += `<button class="top-nav-btn ${currentMode === 'salle' ? 'active' : ''}" onclick="currentMode='salle'; currentMuscle='tous'; renderExos()">💪 Salle</button>`;
     document.getElementById('mode-nav').innerHTML = modeHTML;
-    document.querySelectorAll('[data-mode]').forEach(btn => btn.addEventListener('click', function() {
-        currentMode = this.getAttribute('data-mode');
-        currentMuscle = 'tous';
-        renderExos();
-    }));
     
-    let tabsHTML = `<button class="tab-btn ${currentMuscle === 'tous' ? 'active' : ''}" data-muscle="tous">Tous (${filtered.length})</button>`;
+    let tabsHTML = `<button class="tab-btn ${currentMuscle === 'tous' ? 'active' : ''}" onclick="currentMuscle='tous'; renderExos()">Tous (${filtered.length})</button>`;
     muscles.forEach(m => {
         const count = filtered.filter(e => e.muscle === m).length;
-        tabsHTML += `<button class="tab-btn ${currentMuscle === m ? 'active' : ''}" data-muscle="${m}">${m} (${count})</button>`;
+        tabsHTML += `<button class="tab-btn ${currentMuscle === m ? 'active' : ''}" onclick="currentMuscle='${m}'; renderExos()">${m} (${count})</button>`;
     });
     document.getElementById('muscle-tabs').innerHTML = tabsHTML;
 
-    const exosFiltered = filtered.filter(e => currentMuscle === 'tous' || e.muscle === currentMuscle);
+    const searchQuery = document.getElementById('exos-search')?.value || '';
+    let exosFiltered = filtered.filter(e => currentMuscle === 'tous' || e.muscle === currentMuscle);
+    exosFiltered = searchItems(exosFiltered, searchQuery);
+
     const html = exosFiltered.map((e, idx) => {
         const videoUrl = YOUTUBE_VIDEOS[e.nom] || 'https://www.youtube.com/embed/es_Tz8Si75o';
+        const favId = `exo-${EXOS.indexOf(e)}`;
+        const favActive = isFav(EXOS.indexOf(e), 'exo') ? 'active' : '';
         return `
         <div class="card">
-            <div class="card-title">💪 ${e.nom}</div>
-            <div class="card-meta">${e.muscle.toUpperCase()} • ${e.desc}</div>
+            <div class="card-header">
+                <div class="card-title">💪 ${e.nom}</div>
+                <button class="card-fav-btn ${favActive}" onclick="toggleFav(${EXOS.indexOf(e)}, 'exo'); renderExos()">❤️</button>
+            </div>
+            <div class="card-meta">
+                <span>⏱️ ${e.pole === 'maison' ? 'Sans matériel' : 'Salle équipée'}</span>
+                <span>🎯 ${e.muscle}</span>
+            </div>
+            <div class="card-text">${e.desc}</div>
             <div class="card-section">
-                <div class="card-section-title">📖 TECHNIQUE</div>
+                <div class="card-section-title">📋 TECHNIQUE</div>
                 <div class="card-section-content">${e.prep}</div>
             </div>
             <div class="card-section">
-                <div class="card-section-title">💡 CONSEILS</div>
+                <div class="card-section-title">💡 CONSEIL</div>
                 <div class="card-section-content">${e.tips}</div>
             </div>
             <div class="video-container">
-                <iframe src="${videoUrl}?rel=0&modestbranding=1&autoplay=0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <iframe src="${videoUrl}" allowfullscreen="" loading="lazy"></iframe>
             </div>
-            <div class="card-nav">
-                <button class="nav-btn-prev" onclick="navigateExo(-1, ${idx})" ${idx === 0 ? 'disabled' : ''}>← Précédent</button>
-                <button class="nav-btn-next" onclick="navigateExo(1, ${idx})" ${idx === exosFiltered.length - 1 ? 'disabled' : ''}>Suivant →</button>
-            </div>
-        </div>
-    `}).join('');
-    document.getElementById('exos-grid').innerHTML = html;
-    
-    document.querySelectorAll('[data-muscle]').forEach(btn => {
-        btn.addEventListener('click', function() {
-            currentMuscle = this.getAttribute('data-muscle');
-            renderExos();
-        });
-    });
+        </div>`;
+    }).join('');
+
+    document.getElementById('exos-grid').innerHTML = html || '<div class="empty-state"><div class="empty-state-icon">🔍</div><div class="empty-state-text">Aucun exercice trouvé</div></div>';
+
+    document.getElementById('exos-search')?.addEventListener('input', () => renderExos());
 }
 
 function renderRecipes() {
-    document.getElementById('meal-tabs').innerHTML = '<button class="tab-btn active">Tous (20)</button>';
-    const html = RECIPES_DATA.map((r, idx) => `
+    const searchQuery = document.getElementById('recipes-search')?.value || '';
+    let recipesFiltered = searchItems(RECIPES_DATA, searchQuery);
+    
+    const meals = [...new Set(RECIPES_DATA.map(r => r.repas))];
+    let tabsHTML = `<button class="tab-btn active" onclick="document.getElementById('recipes-search').value=''; renderRecipes()">Tous (${RECIPES_DATA.length})</button>`;
+    const mealOrder = ['petit-dej', 'dejeuner', 'collation', 'diner'];
+    mealOrder.forEach(m => {
+        if (meals.includes(m)) {
+            const count = RECIPES_DATA.filter(r => r.repas === m).length;
+            const mealNames = { 'petit-dej': '🌅 Petit-déj', 'dejeuner': '🌞 Déj', 'collation': '🥜 Collation', 'diner': '🌙 Dîner' };
+            tabsHTML += `<button class="tab-btn" onclick="const sq=document.getElementById('recipes-search'); sq.value=''; renderRecipes()">${mealNames[m] || m} (${count})</button>`;
+        }
+    });
+    document.getElementById('meal-tabs').innerHTML = tabsHTML;
+
+    const html = recipesFiltered.map((r, idx) => {
+        const favId = `recipe-${RECIPES_DATA.indexOf(r)}`;
+        const favActive = isFav(RECIPES_DATA.indexOf(r), 'recipe') ? 'active' : '';
+        const mealEmojis = { 'petit-dej': '🌅', 'dejeuner': '🌞', 'collation': '🥜', 'diner': '🌙' };
+        
+        const ingredientsHTML = r.ingredients.map(ing => `<div class="ingredient-item">${ing}</div>`).join('');
+        const stepsHTML = r.preparation.map((step, stepIdx) => `
+            <div class="step-item">
+                <div class="step-number">${stepIdx + 1}</div>
+                <div class="step-content">${step}</div>
+            </div>
+        `).join('');
+        
+        return `
         <div class="card">
-            <div class="card-title">🍳 ${r.nom}</div>
-            <div class="card-meta">⏱️ ${r.temps}min • 🥛 ${r.prot}g protéines • 🔥 ${r.cal}kcal</div>
-            <div class="card-text"><strong>💪 Bénéfice:</strong> ${r.benefices}</div>
+            <div class="card-header">
+                <div class="card-title">${mealEmojis[r.repas] || '🍽️'} ${r.nom}</div>
+                <button class="card-fav-btn ${favActive}" onclick="toggleFav(${RECIPES_DATA.indexOf(r)}, 'recipe'); renderRecipes()">❤️</button>
+            </div>
+            
+            <div class="recipe-image">
+                <img src="${r.image}" alt="${r.nom}" loading="lazy">
+            </div>
+            
+            <div class="recipe-nutrition">
+                <div class="nutrition-item">
+                    <span class="nutrition-label">⏱️ Temps</span>
+                    <span class="nutrition-value">${r.temps} min</span>
+                </div>
+                <div class="nutrition-item">
+                    <span class="nutrition-label">🥚 Protéines</span>
+                    <span class="nutrition-value">${r.prot}g</span>
+                </div>
+                <div class="nutrition-item">
+                    <span class="nutrition-label">🔥 Calories</span>
+                    <span class="nutrition-value">${r.cal}</span>
+                </div>
+                <div class="nutrition-item">
+                    <span class="nutrition-label">⭐ Bénéfices</span>
+                    <span class="nutrition-value">${r.benefices.split('.')[0]}.</span>
+                </div>
+            </div>
+            
+            <div class="card-text">${r.benefices}</div>
+            
             <div class="card-section">
-                <div class="card-section-title">👨‍🍳 PRÉPARATION</div>
-                <div class="card-section-content">${r.prep}</div>
+                <div class="card-section-title">🛒 INGRÉDIENTS</div>
+                <div class="ingredient-list">${ingredientsHTML}</div>
             </div>
-            <div class="card-nav">
-                <button class="nav-btn-prev" onclick="navigateRecipe(-1, ${idx})" ${idx === 0 ? 'disabled' : ''}>← Précédent</button>
-                <button class="nav-btn-next" onclick="navigateRecipe(1, ${idx})" ${idx === RECIPES_DATA.length - 1 ? 'disabled' : ''}>Suivant →</button>
+            
+            <div class="card-section">
+                <div class="card-section-title">👨‍🍳 ÉTAPES DE PRÉPARATION</div>
+                <div class="step-list">${stepsHTML}</div>
             </div>
-        </div>
-    `).join('');
-    document.getElementById('recipes-grid').innerHTML = html;
+        </div>`;
+    }).join('');
+
+    document.getElementById('recipes-grid').innerHTML = html || '<div class="empty-state"><div class="empty-state-icon">🔍</div><div class="empty-state-text">Aucune recette trouvée</div></div>';
+
+    document.getElementById('recipes-search')?.addEventListener('input', () => renderRecipes());
 }
 
 function renderNoushi() {
-    document.getElementById('noushi-tabs').innerHTML = '<button class="tab-btn active">Tous (5)</button>';
-    const html = NOUSHI_EXOS.map((e, idx) => {
+    const searchQuery = document.getElementById('noushi-search')?.value || '';
+    let noushibook = searchItems(NOUSHI_EXOS, searchQuery);
+
+    let tabsHTML = `<button class="tab-btn active">Tous (${NOUSHI_EXOS.length})</button>`;
+    document.getElementById('noushi-tabs').innerHTML = tabsHTML;
+
+    const html = noushibook.map((e, idx) => {
+        const favId = `noushi-${NOUSHI_EXOS.indexOf(e)}`;
+        const favActive = isFav(NOUSHI_EXOS.indexOf(e), 'noushi') ? 'active' : '';
         const videoUrl = YOUTUBE_VIDEOS[e.nom] || 'https://www.youtube.com/embed/es_Tz8Si75o';
         return `
-        <div class="card" style="border-left: 3px solid #ff5252;">
-            <div class="card-title" style="color: #ff1744;">🔥 ${e.nom}</div>
-            <div class="card-meta">Muscles: ${e.muscles.join(' • ')}</div>
-            <div class="card-text" style="color: #ff8a80;">${e.desc}</div>
-            <div class="card-section" style="background: rgba(255, 23, 68, 0.15); border-left-color: #ff1744;">
-                <div class="card-section-title" style="color: #ff5252;">📖 TECHNIQUE</div>
+        <div class="card noushi-card">
+            <div class="card-header">
+                <div class="card-title">🔥 ${e.nom}</div>
+                <button class="card-fav-btn ${favActive}" onclick="toggleFav(${NOUSHI_EXOS.indexOf(e)}, 'noushi'); renderNoushi()">❤️</button>
+            </div>
+            <div class="card-meta">
+                <span>⚠️ EXTRÊME</span>
+                <span>🎯 ${e.muscles.join(', ')}</span>
+            </div>
+            <div class="card-text">${e.desc}</div>
+            <div class="card-section">
+                <div class="card-section-title">📋 PROGRESSION</div>
                 <div class="card-section-content">${e.prep}</div>
             </div>
-            <div class="card-section" style="background: rgba(255, 23, 68, 0.1); border-left-color: #ff1744;">
-                <div class="card-section-title" style="color: #ff5252;">⚠️ DANGER</div>
+            <div class="card-section">
+                <div class="card-section-title">⚠️ IMPORTANT</div>
                 <div class="card-section-content">${e.tips}</div>
             </div>
             <div class="video-container">
-                <iframe src="${videoUrl}?rel=0&modestbranding=1&autoplay=0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <iframe src="${videoUrl}" allowfullscreen="" loading="lazy"></iframe>
             </div>
-            <div class="card-nav">
-                <button class="nav-btn-prev" onclick="navigateNoushi(-1, ${idx})" ${idx === 0 ? 'disabled' : ''}>← Précédent</button>
-                <button class="nav-btn-next" onclick="navigateNoushi(1, ${idx})" ${idx === NOUSHI_EXOS.length - 1 ? 'disabled' : ''}>Suivant →</button>
-            </div>
-        </div>
-    `}).join('');
-    document.getElementById('noushi-grid').innerHTML = html;
+        </div>`;
+    }).join('');
+
+    document.getElementById('noushi-grid').innerHTML = html || '<div class="empty-state"><div class="empty-state-icon">🔍</div><div class="empty-state-text">Aucun exercice trouvé</div></div>';
+
+    document.getElementById('noushi-search')?.addEventListener('input', () => renderNoushi());
 }
 
 function renderRelax() {
-    document.getElementById('relax-tabs').innerHTML = '<button class="tab-btn active">Tous (10)</button>';
-    const html = RELAX_DATA.map(r => `
-        <div class="relax-card card">
-            <div class="card-title">🧘 ${r.nom}</div>
-            <div class="card-meta">⏱️ ${r.temps}min • ${r.type.toUpperCase()}</div>
-            <div class="card-text"><strong>✨ Bénéfice:</strong> ${r.benefices}</div>
+    const searchQuery = document.getElementById('relax-search')?.value || '';
+    let relaxbook = searchItems(RELAX_DATA, searchQuery);
+
+    const types = [...new Set(RELAX_DATA.map(r => r.type))];
+    let tabsHTML = `<button class="tab-btn active">Tous (${RELAX_DATA.length})</button>`;
+    types.forEach(t => {
+        const count = RELAX_DATA.filter(r => r.type === t).length;
+        const typeEmojis = { 'yoga': '🧘', 'meditation': '🧠', 'etirement': '🤸', 'massage': '💆', 'breathing': '🌬️' };
+        tabsHTML += `<button class="tab-btn">${typeEmojis[t] || '✨'} ${t} (${count})</button>`;
+    });
+    document.getElementById('relax-tabs').innerHTML = tabsHTML;
+
+    const html = relaxbook.map((e, idx) => {
+        const favId = `relax-${RELAX_DATA.indexOf(e)}`;
+        const favActive = isFav(RELAX_DATA.indexOf(e), 'relax') ? 'active' : '';
+        const typeEmojis = { 'yoga': '🧘', 'meditation': '🧠', 'etirement': '🤸', 'massage': '💆', 'breathing': '🌬️' };
+        return `
+        <div class="card relax-card">
+            <div class="card-header">
+                <div class="card-title">${typeEmojis[e.type] || '✨'} ${e.nom}</div>
+                <button class="card-fav-btn ${favActive}" onclick="toggleFav(${RELAX_DATA.indexOf(e)}, 'relax'); renderRelax()">❤️</button>
+            </div>
+            <div class="card-meta">
+                <span>⏱️ ${e.temps}min</span>
+                <span>📁 ${e.type}</span>
+            </div>
+            <div class="card-text">${e.benefices}</div>
             <div class="card-section">
                 <div class="card-section-title">📝 ROUTINE</div>
-                <div class="card-section-content">${r.prep}</div>
+                <div class="card-section-content">${e.prep}</div>
             </div>
-        </div>
-    `).join('');
-    document.getElementById('relax-grid').innerHTML = html;
+        </div>`;
+    }).join('');
+
+    document.getElementById('relax-grid').innerHTML = html || '<div class="empty-state"><div class="empty-state-icon">🔍</div><div class="empty-state-text">Aucune séance trouvée</div></div>';
+
+    document.getElementById('relax-search')?.addEventListener('input', () => renderRelax());
 }
 
-function navigateExo(dir, idx) {
-    const cards = document.getElementById('exos-grid').querySelectorAll('.card');
-    const newIdx = idx + dir;
-    if (newIdx >= 0 && newIdx < cards.length) cards[newIdx].scrollIntoView({ behavior: 'smooth', block: 'start' });
-}
-function navigateRecipe(dir, idx) {
-    const cards = document.getElementById('recipes-grid').querySelectorAll('.card');
-    const newIdx = idx + dir;
-    if (newIdx >= 0 && newIdx < cards.length) cards[newIdx].scrollIntoView({ behavior: 'smooth', block: 'start' });
-}
-function navigateNoushi(dir, idx) {
-    const cards = document.getElementById('noushi-grid').querySelectorAll('.card');
-    const newIdx = idx + dir;
-    if (newIdx >= 0 && newIdx < cards.length) cards[newIdx].scrollIntoView({ behavior: 'smooth', block: 'start' });
+function renderFavoris() {
+    let allFavs = [];
+
+    favoris.forEach(favId => {
+        const [type, id] = favId.split('-');
+        const idx = parseInt(id);
+        
+        if (type === 'exo' && EXOS[idx]) allFavs.push({ ...EXOS[idx], type: 'exo', idx });
+        if (type === 'recipe' && RECIPES_DATA[idx]) allFavs.push({ ...RECIPES_DATA[idx], type: 'recipe', idx });
+        if (type === 'noushi' && NOUSHI_EXOS[idx]) allFavs.push({ ...NOUSHI_EXOS[idx], type: 'noushi', idx });
+        if (type === 'relax' && RELAX_DATA[idx]) allFavs.push({ ...RELAX_DATA[idx], type: 'relax', idx });
+    });
+
+    const html = allFavs.map((item) => {
+        const videoUrl = YOUTUBE_VIDEOS[item.nom] || 'https://www.youtube.com/embed/es_Tz8Si75o';
+        let cardHtml = '';
+
+        if (item.type === 'exo') {
+            cardHtml = `
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">💪 ${item.nom}</div>
+                    <button class="card-fav-btn active" onclick="toggleFav(${item.idx}, 'exo'); renderFavoris()">❤️</button>
+                </div>
+                <div class="card-meta">
+                    <span>🎯 ${item.muscle}</span>
+                    <span>${item.pole === 'maison' ? '🏠 Maison' : '💪 Salle'}</span>
+                </div>
+                <div class="card-text">${item.desc}</div>
+                <div class="card-section">
+                    <div class="card-section-title">📋 TECHNIQUE</div>
+                    <div class="card-section-content">${item.prep}</div>
+                </div>
+            </div>`;
+        } else if (item.type === 'recipe') {
+            const mealEmojis = { 'petit-dej': '🌅', 'dejeuner': '🌞', 'collation': '🥜', 'diner': '🌙' };
+            const ingredientsHTML = item.ingredients.map(ing => `<div class="ingredient-item">${ing}</div>`).join('');
+            cardHtml = `
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">${mealEmojis[item.repas] || '🍽️'} ${item.nom}</div>
+                    <button class="card-fav-btn active" onclick="toggleFav(${item.idx}, 'recipe'); renderFavoris()">❤️</button>
+                </div>
+                <div class="recipe-image">
+                    <img src="${item.image}" alt="${item.nom}" loading="lazy">
+                </div>
+                <div class="recipe-nutrition">
+                    <div class="nutrition-item">
+                        <span class="nutrition-label">⏱️ Temps</span>
+                        <span class="nutrition-value">${item.temps}min</span>
+                    </div>
+                    <div class="nutrition-item">
+                        <span class="nutrition-label">🥚 Protéines</span>
+                        <span class="nutrition-value">${item.prot}g</span>
+                    </div>
+                    <div class="nutrition-item">
+                        <span class="nutrition-label">🔥 Calories</span>
+                        <span class="nutrition-value">${item.cal}</span>
+                    </div>
+                </div>
+                <div class="card-section">
+                    <div class="card-section-title">🛒 INGRÉDIENTS</div>
+                    <div class="ingredient-list">${ingredientsHTML}</div>
+                </div>
+            </div>`;
+        } else if (item.type === 'noushi') {
+            cardHtml = `
+            <div class="card noushi-card">
+                <div class="card-header">
+                    <div class="card-title">🔥 ${item.nom}</div>
+                    <button class="card-fav-btn active" onclick="toggleFav(${item.idx}, 'noushi'); renderFavoris()">❤️</button>
+                </div>
+                <div class="card-meta">
+                    <span>⚠️ EXTRÊME</span>
+                    <span>${item.muscles.join(', ')}</span>
+                </div>
+                <div class="card-text">${item.desc}</div>
+            </div>`;
+        } else if (item.type === 'relax') {
+            const typeEmojis = { 'yoga': '🧘', 'meditation': '🧠', 'etirement': '🤸', 'massage': '💆', 'breathing': '🌬️' };
+            cardHtml = `
+            <div class="card relax-card">
+                <div class="card-header">
+                    <div class="card-title">${typeEmojis[item.type] || '✨'} ${item.nom}</div>
+                    <button class="card-fav-btn active" onclick="toggleFav(${item.idx}, 'relax'); renderFavoris()">❤️</button>
+                </div>
+                <div class="card-meta">
+                    <span>⏱️ ${item.temps}min</span>
+                </div>
+                <div class="card-text">${item.benefices}</div>
+            </div>`;
+        }
+
+        return cardHtml;
+    }).join('');
+
+    document.getElementById('favoris-grid').innerHTML = html || '<div class="empty-state"><div class="empty-state-icon">💔</div><div class="empty-state-text">Aucun favori sauvegardé.<br>❤️-Clique sur les exos pour les ajouter!</div></div>';
 }
 
-document.getElementById('btnMaison').addEventListener('click', () => chooseMode('maison'));
-document.getElementById('btnSalle').addEventListener('click', () => chooseMode('salle'));
-document.getElementById('btnRelax').addEventListener('click', () => goToPage('relax'));
-document.getElementById('navHome').addEventListener('click', () => goToPage('home'));
-document.getElementById('navExos').addEventListener('click', () => goToPage('exos'));
-document.getElementById('navFood').addEventListener('click', () => goToPage('nutrition'));
-document.getElementById('navNoushi').addEventListener('click', () => goToPage('noushi'));
-document.getElementById('navRelax').addEventListener('click', () => goToPage('relax'));
-
-renderExos();
-renderRecipes();
-renderNoushi();
-renderRelax();
+// Initialize
+document.addEventListener('DOMContentLoaded', () => {
+    renderFavoris();
+});
 </script>
+
 </body>
 </html>
