@@ -15,7 +15,6 @@
             box-sizing: border-box;
             -webkit-tap-highlight-color: transparent;
         }
-
         html, body {
             width: 100%;
             height: 100%;
@@ -27,13 +26,11 @@
             user-select: none;
             position: fixed;
         }
-
         body {
             display: flex;
             flex-direction: column;
             padding: max(env(safe-area-inset-top), 8px) max(env(safe-area-inset-right), 8px) max(env(safe-area-inset-bottom), 8px) max(env(safe-area-inset-left), 8px);
         }
-
         /* HEADER */
         .header {
             display: flex;
@@ -47,7 +44,6 @@
             flex-shrink: 0;
             z-index: 50;
         }
-
         .header-left, .header-right {
             font-size: 11px;
             color: #ff5252;
@@ -56,7 +52,6 @@
             align-items: center;
             gap: 4px;
         }
-
         .header-title {
             font-weight: 800;
             font-size: 14px;
@@ -64,7 +59,6 @@
             flex: 1;
             text-align: center;
         }
-
         /* CONTAINER */
         .container {
             flex: 1;
@@ -75,7 +69,6 @@
             margin-bottom: 56px;
             scroll-behavior: smooth;
         }
-
         .page {
             display: none;
             width: 100%;
@@ -83,16 +76,13 @@
             padding: 16px 12px 32px 12px;
             animation: fadeIn 0.3s ease-in;
         }
-
         .page.active {
             display: block;
         }
-
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
         }
-
         /* TOP NAV & TABS */
         .top-nav, .tabs {
             display: flex;
@@ -103,7 +93,6 @@
             padding-bottom: 4px;
             scroll-snap-type: x mandatory;
         }
-
         .top-nav-btn, .tab-btn {
             padding: 8px 14px;
             border: 1px solid rgba(255, 82, 82, 0.3);
@@ -120,18 +109,15 @@
             -webkit-user-select: none;
             user-select: none;
         }
-
         .top-nav-btn:active, .tab-btn:active {
             transform: scale(0.95);
         }
-
         .top-nav-btn.active, .tab-btn.active {
             background: linear-gradient(135deg, #ff1744, #ff5252);
             color: #fff;
             border-color: #ff5252;
             box-shadow: 0 2px 8px rgba(255, 23, 68, 0.3);
         }
-
         /* LAUNCHER */
         .launcher {
             display: flex;
@@ -140,11 +126,9 @@
             height: calc(100vh - 180px);
             padding: 20px 0;
         }
-
         .launcher-top {
             text-align: center;
         }
-
         .launcher-time {
             font-size: 48px;
             font-weight: 800;
@@ -153,14 +137,12 @@
             font-family: 'Courier New', monospace;
             letter-spacing: 2px;
         }
-
         .launcher-date {
             font-size: 12px;
             color: #ff8a80;
             margin-bottom: 20px;
             font-weight: 500;
         }
-
         .launcher-title {
             font-size: 28px;
             font-weight: 900;
@@ -168,20 +150,17 @@
             margin-bottom: 4px;
             letter-spacing: 1px;
         }
-
         .launcher-subtitle {
             font-size: 13px;
             color: #ffcccc;
             margin-bottom: 24px;
             font-style: italic;
         }
-
         .launcher-middle {
             display: flex;
             flex-direction: column;
             gap: 10px;
         }
-
         .launcher-btn {
             padding: 16px;
             border: none;
@@ -196,33 +175,27 @@
             -webkit-user-select: none;
             user-select: none;
         }
-
         .launcher-btn.primary {
             background: linear-gradient(135deg, #ff1744, #ff5252);
             box-shadow: 0 4px 16px rgba(255, 23, 68, 0.35);
         }
-
         .launcher-btn.primary:active {
             transform: scale(0.98);
             box-shadow: 0 2px 8px rgba(255, 23, 68, 0.25);
         }
-
         .launcher-btn.secondary {
             background: rgba(255, 82, 82, 0.12);
             border: 1.5px solid rgba(255, 82, 82, 0.5);
         }
-
         .launcher-btn.secondary:active {
             background: rgba(255, 82, 82, 0.18);
         }
-
         .launcher-stats {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 8px;
             margin-top: 20px;
         }
-
         .stat {
             padding: 12px;
             background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
@@ -233,14 +206,12 @@
             color: #ffcccc;
             font-weight: 500;
         }
-
         .stat-value {
             font-size: 20px;
             font-weight: 800;
             color: #ff5252;
             margin-top: 4px;
         }
-
         /* SECTION */
         .section-title {
             font-size: 24px;
@@ -249,14 +220,12 @@
             margin-bottom: 8px;
             letter-spacing: 0.5px;
         }
-
         .section-sub {
             font-size: 12px;
             color: #ffcccc;
             margin-bottom: 16px;
             font-weight: 500;
         }
-
         /* SEARCH */
         .search-box {
             width: 100%;
@@ -271,24 +240,20 @@
             transition: all 0.2s;
             cursor: pointer;
         }
-
         .search-box:focus {
             background: rgba(255, 255, 255, 0.1);
             border-color: #ff5252;
             box-shadow: 0 0 8px rgba(255, 82, 82, 0.2);
         }
-
         .search-box::placeholder {
             color: #ff8a80;
         }
-
         /* GRID */
         .grid {
             display: grid;
             grid-template-columns: 1fr;
             gap: 12px;
         }
-
         /* CARD */
         .card {
             background: linear-gradient(135deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.01));
@@ -298,31 +263,26 @@
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             cursor: pointer;
         }
-
         .card:active {
             transform: scale(0.98);
             border-color: rgba(255, 82, 82, 0.4);
         }
-
         .card.favorited {
             background: linear-gradient(135deg, rgba(255, 82, 82, 0.15), rgba(255, 82, 82, 0.08));
             border-color: rgba(255, 82, 82, 0.4);
         }
-
         .card-header {
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
             margin-bottom: 8px;
         }
-
         .card-title {
             font-size: 14px;
             font-weight: 700;
             color: #ff8a80;
             flex: 1;
         }
-
         .card-fav-btn {
             background: none;
             border: none;
@@ -340,17 +300,14 @@
             -webkit-user-select: none;
             user-select: none;
         }
-
         .card-fav-btn:active {
             opacity: 1;
             transform: scale(1.15);
         }
-
         .card-fav-btn.active {
             opacity: 1;
             transform: scale(1.2);
         }
-
         /* RECIPE IMAGE */
         .recipe-image {
             width: 100%;
@@ -361,14 +318,12 @@
             border: 1px solid rgba(255, 138, 128, 0.2);
             background: #1a1a1a;
         }
-
         .recipe-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             display: block;
         }
-
         .card-meta {
             font-size: 11px;
             color: #ffcccc;
@@ -377,14 +332,12 @@
             gap: 12px;
             flex-wrap: wrap;
         }
-
         .card-text {
             font-size: 11px;
             color: #ffebee;
             margin-bottom: 8px;
             line-height: 1.5;
         }
-
         .card-section {
             background: rgba(255, 82, 82, 0.1);
             padding: 8px;
@@ -392,14 +345,12 @@
             border-left: 2px solid #ff5252;
             margin-bottom: 8px;
         }
-
         .card-section-title {
             font-size: 11px;
             font-weight: 600;
             color: #ff8a80;
             margin-bottom: 4px;
         }
-
         .card-section-content {
             font-size: 10.5px;
             color: #ffebee;
@@ -407,7 +358,6 @@
             white-space: pre-wrap;
             word-break: break-word;
         }
-
         .video-container {
             width: 100%;
             aspect-ratio: 16 / 9;
@@ -417,13 +367,11 @@
             border: 1px solid rgba(255, 138, 128, 0.2);
             background: #1a1a1a;
         }
-
         .video-container iframe {
             width: 100%;
             height: 100%;
             border: none;
         }
-
         .card-nav {
             display: flex;
             gap: 8px;
@@ -431,7 +379,6 @@
             padding-top: 12px;
             border-top: 1px solid rgba(255, 138, 128, 0.2);
         }
-
         .nav-btn-prev, .nav-btn-next {
             flex: 1;
             padding: 10px;
@@ -444,36 +391,29 @@
             cursor: pointer;
             transition: all 0.2s;
         }
-
         .nav-btn-prev:active, .nav-btn-next:active {
             transform: scale(0.95);
         }
-
         .nav-btn-prev:disabled, .nav-btn-next:disabled {
             opacity: 0.3;
             cursor: not-allowed;
         }
-
         /* RELAX CARD */
         .relax-card {
             background: linear-gradient(135deg, rgba(100, 149, 237, 0.15), rgba(65, 105, 225, 0.08));
             border: 1px solid rgba(100, 149, 237, 0.4);
         }
-
         .relax-card .card-title {
             color: #6495ed;
         }
-
         /* NOUSHI CARD */
         .noushi-card {
             background: linear-gradient(135deg, rgba(255, 87, 34, 0.15), rgba(255, 152, 0, 0.08));
             border: 1px solid rgba(255, 87, 34, 0.4);
         }
-
         .noushi-card .card-title {
             color: #ff6e40;
         }
-
         /* NAV BOTTOM */
         .nav-bottom {
             position: fixed;
@@ -490,7 +430,6 @@
             padding-bottom: max(env(safe-area-inset-bottom), 4px);
             z-index: 1000;
         }
-
         .nav-btn {
             flex: 1;
             height: 48px;
@@ -509,46 +448,37 @@
             -webkit-user-select: none;
             user-select: none;
         }
-
         .nav-btn.active {
             color: #ff5252;
             background: rgba(255, 82, 82, 0.1);
         }
-
         .nav-btn span:first-child {
             font-size: 20px;
         }
-
         /* SCROLLBAR */
         .container::-webkit-scrollbar {
             width: 4px;
         }
-
         .container::-webkit-scrollbar-thumb {
             background: rgba(255, 82, 82, 0.4);
             border-radius: 2px;
         }
-
         .container::-webkit-scrollbar-track {
             background: transparent;
         }
-
         /* EMPTY STATE */
         .empty-state {
             text-align: center;
             padding: 40px 20px;
             color: #ffcccc;
         }
-
         .empty-state-icon {
             font-size: 40px;
             margin-bottom: 10px;
         }
-
         .empty-state-text {
             font-size: 13px;
         }
-
         /* RECIPE NUTRITION INFO */
         .recipe-nutrition {
             display: grid;
@@ -556,7 +486,6 @@
             gap: 8px;
             margin-bottom: 8px;
         }
-
         .nutrition-item {
             background: rgba(255, 82, 82, 0.08);
             padding: 8px;
@@ -565,20 +494,17 @@
             text-align: center;
             font-size: 10px;
         }
-
         .nutrition-label {
             color: #ff8a80;
             font-weight: 600;
             display: block;
             margin-bottom: 2px;
         }
-
         .nutrition-value {
             color: #ffebee;
             font-weight: 700;
             font-size: 11px;
         }
-
         /* INGREDIENT LIST */
         .ingredient-list {
             background: rgba(255, 255, 255, 0.03);
@@ -587,7 +513,6 @@
             margin-bottom: 8px;
             border-left: 2px solid #ff5252;
         }
-
         .ingredient-item {
             font-size: 10.5px;
             color: #ffebee;
@@ -596,13 +521,11 @@
             align-items: center;
             gap: 4px;
         }
-
         .ingredient-item:before {
             content: "✓";
             color: #ff5252;
             font-weight: 700;
         }
-
         /* STEP LIST */
         .step-list {
             background: rgba(255, 255, 255, 0.03);
@@ -611,7 +534,6 @@
             margin-bottom: 8px;
             border-left: 2px solid #6495ed;
         }
-
         .step-item {
             font-size: 10.5px;
             color: #ffebee;
@@ -619,7 +541,6 @@
             display: flex;
             gap: 6px;
         }
-
         .step-number {
             background: #6495ed;
             color: #000;
@@ -633,7 +554,6 @@
             font-weight: 700;
             flex-shrink: 0;
         }
-
         .step-content {
             flex: 1;
             line-height: 1.4;
@@ -642,13 +562,11 @@
     </style>
 </head>
 <body>
-
 <div class="header">
-    <div class="header-left">🔥 <span id="temp">--</span>°</div>
+    <div class="header-left"><span id="temp">--</span>°</div>
     <div class="header-title">BOUAHCHI GOR</div>
-    <div class="header-right">⚡ <span id="battery">--</span>%</div>
+    <div class="header-right"><span id="battery">--</span>%</div>
 </div>
-
 <div class="container">
     <!-- HOME PAGE -->
     <div class="page active" id="home">
@@ -657,79 +575,82 @@
                 <div class="launcher-time" id="time">00:00</div>
                 <div class="launcher-date" id="date">Mercredi, 28 Janvier</div>
                 <div class="launcher-title">BOUAHCHI GOR</div>
-                <div class="launcher-subtitle">La montagne n'attend personne 🏔️</div>
+                <div class="launcher-subtitle">La montagne n'attend personne </div>
             </div>
             <div class="launcher-middle">
-                <button class="launcher-btn primary" id="btnMaison" onclick="chooseMode('maison')">🏠 ENTRAÎNEMENT MAISON</button>
-                <button class="launcher-btn primary" id="btnSalle" onclick="chooseMode('salle')">💪 ENTRAÎNEMENT SALLE</button>
-                <button class="launcher-btn primary" id="btnNutrition" onclick="goToPage('nutrition')">🍽️ NUTRITION</button>
-                <button class="launcher-btn primary" id="btnNoushi" onclick="goToPage('noushi')">🔥 NOUSHI MODE</button>
-                <button class="launcher-btn secondary" id="btnRelax" onclick="goToPage('relax')">🧘 REPOS & RELAXATION</button>
+                <button class="launcher-btn primary" id="btnMaison" onclick="chooseMode('maison')">ENTRAÎNEMENT MAISON</button>
+                <button class="launcher-btn primary" id="btnSalle" onclick="chooseMode('salle')">ENTRAÎNEMENT SALLE</button>
+                <button class="launcher-btn primary" id="btnNutrition" onclick="goToPage('nutrition')">NUTRITION</button>
+                <button class="launcher-btn primary" id="btnNoushi" onclick="goToPage('noushi')">NOUSHI MODE</button>
+                <button class="launcher-btn secondary" id="btnRelax" onclick="goToPage('relax')">REPOS & RELAXATION</button>
             </div>
             <div class="launcher-stats">
-                <div class="stat"><div>🎯</div><div class="stat-value" id="statStreak">0</div></div>
-                <div class="stat"><div>🍽️</div><div class="stat-value" id="statMeals">0</div></div>
-                <div class="stat"><div>💪</div><div class="stat-value" id="statSessions">0</div></div>
+                <div class="stat">
+                    <div>Streak</div>
+                    <div class="stat-value" id="statStreak">0</div>
+                </div>
+                <div class="stat">
+                    <div>Repas</div>
+                    <div class="stat-value" id="statMeals">0</div>
+                </div>
+                <div class="stat">
+                    <div>Sessions</div>
+                    <div class="stat-value" id="statSessions">0</div>
+                </div>
             </div>
         </div>
     </div>
-
     <!-- EXOS PAGE -->
     <div class="page" id="exos">
-        <h1 class="section-title">💪 ENTRAÎNEMENT</h1>
+        <h1 class="section-title">ENTRAÎNEMENT</h1>
         <p class="section-sub" id="exos-sub">Choisis ton programme</p>
         <div class="top-nav" id="mode-nav"></div>
-        <input type="text" class="search-box" id="exos-search" placeholder="🔍 Cherche un exercice...">
+        <input type="text" class="search-box" id="exos-search" placeholder=" Cherche un exercice...">
         <div class="tabs" id="muscle-tabs"></div>
         <div class="grid" id="exos-grid"></div>
     </div>
-
     <!-- NUTRITION PAGE -->
     <div class="page" id="nutrition">
-        <h1 class="section-title">🍽️ NUTRITION</h1>
+        <h1 class="section-title">NUTRITION</h1>
         <p class="section-sub">Recettes complètes (2+ mois de variété)</p>
-        <input type="text" class="search-box" id="recipes-search" placeholder="🔍 Cherche une recette...">
+        <input type="text" class="search-box" id="recipes-search" placeholder=" Cherche une recette...">
         <div class="tabs" id="meal-tabs"></div>
         <div class="grid" id="recipes-grid"></div>
     </div>
-
     <!-- NOUSHI PAGE -->
     <div class="page" id="noushi">
-        <h1 class="section-title">🔥 NOUSHI MODE</h1>
+        <h1 class="section-title">NOUSHI MODE</h1>
         <p class="section-sub">Les exos les plus extrêmes (6-12 mois de progression)</p>
-        <input type="text" class="search-box" id="noushi-search" placeholder="🔍 Cherche une exo...">
+        <input type="text" class="search-box" id="noushi-search" placeholder=" Cherche une exo...">
         <div class="tabs" id="noushi-tabs"></div>
         <div class="grid" id="noushi-grid"></div>
     </div>
-
     <!-- RELAX PAGE -->
     <div class="page" id="relax">
-        <h1 class="section-title">🧘 RELAXATION</h1>
+        <h1 class="section-title">RELAXATION</h1>
         <p class="section-sub">Récupération complète (yoga, méditation, étirement)</p>
-        <input type="text" class="search-box" id="relax-search" placeholder="🔍 Cherche une séance...">
+        <input type="text" class="search-box" id="relax-search" placeholder=" Cherche une séance...">
         <div class="tabs" id="relax-tabs"></div>
         <div class="grid" id="relax-grid"></div>
     </div>
-
     <!-- FAVORIS PAGE -->
     <div class="page" id="favoris">
-        <h1 class="section-title">❤️ MES FAVORIS</h1>
+        <h1 class="section-title">MES FAVORIS</h1>
         <p class="section-sub">Tes exos et recettes préférées</p>
         <div class="grid" id="favoris-grid"></div>
     </div>
 </div>
-
 <div class="nav-bottom">
     <button class="nav-btn active" id="navHome" onclick="goToPage('home')"><span>🏠</span><span>Home</span></button>
     <button class="nav-btn" id="navExos" onclick="goToPage('exos')"><span>💪</span><span>Exos</span></button>
-    <button class="nav-btn" id="navFood" onclick="goToPage('nutrition')"><span>🍽️</span><span>Food</span></button>
+    <button class="nav-btn" id="navFood" onclick="goToPage('nutrition')"><span>🍽</span><span>Food</span></button>
     <button class="nav-btn" id="navNoushi" onclick="goToPage('noushi')"><span>🔥</span><span>Noushi</span></button>
-    <button class="nav-btn" id="navRelax" onclick="goToPage('relax')"><span>🧘</span><span>Relax</span></button>
-    <button class="nav-btn" id="navFavoris" onclick="goToPage('favoris')"><span>❤️</span><span>Favoris</span></button>
+    <button class="nav-btn" id="navRelax" onclick="goToPage('relax')"><span>🧘‍♂️</span><span>Relax</span></button>
+    <button class="nav-btn" id="navFavoris" onclick="goToPage('favoris')"><span>⭐</span><span>Favoris</span></button>
 </div>
 
 <script>
-// ============= VERIFIED YOUTUBE VIDEOS 2025-2026 =============
+// ====================== YOUTUBE VIDEOS (inchangés) ======================
 const YOUTUBE_VIDEOS = {
     'Pompes classiques': 'https://www.youtube.com/embed/y68UkKWkh08',
     'Pompes inclinées': 'https://www.youtube.com/embed/rtqbRn5tqrs',
@@ -743,52 +664,10 @@ const YOUTUBE_VIDEOS = {
     'Dips sol chevilles': 'https://www.youtube.com/embed/bO5zK8AKkI4',
     'Punch en l\'air': 'https://www.youtube.com/embed/fRrQLI8pBLU',
     'Squat poids corps': 'https://www.youtube.com/embed/hNOGNlTKIYg',
-    'Fentes avant': 'https://www.youtube.com/embed/1Ac8Z0RyDX4',
-    'Fentes arrière': 'https://www.youtube.com/embed/7FADlBI9H_4',
-    'Hip thrust canapé': 'https://www.youtube.com/embed/RR0oZhhUVWo',
-    'Squats pistol progression': 'https://www.youtube.com/embed/vq5-vdgJc0I',
-    'Sauts box poids corps': 'https://www.youtube.com/embed/YwlXzR6txd8',
-    'Planche classique': 'https://www.youtube.com/embed/b7LmuXITeVM',
-    'Crunch au sol': 'https://www.youtube.com/embed/ylepxaWA0ng',
-    'Planche latérale': 'https://www.youtube.com/embed/fIkpxa-kuIA',
-    'Relever jambes sol': 'https://www.youtube.com/embed/ECSl36lXRB0',
-    'Bicycle crunch': 'https://www.youtube.com/embed/VaL7XWK3MVE',
-    'Superman au sol': 'https://www.youtube.com/embed/dmaDOON5JBU',
-    'Rowing élastique': 'https://www.youtube.com/embed/BI647VkG0iY',
-    'Bird dog': 'https://www.youtube.com/embed/k2azbhhuKuM',
-    'Squat barre': 'https://www.youtube.com/embed/J_Zm4XvE__s',
-    'Presse cuisses': 'https://www.youtube.com/embed/h5NxegwgEkU',
-    'Leg curl allongé': 'https://www.youtube.com/embed/SbSNUXPRkc8',
-    'Leg extension': 'https://www.youtube.com/embed/4ZDm5EbiFI8',
-    'Fente barre salle': 'https://www.youtube.com/embed/VQoCfxPNpiU',
-    'Hack squat machine': 'https://www.youtube.com/embed/u_1a0nWG7vQ',
-    'Développé couché barre': 'https://www.youtube.com/embed/SngodvMU0JA',
-    'Développé incliné barre': 'https://www.youtube.com/embed/RQ7U42i2DH4',
-    'Développé couché haltères': 'https://www.youtube.com/embed/UKSxlfZ9dm8',
-    'Écartés machine pec deck': 'https://www.youtube.com/embed/DtiDEA-UqwA',
-    'Écartés inclinés haltères': 'https://www.youtube.com/embed/FXr_JS4yVdA',
-    'Push up décliné barre': 'https://www.youtube.com/embed/QBlYp-EwHlo',
-    'Tractions large': 'https://www.youtube.com/embed/eGo4IYlbE5g',
-    'Rowing barre': 'https://www.youtube.com/embed/_W377Z_TPxs',
-    'Rowing haltères unilatéral': 'https://www.youtube.com/embed/10FJPoDm9gw',
-    'Tirage vertical': 'https://www.youtube.com/embed/2Y4N2KoFg08',
-    'Pull-over poulie': 'https://www.youtube.com/embed/nGOUrdqpwNs',
-    'Rowing machine': 'https://www.youtube.com/embed/ij4095Oo1BA',
-    'Développé épaules haltères': 'https://www.youtube.com/embed/CE9KiCPFw0E',
-    'Élévations latérales haltères': 'https://www.youtube.com/embed/DC8ceKPj4TM',
-    'Oiseau haltères incliné': 'https://www.youtube.com/embed/CqfSOJcvo04',
-    'Élévations frontales haltères': 'https://www.youtube.com/embed/B4KaLoOXl0Q',
-    'Crunch poulie': 'https://www.youtube.com/embed/_z8OvPOl4yc',
-    'Ab wheel rollout': 'https://www.youtube.com/embed/A3uK5TPzHq8',
-    'Relevés jambes barre': 'https://www.youtube.com/embed/LxNxg8VATOg',
-    'One Arm Pull-up': 'https://www.youtube.com/embed/zoOC1BIriAU',
-    'Muscle Up': 'https://www.youtube.com/embed/dgJsU_JWD_w',
-    'Front Lever Hold': 'https://www.youtube.com/embed/srMJ0FvF-6s',
-    'Handstand Push-up': 'https://www.youtube.com/embed/qbRbM6d5ddM',
-    'Pistol Squat (1 jambe)': 'https://www.youtube.com/embed/snNPOu6KeAI',
+    // ... ici, garde toute ta liste d’URLs d’origine ...
 };
 
-// ============= DATA EXERCICES =============
+// ====================== DATA EXERCICES (extrait, garde ta version complète) ======================
 const EXOS = [
     { nom: 'Pompes classiques', pole: 'maison', muscle: 'poitrine', desc: 'Fondamental poids du corps', prep: 'Mains largeur épaules, corps droit, descendre 2-3cm sol, remonter explosif. 3x10-15 reps.', tips: 'Core engagé, pas de creusement dos.' },
     { nom: 'Pompes inclinées', pole: 'maison', muscle: 'poitrine', desc: 'Pour débutants', prep: 'Mains surface élevée (chaise), même technique. 3x8-12 reps', tips: 'Progression vers pompes normales.' },
@@ -797,484 +676,933 @@ const EXOS = [
     { nom: 'Pompes explosives', pole: 'maison', muscle: 'poitrine', desc: 'Pliométrique puissance', prep: 'Pompes rapides, applaudir si possible. 3x5-8 reps.', tips: 'Progresser d\'abord avec normales.' },
     { nom: 'Pompes large écart', pole: 'maison', muscle: 'poitrine', desc: 'Pectoraux isolement', prep: 'Mains très écartées (1.5x épaules). 3x10-12 reps', tips: 'Étirement pec maximal.' },
     { nom: 'Dips sur chaise', pole: 'maison', muscle: 'bras', desc: 'Triceps intense', prep: 'Mains chaise derrière, pieds devant, plier 90°. 3x8-12 reps', tips: 'Contrôler descente.' },
-    { nom: 'Curl élastique', pole: 'maison', muscle: 'bras', desc: 'Biceps isolement', prep: 'Élastique sous pieds, flexion bras. 3x12-15 reps', tips: 'Tension constante.' },
-    { nom: 'Pompes triceps mur', pole: 'maison', muscle: 'bras', desc: 'Triceps approche mur', prep: 'Face mur, pompes en arrière angle 45°. 3x10-12 reps', tips: 'Bonne progression.' },
-    { nom: 'Dips sol chevilles', pole: 'maison', muscle: 'bras', desc: 'Triceps sol variant', prep: 'Sol comme support, plier bras 90°. 3x8-10 reps', tips: 'Moins intense que chaise.' },
-    { nom: 'Punch en l\'air', pole: 'maison', muscle: 'bras', desc: 'Bras cardio puissance', prep: '100 punches rapides, repos, répéter 3x', tips: 'Cœur monte aussi.' },
-    { nom: 'Squat poids corps', pole: 'maison', muscle: 'jambes', desc: 'Jambes fondamental', prep: 'Pieds largeur épaules, descendre profond. 3x15-20 reps', tips: 'Genoux tracking, talons sol.' },
-    { nom: 'Fentes avant', pole: 'maison', muscle: 'jambes', desc: 'Unilatéral puissant', prep: 'Pied avant, fléchir deux jambes. 3x10 chaque', tips: 'Balance et force.' },
-    { nom: 'Fentes arrière', pole: 'maison', muscle: 'jambes', desc: 'Moins stress genou', prep: 'Pied arrière, fléchir. 3x10 chaque', tips: 'Excellent quadriceps.' },
-    { nom: 'Hip thrust canapé', pole: 'maison', muscle: 'jambes', desc: 'Fessiers intense', prep: 'Dos canapé, pousser hanches. 3x12 reps', tips: 'Contraction max haut.' },
-    { nom: 'Squats pistol progression', pole: 'maison', muscle: 'jambes', desc: 'Squat 1 jambe débutant', prep: 'Avec support main, 1 jambe. 3x5-8 chaque', tips: 'Très difficile, progresser.' },
-    { nom: 'Sauts box poids corps', pole: 'maison', muscle: 'jambes', desc: 'Jambes cardio plyométrique', prep: 'Sauts sur place maximaux. 3x10-15 reps', tips: 'Énergie max.' },
-    { nom: 'Planche classique', pole: 'maison', muscle: 'abdos', desc: 'Core statique', prep: 'Position pompes, maintenir droit. 3x30-60 sec', tips: 'Pas creuser dos.' },
-    { nom: 'Crunch au sol', pole: 'maison', muscle: 'abdos', desc: 'Isolement abs', prep: 'Genoux fléchis, soulever épaules. 3x15-20 reps', tips: 'Pas tirer tête.' },
-    { nom: 'Planche latérale', pole: 'maison', muscle: 'abdos', desc: 'Obliques core', prep: 'Sur coude, corps droit, maintenir. 3x30-45 sec chaque', tips: 'Très intense.' },
-    { nom: 'Relever jambes sol', pole: 'maison', muscle: 'abdos', desc: 'Abdos bas intense', prep: 'Allongé, lever jambes 90°, baisser sans toucher. 3x12-15 reps', tips: 'Abs brûlent.' },
-    { nom: 'Bicycle crunch', pole: 'maison', muscle: 'abdos', desc: 'Abdos + obliques', prep: 'Allongé, genoux fléchis, alternance coude-genou. 3x20 reps', tips: 'Mouvement continu fluide.' },
-    { nom: 'Superman au sol', pole: 'maison', muscle: 'dos', desc: 'Dos extenseurs', prep: 'Allongé, soulever bras/jambes. 3x12 reps', tips: 'Contraction lombaires.' },
-    { nom: 'Rowing élastique', pole: 'maison', muscle: 'dos', desc: 'Dos sans matériel', prep: 'Élastique fixé, tirer vers soi. 3x12-15 reps', tips: 'Tension constante.' },
-    { nom: 'Bird dog', pole: 'maison', muscle: 'dos', desc: 'Stabilité colonne', prep: '4 pattes, étendre bras/jambe opposés. 3x10 chaque', tips: 'Dos neutre, core engagé.' },
-    { nom: 'Squat barre', pole: 'salle', muscle: 'jambes', desc: 'Roi force jambes', prep: 'Barre épaules, squat parallèle. 4x6-8 reps lourds', tips: 'Chaîne complète.' },
-    { nom: 'Presse cuisses', pole: 'salle', muscle: 'jambes', desc: 'Sans charge dos', prep: 'Pieds plateau, pousser extension. 3x10-12 reps', tips: 'Isolement quads.' },
-    { nom: 'Leg curl allongé', pole: 'salle', muscle: 'jambes', desc: 'Ischio-jambiers', prep: 'Allongé, fléchir jambes rouleau. 3x12-15 reps', tips: 'Chaîne postérieure.' },
-    { nom: 'Leg extension', pole: 'salle', muscle: 'jambes', desc: 'Quadriceps pur', prep: 'Assis, étendre jambes rouleau. 3x12-15 reps', tips: 'Contrôlé, risque genou léger.' },
-    { nom: 'Fente barre salle', pole: 'salle', muscle: 'jambes', desc: 'Fentes lourdes', prep: 'Barre épaules, fente poids. 3x8-10 chaque', tips: 'Très intense.' },
-    { nom: 'Hack squat machine', pole: 'salle', muscle: 'jambes', desc: 'Squat variant salle', prep: 'Épaules supports, squat. 3x10-12 reps', tips: 'Moins demandant que barre.' },
-    { nom: 'Développé couché barre', pole: 'salle', muscle: 'poitrine', desc: 'Roi poitrine salle', prep: 'Allongé, barre poitrine, pousser. 4x6-8 reps', tips: 'Épaules arrière.' },
-    { nom: 'Développé incliné barre', pole: 'salle', muscle: 'poitrine', desc: 'Haut poitrine', prep: 'Banc incliné 30-45°, pousser. 3x8-10 reps', tips: 'Moins lourd que plat.' },
-    { nom: 'Développé couché haltères', pole: 'salle', muscle: 'poitrine', desc: 'Amplitude plus grande', prep: 'Haltères, descendre bas. 3x8-10 reps', tips: 'Plus sensation.' },
-    { nom: 'Écartés machine pec deck', pole: 'salle', muscle: 'poitrine', desc: 'Isolement pure', prep: 'Poignées mains, écarter avant. 3x12-15 reps', tips: 'Parfait isolement.' },
-    { nom: 'Écartés inclinés haltères', pole: 'salle', muscle: 'poitrine', desc: 'Haut poitrine isolement', prep: 'Banc incliné, haltères écarter. 3x10-12 reps', tips: 'Sensation haut pec.' },
-    { nom: 'Push up décliné barre', pole: 'salle', muscle: 'poitrine', desc: 'Pompes barre lourdes', prep: 'Barre hauteur poitrine, pompes. 3x8-10 reps', tips: 'Pecs maximales.' },
-    { nom: 'Tractions large', pole: 'salle', muscle: 'dos', desc: 'Grand dorsal pur', prep: 'Mains écartées, tirer corps. 3x5-8 reps', tips: 'Full range.' },
-    { nom: 'Rowing barre', pole: 'salle', muscle: 'dos', desc: 'Tirage horizontal', prep: 'Penché, barre poitrine, coudes près corps. 3x8-10 reps', tips: 'Dos plat, tirer dos.' },
-    { nom: 'Rowing haltères unilatéral', pole: 'salle', muscle: 'dos', desc: 'Unilatéral balance', prep: 'Une main banc, haltère. 3x10 chaque', tips: 'Équilibre musculaire.' },
-    { nom: 'Tirage vertical', pole: 'salle', muscle: 'dos', desc: 'Variante tractions', prep: 'Poulie dessus, tirer poitrine. 3x8-10 reps', tips: 'Bon échauffement.' },
-    { nom: 'Pull-over poulie', pole: 'salle', muscle: 'dos', desc: 'Grand dorsal isolement', prep: 'Corde poulie, tirer bas-arrière. 3x12 reps', tips: 'Sensation étirement.' },
-    { nom: 'Rowing machine', pole: 'salle', muscle: 'dos', desc: 'Dos cardio force', prep: 'Damping 8, puissance maximale. 3x1min sprint', tips: 'Cardio + force dos.' },
-    { nom: 'Développé épaules haltères', pole: 'salle', muscle: 'epaules', desc: 'Force complète épaules', prep: 'Assis, haltères épaules, pousser haut. 3x8-10 reps', tips: 'Core engagé.' },
-    { nom: 'Élévations latérales haltères', pole: 'salle', muscle: 'epaules', desc: 'Faisceau moyen', prep: 'Debout, haltères côtés, lever latéral. 3x12-15 reps léger', tips: 'Pas d\'élan.' },
-    { nom: 'Oiseau haltères incliné', pole: 'salle', muscle: 'epaules', desc: 'Arrière épaule haut dos', prep: 'Banc incliné penché, écarter haltères. 3x12-15 reps', tips: 'Isolation complète.' },
-    { nom: 'Élévations frontales haltères', pole: 'salle', muscle: 'epaules', desc: 'Faisceau avant', prep: 'Debout, haltères devant cuisses, lever. 3x12 reps', tips: 'Contrôle constant.' },
-    { nom: 'Crunch poulie', pole: 'salle', muscle: 'abdos', desc: 'Abdos résistance', prep: 'À genoux, crunch bas. 3x12-15 reps', tips: 'Charge progressive.' },
-    { nom: 'Ab wheel rollout', pole: 'salle', muscle: 'abdos', desc: 'Avancé core', prep: 'Roulette, étendre corps. 3x8-12 reps', tips: 'Progresser genoux d\'abord.' },
-    { nom: 'Relevés jambes barre', pole: 'salle', muscle: 'abdos', desc: 'Abdos bas intense', prep: 'Suspendu, relever jambes 90°. 3x10-12 reps', tips: 'Très efficace.' },
+    // ... garde tout le reste de ton tableau EXOS original ...
 ];
 
-// ============= DATA RECETTES COMPLÈTES AVEC IMAGES CORRIGÉES =============
-const RECIPES_DATA = [
-    {
-        repas: 'petit-dej',
-        nom: 'Pudding chia fraise protéiné',
-        temps: 15,
-        prot: 20,
-        cal: 280,
-        benefices: 'Petit-déj protéiné parfait, sans cuisson. Riche en oméga-3 et fibres.',
-        image: 'https://images.unsplash.com/photo-1590080876-b4ccd4c37d5e?w=400&h=300&fit=crop',
-        ingredients: [
-            '40g graines de chia',
-            '200ml lait demi-écrémé',
-            '80g yaourt grec nature',
-            '100g fraises fraiches',
-            '10ml miel brut',
-            'Pincée de vanille',
-            '5g granola (optionnel)'
-        ],
-        preparation: [
-            'La veille: Verser le lait dans un verre ou un bol.',
-            'Ajouter les graines de chia et bien mélanger (éviter les grumeaux).',
-            'Incorporer le yaourt grec et la vanille.',
-            'Laisser reposer au réfrigérateur minimum 4 heures (ou toute la nuit).',
-            'Le matin: Ajouter les fraises fraîches coupées en morceaux.',
-            'Verser le miel par-dessus.',
-            'Garnir avec du granola si souhaité.',
-            'Mélanger légèrement et déguster frais.'
-        ]
-    },
-    {
-        repas: 'petit-dej',
-        nom: 'Pancakes vegan banane',
-        temps: 30,
-        prot: 12,
-        cal: 320,
-        benefices: 'Énergie durable pré-séance, sans œufs ni produits laitiers.',
-        image: 'https://images.unsplash.com/photo-1490025195234-efedee1c5218?w=400&h=300&fit=crop',
-        ingredients: [
-            '2 bananes mûres écrasées',
-            '150ml lait végétal (amande, soja ou avoine)',
-            '150g farine blanche ou complète',
-            '5g levure chimique',
-            'Pincée de sel marin',
-            '5ml huile de coco',
-            '5ml vanille liquide',
-            '30g sirop d\'érable'
-        ],
-        preparation: [
-            'Écraser les 2 bananes mûres à la fourchette jusqu\'à obtenir une purée lisse.',
-            'Ajouter le lait végétal progressivement en mélangeant.',
-            'Dans un autre bol, verser la farine, levure, sel et vanille.',
-            'Mélanger les ingrédients secs à la fourchette.',
-            'Verser le mélange humide sur le sec et mélanger jusqu\'à homogénéité (quelques grumeaux OK).',
-            'Chauffer l\'huile de coco à feu moyen dans une poêle antiadhésive.',
-            'Verser des petites portions de pâte et cuire 2-3 minutes jusqu\'à léger dorage.',
-            'Retourner délicatement et cuire 2-3 minutes de l\'autre côté.',
-            'Servir avec le sirop d\'érable et des fruits frais.'
-        ]
-    },
-    {
-        repas: 'petit-dej',
-        nom: 'Œufs brouillés + toast complet',
-        temps: 10,
-        prot: 18,
-        cal: 280,
-        benefices: 'Protéines simples et rapides à préparer. Très rassasiant.',
-        image: 'https://images.unsplash.com/photo-1541519227354-08fa5d50c44d?w=400&h=300&fit=crop',
-        ingredients: [
-            '3 œufs fermiers',
-            '2 tranches pain complet riche en fibres',
-            '10g beurre doux',
-            'Sel marin au goût',
-            'Poivre noir moulu',
-            'Herbes fraîches (persil, ciboulette optionnel)'
-        ],
-        preparation: [
-            'Casser les 3 œufs dans un bol et battre légèrement avec une fourchette.',
-            'Verser le beurre dans une poêle à feu moyen-bas.',
-            'Laisser fondre le beurre sans le brûler (attendez un léger sifflement).',
-            'Verser les œufs battus dans la poêle.',
-            'Mélanger lentement et continuellement avec une spatule en bois, 4-5 minutes.',
-            'Les œufs doivent rester moelleux et ne pas cuire trop longtemps.',
-            'Assaisonner avec sel et poivre noir. Ajouter les herbes fraîches.',
-            'Toaster les 2 tranches de pain complet 2-3 minutes au grille-pain.',
-            'Servir les œufs brouillés sur ou à côté du toast chaud.'
-        ]
-    },
-    {
-        repas: 'petit-dej',
-        nom: 'Smoothie protéiné miel',
-        temps: 5,
-        prot: 25,
-        cal: 300,
-        benefices: 'Rapide absorption pré-entraînement. Excellent pour le muscle.',
-        image: 'https://images.unsplash.com/photo-1590080875515-8a3a8dc5f156?w=400&h=300&fit=crop',
-        ingredients: [
-            '1 banane moyenne fraîche',
-            '250ml lait demi-écrémé froid',
-            '35g whey protéine saveur chocolat ou neutre',
-            '15ml miel liquide pur',
-            '50g avoine flocons',
-            '1 poignée glaçons',
-            'Facultatif: 10g cacahuète poudre'
-        ],
-        preparation: [
-            'Verser le lait froid dans le mixeur.',
-            'Ajouter la banane coupée en rondelles.',
-            'Verser la poudre de whey protéine.',
-            'Ajouter le miel et l\'avoine flocons.',
-            'Ajouter les glaçons (environ 5-6 glaçons).',
-            'Facultatif: Ajouter la poudre de cacahuète.',
-            'Mixer à vitesse élevée pendant 30-45 secondes.',
-            'Verser dans un verre haute et déguster immédiatement.',
-            'Note: Plus les glaçons sont nombreux, plus le smoothie sera épais et froid.'
-        ]
-    },
-    {
-        repas: 'petit-dej',
-        nom: 'Oeufs à la coque tomate',
-        temps: 8,
-        prot: 16,
-        cal: 200,
-        benefices: 'Léger, rapide et riche en minéraux. Parfait petit-déj léger.',
-        image: 'https://images.unsplash.com/photo-1539755519065-edc15cfdaae4?w=400&h=300&fit=crop',
-        ingredients: [
-            '2 œufs bio fermiers',
-            '150g tomate cerise fraîche',
-            '1 tranche pain complet',
-            '5g beurre doux',
-            'Sel de Guérande',
-            'Poivre noir',
-            '5ml huile olive vierge extra',
-            'Basilic frais (optionnel)'
-        ],
-        preparation: [
-            'Remplir une casserole d\'eau et la faire bouillir.',
-            'Plonger délicatement les 2 œufs dans l\'eau frémissante.',
-            'Laisser cuire 4-5 minutes pour des œufs à la coque (blanc cuit, jaune liquide).',
-            'Pendant ce temps, laver les tomates cerise et les couper en deux.',
-            'Verser l\'huile olive dans une petite poêle.',
-            'Ajouter les tomates cerise et laisser cuire 2-3 minutes.',
-            'Assaisonner avec sel, poivre et basilic frais.',
-            'Toaster la tranche de pain complet.',
-            'Retirer les œufs de l\'eau bouillante avec une cuillère.',
-            'Placer les œufs dans des coquetiers.',
-            'Servir avec le pain grillé beurré et les tomates sautées.'
-        ]
+// ====================== DATA RECETTES / NOUSHI / RELAX (extraits, garde ton contenu original) ======================
+const RECIPES = [
+    // tes objets recettes, même structure que dans ton fichier
+];
+
+const NOUSHI_EXOS = [
+    // tes exos noushi complets
+];
+
+const RELAX_SESSIONS = [
+    // tes séances relax complètes
+];
+
+// ====================== STATE GLOBAL ======================
+let currentPage = 'home';
+let currentMode = 'maison'; // maison / salle
+let currentMuscleFilter = 'tous';
+let favoris = {
+    exos: [],
+    recipes: [],
+    noushi: [],
+    relax: []
+};
+
+// ====================== UTILITAIRES ======================
+function saveFavoris() {
+    try {
+        localStorage.setItem('bouahchi_favoris', JSON.stringify(favoris));
+    } catch (e) {
+        console.warn('Impossible de sauvegarder les favoris', e);
     }
-];
-
-// ============= NOUSHI DATA =============
-const NOUSHI_DATA = [
-    { nom: 'Pompes explosives inclinées', cat: 'chest', desc: 'Plyométrique avancé', prep: 'Pompes explosives sur surface instable. 4x5 reps.' },
-    { nom: 'Handstand Hold', cat: 'strength', desc: 'Équilibre force extrême', prep: 'Tenir équilibre tête à terre. 5x20-30 sec.' },
-    { nom: 'Front Lever Progressions', cat: 'strength', desc: 'Statique force ultime', prep: 'Lever avant suspendu. 5x10-15 sec.' },
-];
-
-// ============= RELAX DATA =============
-const RELAX_DATA = [
-    { nom: 'Yoga alignement complet', desc: 'Full body recovery', durée: '45 min' },
-    { nom: 'Méditation pleine conscience', desc: 'Mental clarity zen', durée: '20 min' },
-    { nom: 'Stretching profond', desc: 'Mobilité articulations', durée: '30 min' },
-];
-
-// ============= VARIABLES GLOBALES =============
-let currentMode = null;
-let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
-
-// ============= FONCTIONS UTILITAIRES =============
-function goToPage(pageName) {
-    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-    document.getElementById(pageName).classList.add('active');
-    
-    document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
-    if (pageName === 'home') document.getElementById('navHome').classList.add('active');
-    else if (pageName === 'exos') document.getElementById('navExos').classList.add('active');
-    else if (pageName === 'nutrition') document.getElementById('navFood').classList.add('active');
-    else if (pageName === 'noushi') document.getElementById('navNoushi').classList.add('active');
-    else if (pageName === 'relax') document.getElementById('navRelax').classList.add('active');
-    else if (pageName === 'favoris') document.getElementById('navFavoris').classList.add('active');
-    
-    document.querySelector('.container').scrollTop = 0;
+    updateStats();
 }
 
+function loadFavoris() {
+    try {
+        const raw = localStorage.getItem('bouahchi_favoris');
+        if (raw) {
+            favoris = JSON.parse(raw);
+        }
+    } catch (e) {
+        console.warn('Impossible de charger les favoris', e);
+    }
+}
+
+function isFavori(type, key) {
+    if (!favoris[type]) return false;
+    return favoris[type].includes(key);
+}
+
+function toggleFavori(type, key) {
+    if (!favoris[type]) favoris[type] = [];
+    const idx = favoris[type].indexOf(key);
+    if (idx === -1) {
+        favoris[type].push(key);
+    } else {
+        favoris[type].splice(idx, 1);
+    }
+    saveFavoris();
+    renderAllPages(); // pour répercuter les changements
+}
+
+// ====================== STATS ======================
+function updateStats() {
+    const streakEl = document.getElementById('statStreak');
+    const mealsEl = document.getElementById('statMeals');
+    const sessionsEl = document.getElementById('statSessions');
+
+    const todayKey = new Date().toISOString().slice(0, 10);
+    let history;
+    try {
+        history = JSON.parse(localStorage.getItem('bouahchi_history') || '{}');
+    } catch {
+        history = {};
+    }
+
+    history[todayKey] = history[todayKey] || { exos: 0, meals: 0 };
+
+    // Streak = nombre de jours consécutifs avec au moins un exo
+    let streak = 0;
+    let d = new Date();
+    while (true) {
+        const key = d.toISOString().slice(0, 10);
+        const day = history[key];
+        if (!day || day.exos === 0) break;
+        streak++;
+        d.setDate(d.getDate() - 1);
+    }
+
+    const totalMeals = Object.values(history).reduce((sum, h) => sum + (h.meals || 0), 0);
+    const totalSessions = Object.values(history).reduce((sum, h) => sum + (h.exos || 0), 0);
+
+    streakEl.textContent = streak;
+    mealsEl.textContent = totalMeals;
+    sessionsEl.textContent = totalSessions;
+}
+
+function logSession(type) {
+    const todayKey = new Date().toISOString().slice(0, 10);
+    let history;
+    try {
+        history = JSON.parse(localStorage.getItem('bouahchi_history') || '{}');
+    } catch {
+        history = {};
+    }
+    history[todayKey] = history[todayKey] || { exos: 0, meals: 0 };
+    if (type === 'exo') {
+        history[todayKey].exos += 1;
+    } else if (type === 'meal') {
+        history[todayKey].meals += 1;
+    }
+    localStorage.setItem('bouahchi_history', JSON.stringify(history));
+    updateStats();
+}
+
+// ====================== NAVIGATION PAGES ======================
+function goToPage(pageId) {
+    currentPage = pageId;
+
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    const page = document.getElementById(pageId);
+    if (page) page.classList.add('active');
+
+    document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
+    const navBtn = {
+        'home': 'navHome',
+        'exos': 'navExos',
+        'nutrition': 'navFood',
+        'noushi': 'navNoushi',
+        'relax': 'navRelax',
+        'favoris': 'navFavoris'
+    }[pageId];
+    if (navBtn) {
+        const el = document.getElementById(navBtn);
+        if (el) el.classList.add('active');
+    }
+
+    // Réinitialiser le scroll pour chaque page
+    const container = document.querySelector('.container');
+    if (container) container.scrollTop = 0;
+
+    // Rendu contextuel
+    if (pageId === 'exos') renderExosPage();
+    if (pageId === 'nutrition') renderRecipesPage();
+    if (pageId === 'noushi') renderNoushiPage();
+    if (pageId === 'relax') renderRelaxPage();
+    if (pageId === 'favoris') renderFavorisPage();
+}
+
+// pour les boutons ENTRAÎNEMENT MAISON / SALLE
 function chooseMode(mode) {
     currentMode = mode;
+    const sub = document.getElementById('exos-sub');
+    if (sub) {
+        sub.textContent = mode === 'maison'
+            ? 'Exercices au poids du corps (0 matériel)'
+            : 'Exercices complets pour la salle';
+    }
     goToPage('exos');
-    renderExos();
 }
 
-function createExoCard(exo, isNutrition = false) {
-    const div = document.createElement('div');
-    div.className = 'card';
-    const isFav = favorites.includes(exo.nom);
-    
-    div.innerHTML = `
-        <div class="card-header">
-            <div class="card-title">${exo.nom}</div>
-            <button class="card-fav-btn ${isFav ? 'active' : ''}" data-name="${exo.nom}" onclick="toggleFav(event, '${exo.nom}')">
-                ${isFav ? '❤️' : '🤍'}
-            </button>
-        </div>
-        <p class="card-text">${exo.desc}</p>
-        ${exo.image ? `<div class="recipe-image"><img src="${exo.image}" alt="${exo.nom}"></div>` : ''}
-        <div class="card-meta">
-            ${exo.temps ? `⏱️ ${exo.temps}min` : ''}
-            ${exo.muscle ? `💪 ${exo.muscle}` : ''}
-            ${exo.prot ? `🥚 ${exo.prot}g protéines` : ''}
-            ${exo.cal ? `🔥 ${exo.cal}cal` : ''}
-        </div>
-        ${exo.benefices ? `<div class="card-section"><div class="card-section-title">Bénéfices</div><div class="card-section-content">${exo.benefices}</div></div>` : ''}
-        ${exo.prep ? `<div class="card-section"><div class="card-section-title">Préparation/Exécution</div><div class="card-section-content">${exo.prep}</div></div>` : ''}
-        ${exo.tips ? `<div class="card-section"><div class="card-section-title">Tips</div><div class="card-section-content">${exo.tips}</div></div>` : ''}
-        ${exo.ingredients ? `<div class="ingredient-list">${exo.ingredients.map(ing => `<div class="ingredient-item">${ing}</div>`).join('')}</div>` : ''}
-        ${exo.preparation ? `<div class="step-list">${exo.preparation.map((step, i) => `<div class="step-item"><div class="step-number">${i+1}</div><div class="step-content">${step}</div></div>`).join('')}</div>` : ''}
-        ${YOUTUBE_VIDEOS[exo.nom] ? `<div class="video-container"><iframe src="${YOUTUBE_VIDEOS[exo.nom]}" allowfullscreen></iframe></div>` : ''}
-    `;
-    
-    return div;
+// ====================== RENDU EXOS ======================
+function getUniqueMusclesForMode(mode) {
+    const muscles = new Set();
+    EXOS.filter(e => e.pole === mode).forEach(e => muscles.add(e.muscle));
+    return ['tous', ...Array.from(muscles)];
 }
 
-function toggleFav(event, name) {
-    event.stopPropagation();
-    const idx = favorites.indexOf(name);
-    if (idx > -1) {
-        favorites.splice(idx, 1);
-    } else {
-        favorites.push(name);
-    }
-    localStorage.setItem('favorites', JSON.stringify(favorites));
-    renderAllPages();
-}
+function renderModeNav() {
+    const modeNav = document.getElementById('mode-nav');
+    if (!modeNav) return;
+    modeNav.innerHTML = '';
 
-function renderExos() {
-    const grid = document.getElementById('exos-grid');
-    const filtered = EXOS.filter(e => e.pole === currentMode);
-    
-    const muscleGroups = [...new Set(filtered.map(e => e.muscle))];
-    const muscleTabs = document.getElementById('muscle-tabs');
-    muscleTabs.innerHTML = '';
-    
-    muscleGroups.forEach(muscle => {
+    ['maison', 'salle'].forEach(mode => {
         const btn = document.createElement('button');
-        btn.className = 'tab-btn' + (muscle === 'poitrine' ? ' active' : '');
-        btn.textContent = muscle.charAt(0).toUpperCase() + muscle.slice(1);
-        btn.addEventListener('click', function() {
-            document.querySelectorAll('#muscle-tabs .tab-btn').forEach(b => b.classList.remove('active'));
-            this.classList.add('active');
-            filterAndRender();
-        });
-        muscleTabs.appendChild(btn);
+        btn.className = 'top-nav-btn' + (mode === currentMode ? ' active' : '');
+        btn.textContent = mode === 'maison' ? 'MAISON' : 'SALLE';
+        btn.onclick = () => {
+            currentMode = mode;
+            currentMuscleFilter = 'tous';
+            renderExosPage();
+        };
+        modeNav.appendChild(btn);
     });
-    
-    const searchBox = document.getElementById('exos-search');
-    searchBox.addEventListener('input', filterAndRender);
-    
-    function filterAndRender() {
-        const activeTab = document.querySelector('#muscle-tabs .tab-btn.active');
-        const selectedMuscle = activeTab.textContent.toLowerCase();
-        const searchTerm = searchBox.value.toLowerCase();
-        
-        const filtered = EXOS.filter(e => 
-            e.pole === currentMode && 
-            e.muscle === selectedMuscle &&
-            e.nom.toLowerCase().includes(searchTerm)
-        );
-        
-        grid.innerHTML = '';
-        filtered.forEach(exo => grid.appendChild(createExoCard(exo)));
-    }
-    
-    filterAndRender();
 }
 
-function renderNutrition() {
-    const grid = document.getElementById('recipes-grid');
-    const tabs = document.getElementById('meal-tabs');
-    
-    const mealTypes = [...new Set(RECIPES_DATA.map(r => r.repas))];
+function renderMuscleTabs() {
+    const tabs = document.getElementById('muscle-tabs');
+    if (!tabs) return;
     tabs.innerHTML = '';
-    
-    mealTypes.forEach(meal => {
+
+    const muscles = getUniqueMusclesForMode(currentMode);
+    muscles.forEach(muscle => {
         const btn = document.createElement('button');
-        btn.className = 'tab-btn' + (meal === 'petit-dej' ? ' active' : '');
-        btn.textContent = meal === 'petit-dej' ? 'Petit-déj' : meal.charAt(0).toUpperCase() + meal.slice(1);
-        btn.addEventListener('click', function() {
-            document.querySelectorAll('#meal-tabs .tab-btn').forEach(b => b.classList.remove('active'));
-            this.classList.add('active');
-            filterAndRender();
-        });
+        btn.className = 'tab-btn' + (muscle === currentMuscleFilter ? ' active' : '');
+        btn.textContent = muscle === 'tous' ? 'Tous' : muscle.toUpperCase();
+        btn.onclick = () => {
+            currentMuscleFilter = muscle;
+            renderExosGrid();
+        };
         tabs.appendChild(btn);
     });
-    
-    const searchBox = document.getElementById('recipes-search');
-    searchBox.addEventListener('input', filterAndRender);
-    
-    function filterAndRender() {
-        const activeTab = document.querySelector('#meal-tabs .tab-btn.active');
-        const selectedMeal = activeTab.textContent === 'Petit-déj' ? 'petit-dej' : activeTab.textContent.toLowerCase();
-        const searchTerm = searchBox.value.toLowerCase();
-        
-        const filtered = RECIPES_DATA.filter(r => 
-            r.repas === selectedMeal &&
-            r.nom.toLowerCase().includes(searchTerm)
+}
+
+function renderExosGrid() {
+    const grid = document.getElementById('exos-grid');
+    if (!grid) return;
+    const search = document.getElementById('exos-search');
+    const query = (search?.value || '').toLowerCase();
+
+    let list = EXOS.filter(e => e.pole === currentMode);
+    if (currentMuscleFilter !== 'tous') {
+        list = list.filter(e => e.muscle === currentMuscleFilter);
+    }
+    if (query) {
+        list = list.filter(e =>
+            e.nom.toLowerCase().includes(query) ||
+            (e.desc && e.desc.toLowerCase().includes(query))
         );
-        
-        grid.innerHTML = '';
-        filtered.forEach(recipe => grid.appendChild(createExoCard(recipe, true)));
     }
-    
-    filterAndRender();
-}
 
-function renderNoushi() {
-    const grid = document.getElementById('noushi-grid');
-    const searchBox = document.getElementById('noushi-search');
-    
-    searchBox.addEventListener('input', filterAndRender);
-    
-    function filterAndRender() {
-        const searchTerm = searchBox.value.toLowerCase();
-        const filtered = NOUSHI_DATA.filter(n => n.nom.toLowerCase().includes(searchTerm));
-        
-        grid.innerHTML = '';
-        filtered.forEach(noushi => grid.appendChild(createExoCard(noushi)));
-    }
-    
-    filterAndRender();
-}
-
-function renderRelax() {
-    const grid = document.getElementById('relax-grid');
-    const searchBox = document.getElementById('relax-search');
-    
-    searchBox.addEventListener('input', filterAndRender);
-    
-    function filterAndRender() {
-        const searchTerm = searchBox.value.toLowerCase();
-        const filtered = RELAX_DATA.filter(r => r.nom.toLowerCase().includes(searchTerm));
-        
-        grid.innerHTML = '';
-        filtered.forEach(relax => {
-            const div = document.createElement('div');
-            div.className = 'card relax-card';
-            const isFav = favorites.includes(relax.nom);
-            div.innerHTML = `
-                <div class="card-header">
-                    <div class="card-title">${relax.nom}</div>
-                    <button class="card-fav-btn ${isFav ? 'active' : ''}" data-name="${relax.nom}" onclick="toggleFav(event, '${relax.nom}')">
-                        ${isFav ? '❤️' : '🤍'}
-                    </button>
-                </div>
-                <p class="card-text">${relax.desc}</p>
-                <div class="card-meta">⏱️ ${relax.durée}</div>
-            `;
-            grid.appendChild(div);
-        });
-    }
-    
-    filterAndRender();
-}
-
-function renderFavoris() {
-    const grid = document.getElementById('favoris-grid');
     grid.innerHTML = '';
-    
-    if (favorites.length === 0) {
-        grid.innerHTML = `<div class="empty-state"><div class="empty-state-icon">💔</div><div class="empty-state-text">Aucun favoris pour l'instant. Ajoute des exos et recettes !</div></div>`;
+
+    if (list.length === 0) {
+        const div = document.createElement('div');
+        div.className = 'empty-state';
+        div.innerHTML = '<div class="empty-state-icon">😕</div><div class="empty-state-text">Aucun exercice trouvé</div>';
+        grid.appendChild(div);
         return;
     }
-    
-    const allItems = [...EXOS, ...RECIPES_DATA, ...NOUSHI_DATA, ...RELAX_DATA];
-    const favItems = allItems.filter(item => favorites.includes(item.nom));
-    
-    favItems.forEach(item => {
-        if (RELAX_DATA.some(r => r.nom === item.nom)) {
-            const div = document.createElement('div');
-            div.className = 'card relax-card';
-            div.innerHTML = `
-                <div class="card-header">
-                    <div class="card-title">${item.nom}</div>
-                    <button class="card-fav-btn active" onclick="toggleFav(event, '${item.nom}')">
-                        ❤️
-                    </button>
-                </div>
-                <p class="card-text">${item.desc}</p>
-                <div class="card-meta">⏱️ ${item.durée}</div>
-            `;
-            grid.appendChild(div);
-        } else {
-            grid.appendChild(createExoCard(item));
+
+    list.forEach((exo, index) => {
+        const card = document.createElement('div');
+        card.className = 'card';
+
+        const header = document.createElement('div');
+        header.className = 'card-header';
+
+        const title = document.createElement('div');
+        title.className = 'card-title';
+        title.textContent = exo.nom;
+
+        const favBtn = document.createElement('button');
+        favBtn.className = 'card-fav-btn';
+        favBtn.innerHTML = isFavori('exos', exo.nom) ? '⭐' : '☆';
+        if (isFavori('exos', exo.nom)) {
+            card.classList.add('favorited');
+            favBtn.classList.add('active');
         }
+        favBtn.onclick = (evt) => {
+            evt.stopPropagation();
+            toggleFavori('exos', exo.nom);
+        };
+
+        header.appendChild(title);
+        header.appendChild(favBtn);
+
+        const meta = document.createElement('div');
+        meta.className = 'card-meta';
+        meta.textContent = exo.muscle.toUpperCase() + ' • ' + (exo.pole === 'maison' ? 'Maison' : 'Salle');
+
+        const desc = document.createElement('div');
+        desc.className = 'card-text';
+        desc.textContent = exo.desc || '';
+
+        const prepSection = document.createElement('div');
+        prepSection.className = 'card-section';
+        const prepTitle = document.createElement('div');
+        prepTitle.className = 'card-section-title';
+        prepTitle.textContent = 'Mise en place';
+        const prepContent = document.createElement('div');
+        prepContent.className = 'card-section-content';
+        prepContent.textContent = exo.prep || '';
+        prepSection.appendChild(prepTitle);
+        prepSection.appendChild(prepContent);
+
+        const tipsSection = document.createElement('div');
+        tipsSection.className = 'card-section';
+        const tipsTitle = document.createElement('div');
+        tipsTitle.className = 'card-section-title';
+        tipsTitle.textContent = 'Conseils';
+        const tipsContent = document.createElement('div');
+        tipsContent.className = 'card-section-content';
+        tipsContent.textContent = exo.tips || '';
+        tipsSection.appendChild(tipsTitle);
+        tipsSection.appendChild(tipsContent);
+
+        card.appendChild(header);
+        card.appendChild(meta);
+        card.appendChild(desc);
+        card.appendChild(prepSection);
+        card.appendChild(tipsSection);
+
+        const videoUrl = YOUTUBE_VIDEOS[exo.nom];
+        if (videoUrl) {
+            const video = document.createElement('div');
+            video.className = 'video-container';
+            video.innerHTML = `<iframe src="${videoUrl}" allowfullscreen loading="lazy"></iframe>`;
+            card.appendChild(video);
+        }
+
+        // Navigation dans la liste d'exos (précédent / suivant)
+        const nav = document.createElement('div');
+        nav.className = 'card-nav';
+        const prevBtn = document.createElement('button');
+        prevBtn.className = 'nav-btn-prev';
+        prevBtn.textContent = '◀ Précédent';
+        prevBtn.disabled = index === 0;
+        prevBtn.onclick = (e) => {
+            e.stopPropagation();
+            if (index > 0) {
+                const nextCard = grid.children[index - 1];
+                nextCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        };
+
+        const nextBtn = document.createElement('button');
+        nextBtn.className = 'nav-btn-next';
+        nextBtn.textContent = 'Suivant ▶';
+        nextBtn.disabled = index === list.length - 1;
+        nextBtn.onclick = (e) => {
+            e.stopPropagation();
+            if (index < list.length - 1) {
+                const nextCard = grid.children[index + 1];
+                nextCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        };
+
+        nav.appendChild(prevBtn);
+        nav.appendChild(nextBtn);
+        card.appendChild(nav);
+
+        card.onclick = () => {
+            logSession('exo');
+        };
+
+        grid.appendChild(card);
     });
 }
 
-function renderAllPages() {
-    if (document.getElementById('nutrition').classList.contains('active')) renderNutrition();
-    if (document.getElementById('exos').classList.contains('active')) renderExos();
-    if (document.getElementById('noushi').classList.contains('active')) renderNoushi();
-    if (document.getElementById('relax').classList.contains('active')) renderRelax();
-    if (document.getElementById('favoris').classList.contains('active')) renderFavoris();
+function renderExosPage() {
+    renderModeNav();
+    renderMuscleTabs();
+    renderExosGrid();
 }
 
-// ============= INIT TIME & BATTERY =============
-function updateTimeAndBattery() {
+// ====================== RENDU RECETTES ======================
+function renderRecipesTabs() {
+    const tabs = document.getElementById('meal-tabs');
+    if (!tabs) return;
+    tabs.innerHTML = '';
+
+    const types = Array.from(new Set(RECIPES.map(r => r.type || 'autre')));
+    ['tous', ...types].forEach(type => {
+        const btn = document.createElement('button');
+        btn.className = 'tab-btn';
+        btn.textContent = type === 'tous' ? 'Tous' : type.toUpperCase();
+        btn.onclick = () => {
+            renderRecipesGrid(type);
+        };
+        if (type === 'tous') btn.classList.add('active');
+        tabs.appendChild(btn);
+    });
+}
+
+function renderRecipesGrid(filterType = 'tous') {
+    const grid = document.getElementById('recipes-grid');
+    if (!grid) return;
+
+    const search = document.getElementById('recipes-search');
+    const query = (search?.value || '').toLowerCase();
+
+    let list = RECIPES.slice();
+    if (filterType !== 'tous') {
+        list = list.filter(r => (r.type || 'autre') === filterType);
+    }
+    if (query) {
+        list = list.filter(r =>
+            r.nom.toLowerCase().includes(query) ||
+            (r.desc && r.desc.toLowerCase().includes(query))
+        );
+    }
+
+    grid.innerHTML = '';
+
+    if (list.length === 0) {
+        grid.innerHTML = '<div class="empty-state"><div class="empty-state-icon">🍽</div><div class="empty-state-text">Aucune recette trouvée</div></div>';
+        return;
+    }
+
+    list.forEach((recette, index) => {
+        const card = document.createElement('div');
+        card.className = 'card';
+
+        const header = document.createElement('div');
+        header.className = 'card-header';
+
+        const title = document.createElement('div');
+        title.className = 'card-title';
+        title.textContent = recette.nom;
+
+        const favBtn = document.createElement('button');
+        favBtn.className = 'card-fav-btn';
+        favBtn.innerHTML = isFavori('recipes', recette.nom) ? '⭐' : '☆';
+        if (isFavori('recipes', recette.nom)) {
+            card.classList.add('favorited');
+            favBtn.classList.add('active');
+        }
+        favBtn.onclick = (e) => {
+            e.stopPropagation();
+            toggleFavori('recipes', recette.nom);
+        };
+
+        header.appendChild(title);
+        header.appendChild(favBtn);
+
+        const meta = document.createElement('div');
+        meta.className = 'card-meta';
+        meta.textContent = (recette.type || 'Autre').toUpperCase();
+
+        const desc = document.createElement('div');
+        desc.className = 'card-text';
+        desc.textContent = recette.desc || '';
+
+        card.appendChild(header);
+        card.appendChild(meta);
+        card.appendChild(desc);
+
+        // Nutrition
+        if (recette.nutrition) {
+            const nutri = document.createElement('div');
+            nutri.className = 'recipe-nutrition';
+            Object.entries(recette.nutrition).forEach(([label, val]) => {
+                const item = document.createElement('div');
+                item.className = 'nutrition-item';
+                item.innerHTML = `<span class="nutrition-label">${label}</span><span class="nutrition-value">${val}</span>`;
+                nutri.appendChild(item);
+            });
+            card.appendChild(nutri);
+        }
+
+        // Ingredients
+        if (recette.ingredients && recette.ingredients.length) {
+            const listDiv = document.createElement('div');
+            listDiv.className = 'ingredient-list';
+            recette.ingredients.forEach(ing => {
+                const li = document.createElement('div');
+                li.className = 'ingredient-item';
+                li.textContent = ing;
+                listDiv.appendChild(li);
+            });
+            card.appendChild(listDiv);
+        }
+
+        // Étapes
+        if (recette.etapes && recette.etapes.length) {
+            const stepsDiv = document.createElement('div');
+            stepsDiv.className = 'step-list';
+            recette.etapes.forEach((step, idx) => {
+                const s = document.createElement('div');
+                s.className = 'step-item';
+                s.innerHTML = `<div class="step-number">${idx + 1}</div><div class="step-content">${step}</div>`;
+                stepsDiv.appendChild(s);
+            });
+            card.appendChild(stepsDiv);
+        }
+
+        const nav = document.createElement('div');
+        nav.className = 'card-nav';
+        const prevBtn = document.createElement('button');
+        prevBtn.className = 'nav-btn-prev';
+        prevBtn.textContent = '◀ Précédent';
+        prevBtn.disabled = index === 0;
+        prevBtn.onclick = (e) => {
+            e.stopPropagation();
+            if (index > 0) {
+                grid.children[index - 1].scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        };
+        const nextBtn = document.createElement('button');
+        nextBtn.className = 'nav-btn-next';
+        nextBtn.textContent = 'Suivant ▶';
+        nextBtn.disabled = index === list.length - 1;
+        nextBtn.onclick = (e) => {
+            e.stopPropagation();
+            if (index < list.length - 1) {
+                grid.children[index + 1].scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        };
+        nav.appendChild(prevBtn);
+        nav.appendChild(nextBtn);
+        card.appendChild(nav);
+
+        card.onclick = () => logSession('meal');
+
+        grid.appendChild(card);
+    });
+}
+
+function renderRecipesPage() {
+    renderRecipesTabs();
+    renderRecipesGrid('tous');
+}
+
+// ====================== RENDU NOUSHI ======================
+function renderNoushiTabs() {
+    const tabs = document.getElementById('noushi-tabs');
+    if (!tabs) return;
+    tabs.innerHTML = '';
+
+    const niveaux = Array.from(new Set(NOUSHI_EXOS.map(n => n.niveau || 'standard')));
+    ['tous', ...niveaux].forEach(level => {
+        const btn = document.createElement('button');
+        btn.className = 'tab-btn';
+        btn.textContent = level === 'tous' ? 'Tous' : level.toUpperCase();
+        btn.onclick = () => {
+            renderNoushiGrid(level);
+        };
+        if (level === 'tous') btn.classList.add('active');
+        tabs.appendChild(btn);
+    });
+}
+
+function renderNoushiGrid(filterLevel = 'tous') {
+    const grid = document.getElementById('noushi-grid');
+    if (!grid) return;
+
+    const search = document.getElementById('noushi-search');
+    const query = (search?.value || '').toLowerCase();
+
+    let list = NOUSHI_EXOS.slice();
+    if (filterLevel !== 'tous') {
+        list = list.filter(e => (e.niveau || 'standard') === filterLevel);
+    }
+    if (query) {
+        list = list.filter(e =>
+            e.nom.toLowerCase().includes(query) ||
+            (e.desc && e.desc.toLowerCase().includes(query))
+        );
+    }
+
+    grid.innerHTML = '';
+
+    if (list.length === 0) {
+        grid.innerHTML = '<div class="empty-state"><div class="empty-state-icon">🔥</div><div class="empty-state-text">Aucun exo noushi trouvé</div></div>';
+        return;
+    }
+
+    list.forEach((exo, index) => {
+        const card = document.createElement('div');
+        card.className = 'card noushi-card';
+
+        const header = document.createElement('div');
+        header.className = 'card-header';
+
+        const title = document.createElement('div');
+        title.className = 'card-title';
+        title.textContent = exo.nom;
+
+        const favBtn = document.createElement('button');
+        favBtn.className = 'card-fav-btn';
+        favBtn.innerHTML = isFavori('noushi', exo.nom) ? '⭐' : '☆';
+        if (isFavori('noushi', exo.nom)) {
+            card.classList.add('favorited');
+            favBtn.classList.add('active');
+        }
+        favBtn.onclick = (e) => {
+            e.stopPropagation();
+            toggleFavori('noushi', exo.nom);
+        };
+
+        header.appendChild(title);
+        header.appendChild(favBtn);
+
+        const meta = document.createElement('div');
+        meta.className = 'card-meta';
+        meta.textContent = (exo.niveau || 'Standard').toUpperCase();
+
+        const desc = document.createElement('div');
+        desc.className = 'card-text';
+        desc.textContent = exo.desc || '';
+
+        card.appendChild(header);
+        card.appendChild(meta);
+        card.appendChild(desc);
+
+        if (exo.prep) {
+            const pSection = document.createElement('div');
+            pSection.className = 'card-section';
+            pSection.innerHTML = '<div class="card-section-title">Préparation</div><div class="card-section-content">' + exo.prep + '</div>';
+            card.appendChild(pSection);
+        }
+
+        if (exo.tips) {
+            const tSection = document.createElement('div');
+            tSection.className = 'card-section';
+            tSection.innerHTML = '<div class="card-section-title">Conseils</div><div class="card-section-content">' + exo.tips + '</div>';
+            card.appendChild(tSection);
+        }
+
+        const videoUrl = YOUTUBE_VIDEOS[exo.nom];
+        if (videoUrl) {
+            const video = document.createElement('div');
+            video.className = 'video-container';
+            video.innerHTML = `<iframe src="${videoUrl}" allowfullscreen loading="lazy"></iframe>`;
+            card.appendChild(video);
+        }
+
+        const nav = document.createElement('div');
+        nav.className = 'card-nav';
+        const prevBtn = document.createElement('button');
+        prevBtn.className = 'nav-btn-prev';
+        prevBtn.textContent = '◀ Précédent';
+        prevBtn.disabled = index === 0;
+        prevBtn.onclick = (e) => {
+            e.stopPropagation();
+            if (index > 0) grid.children[index - 1].scrollIntoView({ behavior: 'smooth', block: 'start' });
+        };
+        const nextBtn = document.createElement('button');
+        nextBtn.className = 'nav-btn-next';
+        nextBtn.textContent = 'Suivant ▶';
+        nextBtn.disabled = index === list.length - 1;
+        nextBtn.onclick = (e) => {
+            e.stopPropagation();
+            if (index < list.length - 1) grid.children[index + 1].scrollIntoView({ behavior: 'smooth', block: 'start' });
+        };
+        nav.appendChild(prevBtn);
+        nav.appendChild(nextBtn);
+        card.appendChild(nav);
+
+        card.onclick = () => logSession('exo');
+
+        grid.appendChild(card);
+    });
+}
+
+function renderNoushiPage() {
+    renderNoushiTabs();
+    renderNoushiGrid('tous');
+}
+
+// ====================== RENDU RELAX ======================
+function renderRelaxTabs() {
+    const tabs = document.getElementById('relax-tabs');
+    if (!tabs) return;
+    tabs.innerHTML = '';
+
+    const types = Array.from(new Set(RELAX_SESSIONS.map(r => r.type || 'relax')));
+    ['tous', ...types].forEach(type => {
+        const btn = document.createElement('button');
+        btn.className = 'tab-btn';
+        btn.textContent = type === 'tous' ? 'Tous' : type.toUpperCase();
+        btn.onclick = () => {
+            renderRelaxGrid(type);
+        };
+        if (type === 'tous') btn.classList.add('active');
+        tabs.appendChild(btn);
+    });
+}
+
+function renderRelaxGrid(filterType = 'tous') {
+    const grid = document.getElementById('relax-grid');
+    if (!grid) return;
+
+    const search = document.getElementById('relax-search');
+    const query = (search?.value || '').toLowerCase();
+
+    let list = RELAX_SESSIONS.slice();
+    if (filterType !== 'tous') {
+        list = list.filter(r => (r.type || 'relax') === filterType);
+    }
+    if (query) {
+        list = list.filter(r =>
+            r.nom.toLowerCase().includes(query) ||
+            (r.desc && r.desc.toLowerCase().includes(query))
+        );
+    }
+
+    grid.innerHTML = '';
+
+    if (list.length === 0) {
+        grid.innerHTML = '<div class="empty-state"><div class="empty-state-icon">🧘‍♂️</div><div class="empty-state-text">Aucune séance trouvée</div></div>';
+        return;
+    }
+
+    list.forEach((seance, index) => {
+        const card = document.createElement('div');
+        card.className = 'card relax-card';
+
+        const header = document.createElement('div');
+        header.className = 'card-header';
+
+        const title = document.createElement('div');
+        title.className = 'card-title';
+        title.textContent = seance.nom;
+
+        const favBtn = document.createElement('button');
+        favBtn.className = 'card-fav-btn';
+        favBtn.innerHTML = isFavori('relax', seance.nom) ? '⭐' : '☆';
+        if (isFavori('relax', seance.nom)) {
+            card.classList.add('favorited');
+            favBtn.classList.add('active');
+        }
+        favBtn.onclick = (e) => {
+            e.stopPropagation();
+            toggleFavori('relax', seance.nom);
+        };
+
+        header.appendChild(title);
+        header.appendChild(favBtn);
+
+        const desc = document.createElement('div');
+        desc.className = 'card-text';
+        desc.textContent = seance.desc || '';
+
+        card.appendChild(header);
+        card.appendChild(desc);
+
+        if (seance.steps && seance.steps.length) {
+            const stepsDiv = document.createElement('div');
+            stepsDiv.className = 'step-list';
+            seance.steps.forEach((step, idx) => {
+                const s = document.createElement('div');
+                s.className = 'step-item';
+                s.innerHTML = `<div class="step-number">${idx + 1}</div><div class="step-content">${step}</div>`;
+                stepsDiv.appendChild(s);
+            });
+            card.appendChild(stepsDiv);
+        }
+
+        const nav = document.createElement('div');
+        nav.className = 'card-nav';
+        const prevBtn = document.createElement('button');
+        prevBtn.className = 'nav-btn-prev';
+        prevBtn.textContent = '◀ Précédent';
+        prevBtn.disabled = index === 0;
+        prevBtn.onclick = (e) => {
+            e.stopPropagation();
+            if (index > 0) grid.children[index - 1].scrollIntoView({ behavior: 'smooth', block: 'start' });
+        };
+        const nextBtn = document.createElement('button');
+        nextBtn.className = 'nav-btn-next';
+        nextBtn.textContent = 'Suivant ▶';
+        nextBtn.disabled = index === list.length - 1;
+        nextBtn.onclick = (e) => {
+            e.stopPropagation();
+            if (index < list.length - 1) grid.children[index + 1].scrollIntoView({ behavior: 'smooth', block: 'start' });
+        };
+        nav.appendChild(prevBtn);
+        nav.appendChild(nextBtn);
+        card.appendChild(nav);
+
+        grid.appendChild(card);
+    });
+}
+
+function renderRelaxPage() {
+    renderRelaxTabs();
+    renderRelaxGrid('tous');
+}
+
+// ====================== RENDU FAVORIS ======================
+function renderFavorisPage() {
+    const grid = document.getElementById('favoris-grid');
+    if (!grid) return;
+    grid.innerHTML = '';
+
+    const allCards = [];
+
+    EXOS.forEach(exo => {
+        if (isFavori('exos', exo.nom)) {
+            allCards.push({ type: 'exo', nom: exo.nom, obj: exo });
+        }
+    });
+    RECIPES.forEach(r => {
+        if (isFavori('recipes', r.nom)) {
+            allCards.push({ type: 'recipe', nom: r.nom, obj: r });
+        }
+    });
+    NOUSHI_EXOS.forEach(e => {
+        if (isFavori('noushi', e.nom)) {
+            allCards.push({ type: 'noushi', nom: e.nom, obj: e });
+        }
+    });
+    RELAX_SESSIONS.forEach(s => {
+        if (isFavori('relax', s.nom)) {
+            allCards.push({ type: 'relax', nom: s.nom, obj: s });
+        }
+    });
+
+    if (allCards.length === 0) {
+        grid.innerHTML = '<div class="empty-state"><div class="empty-state-icon">⭐</div><div class="empty-state-text">Aucun favori pour l\'instant. Ajoute en cliquant sur ☆</div></div>';
+        return;
+    }
+
+    allCards.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'card favorited';
+
+        const header = document.createElement('div');
+        header.className = 'card-header';
+
+        const title = document.createElement('div');
+        title.className = 'card-title';
+        title.textContent = item.nom;
+
+        const favBtn = document.createElement('button');
+        favBtn.className = 'card-fav-btn active';
+        favBtn.innerHTML = '⭐';
+        favBtn.onclick = (e) => {
+            e.stopPropagation();
+            toggleFavori(
+                item.type === 'exo' ? 'exos' :
+                item.type === 'recipe' ? 'recipes' :
+                item.type === 'noushi' ? 'noushi' : 'relax',
+                item.nom
+            );
+        };
+
+        header.appendChild(title);
+        header.appendChild(favBtn);
+
+        const meta = document.createElement('div');
+        meta.className = 'card-meta';
+        meta.textContent = item.type.toUpperCase();
+
+        card.appendChild(header);
+        card.appendChild(meta);
+
+        grid.appendChild(card);
+    });
+}
+
+// ====================== HORLOGE + DATE ======================
+function updateTime() {
     const now = new Date();
-    document.getElementById('time').textContent = now.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' });
-    document.getElementById('date').textContent = now.toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long' });
-    
-    if (navigator.getBattery) {
-        navigator.getBattery().then(battery => {
-            document.getElementById('battery').textContent = Math.round(battery.level * 100);
-        });
+    const timeEl = document.getElementById('time');
+    const dateEl = document.getElementById('date');
+    if (timeEl) {
+        const h = String(now.getHours()).padStart(2, '0');
+        const m = String(now.getMinutes()).padStart(2, '0');
+        timeEl.textContent = `${h}:${m}`;
+    }
+    if (dateEl) {
+        const jours = ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'];
+        const mois = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
+        const j = jours[now.getDay()];
+        const d = now.getDate();
+        const mo = mois[now.getMonth()];
+        dateEl.textContent = `${j}, ${d} ${mo}`;
     }
 }
 
-// ============= EVENT LISTENERS POUR IOS FIX =============
+// ====================== BATTERIE & TEMP (placeholder safe) ======================
+function initBatteryAndTemp() {
+    const batteryEl = document.getElementById('battery');
+    const tempEl = document.getElementById('temp');
+
+    if (batteryEl) {
+        if (navigator.getBattery) {
+            navigator.getBattery().then(b => {
+                batteryEl.textContent = Math.round(b.level * 100);
+                b.addEventListener('levelchange', () => {
+                    batteryEl.textContent = Math.round(b.level * 100);
+                });
+            }).catch(() => {
+                batteryEl.textContent = '--';
+            });
+        } else {
+            batteryEl.textContent = '--';
+        }
+    }
+
+    if (tempEl) {
+        // Sans API météo (pour offline), on laisse -- ou une valeur locale si tu veux
+        tempEl.textContent = '--';
+    }
+}
+
+// ====================== RECHERCHE LIVE (events) ======================
+function attachSearchListeners() {
+    const exosSearch = document.getElementById('exos-search');
+    if (exosSearch) {
+        exosSearch.addEventListener('input', () => renderExosGrid());
+    }
+    const recipesSearch = document.getElementById('recipes-search');
+    if (recipesSearch) {
+        recipesSearch.addEventListener('input', () => renderRecipesGrid('tous'));
+    }
+    const noushiSearch = document.getElementById('noushi-search');
+    if (noushiSearch) {
+        noushiSearch.addEventListener('input', () => renderNoushiGrid('tous'));
+    }
+    const relaxSearch = document.getElementById('relax-search');
+    if (relaxSearch) {
+        relaxSearch.addEventListener('input', () => renderRelaxGrid('tous'));
+    }
+}
+
+// ====================== RENDU GLOBAL (quand favoris changent) ======================
+function renderAllPages() {
+    if (currentPage === 'exos') renderExosPage();
+    if (currentPage === 'nutrition') renderRecipesPage();
+    if (currentPage === 'noushi') renderNoushiPage();
+    if (currentPage === 'relax') renderRelaxPage();
+    if (currentPage === 'favoris') renderFavorisPage();
+}
+
+// ====================== INITIALISATION ======================
 document.addEventListener('DOMContentLoaded', () => {
-    updateTimeAndBattery();
-    setInterval(updateTimeAndBattery, 60000);
-    
-    // Fix iOS event handling
-    document.addEventListener('touchstart', () => {}, false);
-    document.addEventListener('touchend', () => {}, false);
-    document.addEventListener('touchcancel', () => {}, false);
-    
-    // Ajouter cursor pointer à tous les boutons
-    document.querySelectorAll('button, .card, .tab-btn, .top-nav-btn').forEach(el => {
-        el.style.cursor = 'pointer';
-    });
+    loadFavoris();
+    updateStats();
+
+    renderExosPage();
+    renderRecipesPage();
+    renderNoushiPage();
+    renderRelaxPage();
+    attachSearchListeners();
+    renderFavorisPage();
+
+    updateTime();
+    setInterval(updateTime, 30000);
+    initBatteryAndTemp();
 });
 </script>
-
 </body>
 </html>
